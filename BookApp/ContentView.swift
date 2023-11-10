@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        ZStack {
+        Color("lightGray").ignoresSafeArea()
         TabView {
             AddListingView()
                 .tabItem {
@@ -26,6 +28,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
+        }
         }
     }
 }

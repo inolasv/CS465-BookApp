@@ -26,10 +26,11 @@ struct RoundedButton: ButtonStyle {
             .font(.custom("GochiHand-Regular", size: 15))
             .foregroundColor(.black)
             .frame(width: 100, height: 30)
+            .background(Color("Beige4"))
+            .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
                                 .stroke(.black, lineWidth: 1))
-                .background(Color("lightGray"))
     }
 }
 
@@ -39,6 +40,8 @@ struct ProfileView: View {
     @State private var showingBorrowSheet = false
 
     var body: some View {
+        ZStack {
+        Color("lightGray").ignoresSafeArea()
         VStack {
             VStack {
                 Image("book_cover")
@@ -93,7 +96,7 @@ struct ProfileView: View {
 
                             }
                             .frame(width: 150, height: 230, alignment: .center)
-                            .background(.white)
+                            .background(Color("lightGray"))
                             .cornerRadius(25)
                             .overlay(RoundedRectangle(cornerRadius: 25)
                                 .strokeBorder(Color.black, lineWidth: 3))
@@ -103,7 +106,8 @@ struct ProfileView: View {
                     .frame(width: .infinity, height: 230, alignment: .center)
             }
             .frame(width: 460, height: 330)
-            .background(Color("lightGray"))
+            .background(Color("Beige3"))
+        }
         }
     }
 }
