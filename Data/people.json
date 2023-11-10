@@ -1,0 +1,145 @@
+{
+    "people": [
+      {
+        "name": "Sarah",
+        "lastname": "Johnson",
+        "bio": "I'm a doctor with a passion for helping others. When I'm not at the hospital, I enjoy hiking and volunteering.",
+        "favorite_genre": "Medical Drama",
+        "profile_picture": "7.jpg"
+      },
+      {
+        "name": "Hannah",
+        "lastname": "Martinez",
+        "bio": "I'm a software developer who loves coding and building cool applications. I'm also a cat person.",
+        "favorite_genre": "Technology",
+        "profile_picture": "21.jpg"
+      },
+      {
+        "name": "Ava",
+        "lastname": "Garcia",
+        "bio": "I'm a bookworm who can often be found at the local library. Mystery novels are my guilty pleasure.",
+        "favorite_genre": "Mystery",
+        "profile_picture": "43.jpg"
+      },
+      {
+        "name": "Mia",
+        "lastname": "Brown",
+        "bio": "I'm a yoga instructor who enjoys spreading mindfulness and inner peace through my classes.",
+        "favorite_genre": "Wellness",
+        "profile_picture": "62.jpg"
+      },
+      {
+        "name": "Lily",
+        "lastname": "Davis",
+        "bio": "I'm a marine biologist who explores the depths of the ocean in search of undiscovered species.",
+        "favorite_genre": "Nature Documentaries",
+        "profile_picture": "91.jpg"
+      },
+      {
+        "name": "Grace",
+        "lastname": "Anderson",
+        "bio": "I'm a fashion designer with a flair for unique and creative clothing designs. Fashion is my passion.",
+        "favorite_genre": "Fashion",
+        "profile_picture": "15.jpg"
+      },
+      {
+        "name": "Chloe",
+        "lastname": "Smith",
+        "bio": "I'm a chef who specializes in gourmet cuisine. I love experimenting with new ingredients and flavors.",
+        "favorite_genre": "Cooking",
+        "profile_picture": "34.jpg"
+      },
+      {
+        "name": "Zoe",
+        "lastname": "Miller",
+        "bio": "I'm an environmentalist dedicated to protecting our planet. Hiking and conservation are my life.",
+        "favorite_genre": "Environmental",
+        "profile_picture": "71.jpg"
+      },
+      {
+        "name": "Nora",
+        "lastname": "Wilson",
+        "bio": "I'm a historian with a fascination for ancient civilizations. Archaeology is my playground.",
+        "favorite_genre": "History",
+        "profile_picture": "88.jpg"
+      },
+      {
+        "name": "Scarlett",
+        "lastname": "Taylor",
+        "bio": "I'm an actress who loves performing on stage and screen. Drama and theater are my calling.",
+        "favorite_genre": "Drama",
+        "profile_picture": "26.jpg"
+      },
+      {
+        "name": "Lucy",
+        "lastname": "Roberts",
+        "bio": "I'm a wildlife photographer who captures the beauty of animals in their natural habitats.",
+        "favorite_genre": "Wildlife Photography",
+        "profile_picture": "52.jpg"
+      },
+      {
+        "name": "Aria",
+        "lastname": "Brown",
+        "bio": "I'm a musician who plays the violin in a classical orchestra. Music is the language of my soul.",
+        "favorite_genre": "Classical Music",
+        "profile_picture": "78.jpg"
+      },
+      {
+        "name": "Mila",
+        "lastname": "Thompson",
+        "bio": "I'm a food critic who travels the world in search of the best culinary experiences. Food is my passion.",
+        "favorite_genre": "Culinary Adventures",
+        "profile_picture": "6.jpg"
+      },
+      {
+        "name": "Harper",
+        "lastname": "Davis",
+        "bio": "I'm a software engineer who loves building innovative apps and exploring the latest tech trends.",
+        "favorite_genre": "Technology",
+        "profile_picture": "31.jpg"
+      },
+      {
+        "name": "Ella",
+        "lastname": "Gomez",
+        "bio": "I'm a graphic designer who creates eye-catching visuals and enjoys working on creative projects.",
+        "favorite_genre": "Graphic Design",
+        "profile_picture": "64.jpg"
+      },
+      {
+        "name": "Avery",
+        "lastname": "White",
+        "bio": "I'm a fitness trainer who helps people achieve their health goals. Fitness is my way of life.",
+        "favorite_genre": "Fitness",
+        "profile_picture": "99.jpg"
+      },
+      {
+        "name": "Riley",
+        "lastname": "Harris",
+        "bio": "I'm a travel blogger who documents my adventures around the world. Exploring new cultures is my passion.",
+        "favorite_genre": "Travel",
+        "profile_picture": "11.jpg"
+      },
+      {
+        "name": "Ellie",
+        "lastname": "Walker",
+        "bio": "I'm a science enthusiast who loves conducting experiments and unraveling the mysteries of the universe.",
+        "favorite_genre": "Science",
+        "profile_picture": "42.jpg"
+      },
+      {
+        "name": "Stella",
+        "lastname": "Lewis",
+        "bio": "I'm a lawyer who fights for justice and equality. Legal battles are my battleground.",
+        "favorite_genre": "Legal Dramas",
+        "profile_picture": "73.jpg"
+      },
+      {
+        "name": "Violet",
+        "lastname": "Baker",
+        "bio": "I'm a dog trainer who believes that every dog can be a good boy. Training dogs is my passion.",
+        "favorite_genre": "Animals",
+        "profile_picture": "17.jpg"
+      }
+    ]
+  }
+  
