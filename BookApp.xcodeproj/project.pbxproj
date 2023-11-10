@@ -20,6 +20,8 @@
 		142E4C862AFC457900104D13 /* AddListingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C852AFC457900104D13 /* AddListingView.swift */; };
 		142E4C882AFC45C200104D13 /* WishlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C872AFC45C200104D13 /* WishlistView.swift */; };
 		142E4C8A2AFC465000104D13 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C892AFC465000104D13 /* ProfileView.swift */; };
+		846261A12AFEA45100CCD7C8 /* BorrowConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */; };
+		846261A32AFED92C00CCD7C8 /* AcceptConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		142E4C852AFC457900104D13 /* AddListingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddListingView.swift; sourceTree = "<group>"; };
 		142E4C872AFC45C200104D13 /* WishlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WishlistView.swift; sourceTree = "<group>"; };
 		142E4C892AFC465000104D13 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorrowConfirmationView.swift; sourceTree = "<group>"; };
+		846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptConfirmationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 				142E4C852AFC457900104D13 /* AddListingView.swift */,
 				142E4C872AFC45C200104D13 /* WishlistView.swift */,
 				142E4C892AFC465000104D13 /* ProfileView.swift */,
+				846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */,
+				846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */,
 			);
 			path = BookApp;
 			sourceTree = "<group>";
@@ -287,8 +293,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				846261A12AFEA45100CCD7C8 /* BorrowConfirmationView.swift in Sources */,
 				142E4C862AFC457900104D13 /* AddListingView.swift in Sources */,
 				142E4C542AF55FC100104D13 /* ContentView.swift in Sources */,
+				846261A32AFED92C00CCD7C8 /* AcceptConfirmationView.swift in Sources */,
 				142E4C822AFC455C00104D13 /* MainView.swift in Sources */,
 				142E4C882AFC45C200104D13 /* WishlistView.swift in Sources */,
 				142E4C8A2AFC465000104D13 /* ProfileView.swift in Sources */,
