@@ -7,7 +7,37 @@
 
 import SwiftUI
 
+struct BorrowView: View {
+    @Environment(\.dismiss) var dismiss
+
+    var body: some View {
+        Button("Press to dismiss") {
+            dismiss()
+        }
+        .font(.title)
+        .padding()
+        .background(.black)
+    }
+}
+
+struct RoundedButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.custom("GochiHand-Regular", size: 15))
+            .foregroundColor(.black)
+            .frame(width: 100, height: 30)
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                                .stroke(.black, lineWidth: 1))
+                .background(Color("lightGray"))
+    }
+}
+
+
 struct ProfileView: View {
+    
+    @State private var showingBorrowSheet = false
+
     var body: some View {
         VStack {
             VStack {
@@ -29,15 +59,6 @@ struct ProfileView: View {
                     Text("Listings")
                         .font(.custom("GochiHand-Regular", size: 26))
                         .foregroundColor(.black)
-                    Button(action: {print("add listing clicked")}) {
-                        Text("Add Listing")
-                            .font(.custom("GochiHand-Regular", size: 15))
-                            .foregroundColor(.black)
-                            .frame(width: 100, height: 30)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                                .stroke(.black, lineWidth: 2))
-                    }
                 }
                 .frame(width: 330, height: 40, alignment: .leading)
                 
@@ -62,16 +83,12 @@ struct ProfileView: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
-                                Button(action: {print("button clicked")}) {
-                                    Text("Available")
-                                        .font(.custom("GochiHand-Regular", size: 15))
-                                        .foregroundColor(.black)
-                                        
-                                        .frame(width: 100, height: 30)
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(.black, lineWidth: 1))
-                                            .background(Color("lightGray"))
+                                Button("Available"){
+                                    showingBorrowSheet.toggle()
+                                }
+                                .buttonStyle(RoundedButton())
+                                .sheet(isPresented: $showingBorrowSheet) {
+                                    BorrowView()
                                 }
 
                             }
