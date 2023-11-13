@@ -50,6 +50,8 @@ struct AcceptConfirmationView: View {
     }
 }
 
-#Preview {
-    AcceptConfirmationView()
+struct AcceptConfirmationView_Previews: PreviewProvider {
+    static var previews: some View {
+        AcceptConfirmationView()
+    }
 }

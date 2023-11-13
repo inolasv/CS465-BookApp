@@ -7,13 +7,19 @@
 
 import SwiftUI
 
+
+
 struct BorrowConfirmationView: View {
+    @State var borrowingMode = false
+
+    
     var body: some View {
         VStack{
             HStack() {
                 Spacer()
                 Button(action: {print("exit clicked")}) {
                     Image("Exit").padding(.top, 10).padding(.horizontal, 10)
+//                    dismiss()
                 }
             }
             Image("book_cover")
@@ -29,14 +35,19 @@ struct BorrowConfirmationView: View {
                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ").font(.custom("GochiHand-Regular", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
             Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...").padding().font(.custom("GochiHand-Regular", size: 16))
-            HStack(alignment: .center) {
+            ZStack(alignment: .center) {
                 Button("Borrow") {
-                            print("Button pressed!")
+                            print("borrow pressed!")
+                                scheduleNotification(title: "Someone wants to borrow!", subtitle: "user1 wants to borrow book1", secondsLater: 10, isRepeating: false)
+                    self.borrowingMode = true
                         }
+                        .opacity(borrowingMode ? 0 : 1)
                         .buttonStyle(RoundedButton())
                 Button("Cancel") {
-                            print("Button pressed!")
+                            self.borrowingMode = false
                         }
+
+                .opacity(borrowingMode ? 1 : 0)
                         .buttonStyle(RoundedButton())
             }.padding()
             
@@ -50,6 +61,8 @@ struct BorrowConfirmationView: View {
     }
 }
 
-#Preview {
-    BorrowConfirmationView()
+struct BorrowConfirmationView_Previews: PreviewProvider {
+    static var previews: some View {
+        BorrowConfirmationView()
+    }
 }

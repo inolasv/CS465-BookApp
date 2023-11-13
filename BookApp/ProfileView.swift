@@ -11,12 +11,14 @@ struct BorrowView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        Button("Press to dismiss") {
-            dismiss()
-        }
-        .font(.title)
-        .padding()
-        .background(.black)
+//        Button("Press to dismiss") {
+//            dismiss()
+//        }
+//        .font(.title)
+//        .padding()
+        BorrowConfirmationView()
+        
+
     }
 }
 
@@ -43,6 +45,7 @@ struct ProfileView: View {
         ZStack {
         Color("lightGray").ignoresSafeArea()
         VStack {
+                            
             VStack {
                 Image("book_cover")
                     .resizable()

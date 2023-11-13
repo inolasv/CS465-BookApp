@@ -111,12 +111,12 @@
 		142E4C502AF55FC100104D13 /* BookApp */ = {
 			isa = PBXGroup;
 			children = (
+				142E4C912B02C73700104D13 /* Preview Content */,
 				142E4C802AFBE77E00104D13 /* Info.plist */,
 				142E4C7B2AFBE6BA00104D13 /* Gochi_Hand */,
 				142E4C512AF55FC100104D13 /* BookAppApp.swift */,
 				142E4C532AF55FC100104D13 /* ContentView.swift */,
 				142E4C552AF55FC400104D13 /* Assets.xcassets */,
-				142E4C572AF55FC400104D13 /* Preview Content */,
 				142E4C812AFC455C00104D13 /* MainView.swift */,
 				AB2D80792B0230D600554D52 /* MainView2.swift */,
 				142E4C852AFC457900104D13 /* AddListingView.swift */,
@@ -126,13 +126,6 @@
 				846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */,
 			);
 			path = BookApp;
-			sourceTree = "<group>";
-		};
-		142E4C572AF55FC400104D13 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		142E4C612AF55FC400104D13 /* BookAppTests */ = {
@@ -159,6 +152,13 @@
 				142E4C7D2AFBE6BA00104D13 /* OFL.txt */,
 			);
 			path = Gochi_Hand;
+			sourceTree = "<group>";
+		};
+		142E4C912B02C73700104D13 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
