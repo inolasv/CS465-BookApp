@@ -26,12 +26,13 @@ struct MainView: View {
             Color("lightGray").ignoresSafeArea()
             VStack {
                 VStack(spacing: 20) {
-                    AsyncImage(url: URL(string: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1676734831i/122757674.jpg")) { image in
+                    AsyncImage(url: URL(string: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1659824718i/61180151.jpg")) { image in
                         image.resizable()
                     } placeholder: {
                         ProgressView()
                     }
                     .frame(width: 155, height: 230)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                     HStack (spacing: 20){
                         //                    GeometryReader { geometry in
                         VStack (spacing: 10){
