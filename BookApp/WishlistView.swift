@@ -100,7 +100,7 @@ struct WishlistView: View {
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .center, spacing: 20) {
-                            ForEach(1..<5) { index in
+                            ForEach(3..<7) { index in
                                 VStack() {
                                     Button(action: {print("exit clicked")}) {
                                         Image("Exit")
