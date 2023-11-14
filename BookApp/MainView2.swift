@@ -10,7 +10,7 @@ struct FlipButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.black)
-            .background(Color("Beige4"))
+//            .background(Color("Beige4"))
             .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
@@ -34,7 +34,7 @@ struct MainView2: View {
                             // The back of the card
                             BackView()
                                 .frame(width: 340, height: 550)
-                                .background(Color("Beige1"))
+//                                .background(Color("Beige1"))
                                 .cornerRadius(20)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
@@ -101,10 +101,35 @@ struct MainView2: View {
 }
 struct BackView: View {
     var body: some View {
-        VStack {
-            // Add the back view content
-            Text("Back View")
+        VStack (alignment: .leading, spacing: 10){
+            Text("Title")
+                .font(.custom("GochiHand-Regular", size: 40))
+                .padding([.top, .horizontal])
+            Text("Author")
+                .font(.custom("GochiHand-Regular", size: 25))
+                .padding([.horizontal])
+            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.")
+                .font(.custom("GochiHand-Regular", size: 16))
+                .padding()
+            
+            VStack (alignment: .center){
+                HStack {
+                    TagView(tag: "Fantasy")
+                    TagView(tag: "Historical Fiction")
+                    TagView(tag: "Set in London")
+                }
+                HStack {
+                    TagView(tag: "Plot Twist")
+                    TagView(tag: "WOW")
+                    TagView(tag: "Powerful")
+                }
+                HStack {
+                    TagView(tag: "Ambitious Main Character")
+                    TagView(tag: "Short Book")
+                }
+            }
         }
+
     }
 }
 
@@ -114,3 +139,15 @@ struct MainView2_Previews: PreviewProvider {
     }
 }
 
+struct TagView: View {
+    var tag: String
+
+    var body: some View {
+        Text(tag)
+            .padding(.horizontal, 10) // Add horizontal padding inside the tag
+            .padding(.vertical, 10) // Add vertical padding to make the tag taller
+            .background(Color.gray.opacity(0.2))
+            .clipShape(Capsule())
+            .font(.caption) // You can adjust the font size as needed
+    }
+}
