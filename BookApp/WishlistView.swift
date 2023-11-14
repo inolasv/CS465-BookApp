@@ -81,7 +81,7 @@ struct WishlistView: View {
                         }
                     }
                 }
-                .frame(width: 460, height: 330)
+                .frame(width: 460, height: 310)
                 .background(Color("Beige3"))
                 VStack {
                     LazyHStack(alignment: .center, spacing: 130) {
