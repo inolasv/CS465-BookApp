@@ -40,43 +40,45 @@ struct WishlistView: View {
                             .foregroundColor(.black)
                     }
                     .frame(width: 330, height: 40, alignment: .leading)
-                    ScrollView(.horizontal) {
-                        LazyHStack(alignment: .center, spacing: 20) {
-                            ForEach(1..<3) { index in
-                                VStack() {
-                                    Button(action: {print("exit clicked")}) {
-                                        Image("Exit")
-                                            .frame(width: 120, height: 1, alignment: .trailing)
+                    GeometryReader { geometry in
+                        ScrollView(.horizontal) {
+                            LazyHStack(alignment: .center, spacing: 20) {
+                                ForEach(1..<3) { index in
+                                    VStack() {
+                                        Button(action: {print("exit clicked")}) {
+                                            Image("Exit")
+                                                .frame(width: 120, height: 1, alignment: .trailing)
+                                        }
+                                        Text("Book \(index)")
+                                            .font(.custom("GochiHand-Regular", size: 25))
+                                            .frame(width: 120, height: 20, alignment: .leading)
+                                        
+                                        Text("Author \(index)")
+                                            .font(.custom("GochiHand-Regular", size: 16))
+                                            .frame(width: 120, height: 10, alignment: .leading)
+                                        
+                                        Image("book_cover")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 85, height: 110, alignment: .center)
+                                            .clipped()
+                                        Button("Borrowing"){
+                                            showingBorrowSheet.toggle()
+                                        }
+                                        .buttonStyle(RoundedButton())
+                                        .sheet(isPresented: $showingBorrowSheet) {
+                                            BorrowView()
+                                        }
                                     }
-                                    Text("Book \(index)")
-                                        .font(.custom("GochiHand-Regular", size: 25))
-                                        .frame(width: 120, height: 20, alignment: .leading)
-                                    
-                                    Text("Author \(index)")
-                                        .font(.custom("GochiHand-Regular", size: 16))
-                                        .frame(width: 120, height: 10, alignment: .leading)
-                                    
-                                    Image("book_cover")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 85, height: 110, alignment: .center)
-                                        .clipped()
-                                    Button("Borrowing"){
-                                        showingBorrowSheet.toggle()
-                                    }
-                                    .buttonStyle(RoundedButton())
-                                    .sheet(isPresented: $showingBorrowSheet) {
-                                        BorrowView()
-                                    }
+                                    .frame(width: 150, height: 230, alignment: .center)
+                                    .background(Color("lightGray"))
+                                    .cornerRadius(25)
+                                    .overlay(RoundedRectangle(cornerRadius: 25)
+                                        .strokeBorder(Color.black, lineWidth: 3))
                                 }
-                                .frame(width: 150, height: 230, alignment: .center)
-                                .background(Color("lightGray"))
-                                .cornerRadius(25)
-                                .overlay(RoundedRectangle(cornerRadius: 25)
-                                    .strokeBorder(Color.black, lineWidth: 3))
                             }
+                            .frame(width: geometry.size.width, height: 230, alignment: .center)
                         }
-                        .frame(width: .infinity, height: 230, alignment: .center)
                     }
                 }
                 .frame(width: 460, height: 330)
