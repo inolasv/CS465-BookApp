@@ -16,17 +16,18 @@ struct BorrowConfirmationView: View {
     var body: some View {
         VStack{
             HStack() {
-                Spacer()
-                Button(action: {print("exit clicked")}) {
-                    Image("Exit").padding(.top, 10).padding(.horizontal, 10)
-//                    dismiss()
-                }
+//                Button(action: {print("exit clicked")}) {
+//                    Image("Exit").padding(.top, 10).padding(.horizontal, 10)
+//                 dismiss()
+//                }
             }
             Image("book_cover")
                 .resizable()
                 .aspectRatio(contentMode:.fill)
                 .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.height*0.3)
                 .clipShape(RoundedRectangle(cornerRadius: 25))
+                .padding(.top, 30)
+            
             HStack(alignment: .center) {
                 VStack(alignment: .center) {
                     Image("ProfileIcon")
@@ -38,7 +39,7 @@ struct BorrowConfirmationView: View {
             ZStack(alignment: .center) {
                 Button("Borrow") {
                             print("borrow pressed!")
-                                scheduleNotification(title: "Someone wants to borrow!", subtitle: "user1 wants to borrow book1", secondsLater: 10, isRepeating: false)
+                            scheduleNotification(title: "Someone wants to borrow!", subtitle: "user1 wants to borrow book1", secondsLater: 10, isRepeating: false)
                     self.borrowingMode = true
                         }
                         .opacity(borrowingMode ? 0 : 1)

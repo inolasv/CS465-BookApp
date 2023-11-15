@@ -18,7 +18,8 @@ struct AddListingView: View {
     @State private var giveOrBorrow: String = ""
 
     @State private var bookId: String = ""
-    
+    @State private var showingPreviewSheet = false
+
 //    init() {
 //
 //        UISegmentedControl.appearance().selectedSegmentTintColor = .red
@@ -41,7 +42,8 @@ struct AddListingView: View {
             
             Group {
 
-            Text("Title:")            .font(.custom("GochiHand-Regular", size: 25))
+            Text("Title:")
+                .font(.custom("GochiHand-Regular", size: 25))
                 .frame(width: 300, height: 0, alignment: .leading)
             
             TextField( "Book Title",
@@ -193,14 +195,19 @@ struct AddListingView: View {
             
             HStack(alignment: .center, spacing: 30) {
                 Button("Preview"){
-                    print("previwing")
+                    showingPreviewSheet.toggle()
+
                 }
                 .buttonStyle(RoundedButton())
+                .sheet(isPresented: $showingPreviewSheet) {
+                    BackView()
+                }
                 
+
                 Button("Submit"){
-                    print("submitting")
-                }
-                .buttonStyle(RoundedButton())
+
+                }.buttonStyle(RoundedButton())
+
             }
             .padding(.top, 25)
             .padding(.bottom, 25)

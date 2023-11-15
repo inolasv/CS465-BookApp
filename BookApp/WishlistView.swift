@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-import BookApp
-
 struct WhiteRoundedButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
@@ -28,9 +26,6 @@ struct WishlistView: View {
     @State private var showingBorrowSheet = false
     
     var body: some View {
-<<<<<<< HEAD
-       Text("hello")
-=======
         ZStack {
             VStack {
                 Text("My Wishlist")
@@ -91,14 +86,14 @@ struct WishlistView: View {
                         Text("Considering")
                             .font(.custom("GochiHand-Regular", size: 26))
                             .foregroundColor(.black)
-                        Button("Add Books")
-                        {
-                            showingBorrowSheet.toggle()
-                        }
-                        .buttonStyle(WhiteRoundedButton())
-                        .sheet(isPresented: $showingBorrowSheet) {
-                            BorrowView()
-                        }
+//                        Button("Add Books")
+//                        {
+//                            showingBorrowSheet.toggle()
+//                        }
+//                        .buttonStyle(WhiteRoundedButton())
+//                        .sheet(isPresented: $showingBorrowSheet) {
+//                            BorrowView()
+//                        }
                     }
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
@@ -154,7 +149,6 @@ struct WishlistView: View {
                 .background(Color("Beige3"))
             }
         }
->>>>>>> a3c8bbacfa16cba63ac4f814dd9320ddddbb4b24
     }
 }
 

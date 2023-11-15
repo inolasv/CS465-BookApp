@@ -19,11 +19,22 @@ struct FlipButton: ButtonStyle {
 }
 struct MainView2: View {
     @State private var isFlipped = false
-    
+    @State private var sideModal: SideModal? = nil
+
     var body: some View {
         ZStack {
-        Color("lightGray").ignoresSafeArea()
+            Color("lightGray").ignoresSafeArea()
+                .zIndex(0)
+            
+            Button("hello"){
+                print("opening")
+                sideModal = SideModal(title: "Available to Borrow", message: "The book is currently available to borrow! Check your wishlist to proceed")
+            }
+            .modalView(sideModal: $sideModal)
+            .zIndex(99)
+            
             VStack {
+                
                 HStack {
                     Button(action: {
                         withAnimation {
@@ -73,6 +84,7 @@ struct MainView2: View {
                     
                         .padding(.vertical)
                 }
+
                 HStack {
                     VStack {
                         Text("Also Borrowed By:")
@@ -95,7 +107,11 @@ struct MainView2: View {
                         }
                     }
                 }
+                
             }
+            .zIndex(1)
+            
+
         }
     }
 }
