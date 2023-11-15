@@ -17,7 +17,24 @@ struct FlipButton: ButtonStyle {
                     .stroke(.black, lineWidth: 1))
     }
 }
+
+struct Book: Decodable {
+    var title: String
+    var coverImage: String?
+    var author: String
+    var tags: [String]
+    var description: String
+    var availability: Bool
+    var borrowedByMe: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case title, author, tags, description, availability, borrowedByMe
+        case coverImage = "cover_image"
+    }
+}
+
 struct MainView2: View {
+    @State private var books: [Book] = []
     @State private var isFlipped = false
     
     var body: some View {
@@ -96,6 +113,31 @@ struct MainView2: View {
                     }
                 }
             }
+//            List(books, id: \.title) { book in
+//                VStack(alignment: .leading) {
+//                    Text(book.title).font(.headline)
+//                    Text(book.author).font(.subheadline)
+//                    // Display other properties as needed
+//                }
+//            }
+//            .onAppear {
+//                loadBooks()
+//            }
+        }
+    }
+
+    func loadBooks() {
+        // Load the JSON file from the bundle
+        guard let url = Bundle.main.url(forResource: "books", withExtension: "json", subdirectory: "Data") else {
+            print("JSON file not found")
+            return
+        }
+
+        do {
+            let data = try Data(contentsOf: url)
+            books = try JSONDecoder().decode([Book].self, from: data)
+        } catch {
+            print("Error decoding JSON: \(error)")
         }
     }
 }

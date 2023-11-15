@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12B18BB32B045CFA00A46FA3 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 12B18BB22B045CFA00A46FA3 /* Data */; };
 		142E4C522AF55FC100104D13 /* BookAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C512AF55FC100104D13 /* BookAppApp.swift */; };
 		142E4C542AF55FC100104D13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C532AF55FC100104D13 /* ContentView.swift */; };
 		142E4C562AF55FC400104D13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142E4C552AF55FC400104D13 /* Assets.xcassets */; };
@@ -42,6 +43,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12B18BB22B045CFA00A46FA3 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		142E4C4E2AF55FC100104D13 /* BookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		142E4C512AF55FC100104D13 /* BookAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAppApp.swift; sourceTree = "<group>"; };
 		142E4C532AF55FC100104D13 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 		142E4C502AF55FC100104D13 /* BookApp */ = {
 			isa = PBXGroup;
 			children = (
+				12B18BB22B045CFA00A46FA3 /* Data */,
 				142E4C912B02C73700104D13 /* Preview Content */,
 				142E4C802AFBE77E00104D13 /* Info.plist */,
 				142E4C7B2AFBE6BA00104D13 /* Gochi_Hand */,
@@ -267,6 +270,7 @@
 			files = (
 				142E4C7E2AFBE6BA00104D13 /* GochiHand-Regular.ttf in Resources */,
 				142E4C7F2AFBE6BA00104D13 /* OFL.txt in Resources */,
+				12B18BB32B045CFA00A46FA3 /* Data in Resources */,
 				142E4C562AF55FC400104D13 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
