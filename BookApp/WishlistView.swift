@@ -28,9 +28,7 @@ struct WishlistView: View {
     @State private var showingBorrowSheet = false
     
     var body: some View {
-<<<<<<< HEAD
        Text("hello")
-=======
         ZStack {
             VStack {
                 Text("My Wishlist")
@@ -154,7 +152,6 @@ struct WishlistView: View {
                 .background(Color("Beige3"))
             }
         }
->>>>>>> a3c8bbacfa16cba63ac4f814dd9320ddddbb4b24
     }
 }
 
