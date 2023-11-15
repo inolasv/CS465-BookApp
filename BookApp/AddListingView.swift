@@ -64,8 +64,7 @@ struct AddListingView: View {
             
             Group {
 
-            Text("Title:")
-                .font(.custom("GochiHand-Regular", size: 25))
+            Text("Title:")            .font(.custom("GochiHand-Regular", size: 25))
                 .frame(width: 300, height: 0, alignment: .leading)
             
             TextField( "Book Title",
@@ -217,15 +216,10 @@ struct AddListingView: View {
             
             HStack(alignment: .center, spacing: 30) {
                 Button("Preview"){
-                    showingPreviewSheet.toggle()
-
+                    print("previwing")
                 }
                 .buttonStyle(RoundedButton())
-                .sheet(isPresented: $showingPreviewSheet) {
-                    BackView()
-                }
                 
-
                 Button("Submit"){
                     var books = loadBooks()
                     if let index = books.firstIndex(where: { $0.title == bookTitle }) {
