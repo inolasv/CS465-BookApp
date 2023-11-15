@@ -28,7 +28,6 @@ struct WishlistView: View {
     @State private var showingBorrowSheet = false
     
     var body: some View {
-       Text("hello")
         ZStack {
             VStack {
                 Text("My Wishlist")
