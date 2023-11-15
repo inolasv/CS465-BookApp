@@ -36,6 +36,20 @@ struct Book: Codable, Identifiable {
     }
 }
 
+struct User: Codable, Identifiable {
+    var id: String{name + lastname}
+    var name: String
+    var lastname: String
+    var bio: String
+    var favoriteGenre: String
+    var profilePicture: String?
+
+    enum CodingKeys: String, CodingKey {
+        case name, lastname, bio, favoriteGenre
+        case profilePicture = "profile_picture"
+    }
+}
+
 
 
 
@@ -53,7 +67,7 @@ struct BookIconView: View {
                 if isFlipped {
                     // The back of the card
                     BackView(book: book)
-                        .frame(width: 340, height: 550)
+                        .frame(width: 340, height: 500)
                     //                                .background(Color("Beige1"))
                         .cornerRadius(20)
                         .overlay(
@@ -65,7 +79,7 @@ struct BookIconView: View {
                     Image(book.coverImage!)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 340, height: 550)
+                        .frame(width: 340, height: 500)
                         .background(Color("Beige3"))
                         .cornerRadius(20)
                         .overlay(
@@ -81,17 +95,19 @@ struct BookIconView: View {
 
 
 struct ListedByView: View {
+    let lender: User
+    
     var body: some View {
         HStack {
             VStack {
                 Text("Listed By:")
-                    .font(.custom("GochiHand-Regular", size: 25))
+                    .font(.custom("GochiHand-Regular", size: 20))
                     .frame(width: 220, height: 20, alignment: .leading)
-                Text("FirstName LastName")
+                Text(lender.name + " " + lender.lastname)
                     .font(.custom("GochiHand-Regular", size: 25))
                     .frame(width: 220, height: 20, alignment: .leading)
             }
-            Image(systemName: "person.crop.circle.fill")
+            Image(lender.profilePicture ?? "book_cover")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
@@ -104,19 +120,22 @@ struct ListedByView: View {
 
 
 struct BorrowedByView: View {
+    let borrowers: [User]
+    
     var body: some View {
         HStack {
             VStack {
                 Text("Also Borrowed By:")
-                    .font(.custom("GochiHand-Regular", size: 25))
+                    .font(.custom("GochiHand-Regular", size: 20))
                     .frame(width: 290, height: 20, alignment: .leading)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(0..<5, id: \.self) { _ in
-                            Image(systemName: "person.crop.circle.fill")
+                        ForEach(borrowers) { user in
+                            Image(user.profilePicture ?? "book_cover")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 40, height: 40)
+                                .padding(.leading, -10)
                                 .clipShape(Circle())
                         }
                     }
@@ -187,6 +206,8 @@ struct CardView: View {
     @State private var swipeStatus = 0
     @State private var color = Color("lightGray")
     let book: Book
+    let lender: User
+    let borrowers: [User]
     
     @State private var sideModal: SideModal? = nil
 
@@ -197,8 +218,8 @@ struct CardView: View {
             if swipeStatus == 0 {
                 VStack {
                     BookIconView(isFlipped: isFlipped, book: book)
-                    ListedByView()
-                    BorrowedByView()
+                    ListedByView(lender: lender)
+                    BorrowedByView(borrowers: borrowers)
                 }
             }
             else if swipeStatus == 1 {
@@ -206,8 +227,8 @@ struct CardView: View {
 //                    StarsBlinkView()
                     VStack {
                         BookIconView(isFlipped: isFlipped, book: book)
-                        ListedByView()
-                        BorrowedByView()
+                        ListedByView(lender: lender)
+                        BorrowedByView(borrowers: borrowers)
                     }
                 }
                 
@@ -265,8 +286,9 @@ struct CardView: View {
             color = .red
         case 100...500: //swipe right
             swipeStatus = 1
-            if (true) { // TODO: add logic to check if actually avail.
-                sideModal = SideModal(title: "Available to Borrow", message: "The book is currently available to borrow! Check your wishlist to proceed")
+            print(book.availability)
+            if (book.availability) { // TODO: add logic to check if actually avail.
+                sideModal = SideModal(title: "Available to Borrow", message: book.title + " is currently available to borrow! Check your wishlist to proceed")
             }
         default:
             color = Color("lightGray")
@@ -285,13 +307,23 @@ struct MainView2: View {
          Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
+        
+    @State private var users =
+        [User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"),
+         User(name: "name2", lastname: "lname2", bio: "this is a bio2.", favoriteGenre: "genre2"),
+         User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre3"),
+         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
+         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
+         User(name: "name5", lastname: "lname5", bio: "this is a bio5.", favoriteGenre: "genre5"),
+         User(name: "name6", lastname: "lname6", bio: "this is a bio6.", favoriteGenre: "genre6")]
+    
     let spacing: CGFloat = 10
 
     var body: some View {
         VStack {
             ZStack {
                 ForEach(self.books) {
-                    book in CardView(book: book)
+                    book in CardView(book: book, lender: users[Int.random(in: 0..<6)], borrowers: users)
                 }
             }
         }

@@ -82,7 +82,7 @@ struct ProfileView: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
-                                Button("Available"){
+                                Button("Unavailable"){ // can also be Borrowing
                                     showingBorrowSheet.toggle()
                                 }
                                 .buttonStyle(RoundedButton())

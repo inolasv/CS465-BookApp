@@ -13,13 +13,9 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-        Color("lightGray").ignoresSafeArea()
+        Color("beige3").ignoresSafeArea()
             
         TabView {
-            AddListingView()
-                .tabItem {
-                    Label("Add Listing", systemImage: "plus")
-                }
             MainView2()
                 .tabItem {
                     Label("Home", systemImage: "book")
@@ -31,6 +27,10 @@ struct ContentView: View {
             ProfileView()
                 .tabItem {
                     Label("Profile", systemImage: "person")
+                }
+            AddListingView()
+                .tabItem {
+                    Label("Add Listing", systemImage: "plus")
                 }
         }
         }
