@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+
 struct AddListingView: View {
     
     @State private var bookTitle: String = ""
@@ -19,6 +20,28 @@ struct AddListingView: View {
 
     @State private var bookId: String = ""
     
+    func copyJSONIfNeeded() {
+        let fileManager = FileManager.default
+        guard let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("books.json") else {
+            fatalError("Cannot find documents directory")
+        }
+        
+        if !fileManager.fileExists(atPath: url.path) {
+            guard let bundleURL = Bundle.main.url(forResource: "books", withExtension: "json", subdirectory: "Data") else {
+                fatalError("JSON file not found in bundle")
+            }
+            
+            do {
+                try fileManager.copyItem(at: bundleURL, to: url)
+            } catch {
+                fatalError("Failed to copy JSON file: \(error)")
+            }
+        }
+    }
+
+    init () {
+        copyJSONIfNeeded()
+    }
 //    init() {
 //
 //        UISegmentedControl.appearance().selectedSegmentTintColor = .red
@@ -198,7 +221,14 @@ struct AddListingView: View {
                 .buttonStyle(RoundedButton())
                 
                 Button("Submit"){
-                    print("submitting")
+                    var books = loadBooks()
+                    if let index = books.firstIndex(where: { $0.title == bookTitle }) {
+                        books[index].lendedByMe = true
+                        saveBooks(books)
+                        print("Book lending status updated")
+                    } else {
+                        print("Book title not found")
+                    }
                 }
                 .buttonStyle(RoundedButton())
             }
@@ -215,6 +245,38 @@ struct AddListingView: View {
        
         
     }
+
+    func loadBooks() -> [Book] {
+        let fileManager = FileManager.default
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Documents directory not found")
+        }
+        let fileURL = documentsDirectory.appendingPathComponent("books.json")
+
+        do {
+            let data = try Data(contentsOf: fileURL)
+            return try JSONDecoder().decode([Book].self, from: data)
+        } catch {
+            fatalError("Error decoding JSON: \(error)")
+        }
+    }
+
+    
+    func saveBooks(_ books: [Book]) {
+        let fileManager = FileManager.default
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            fatalError("Documents directory not found")
+        }
+        let fileURL = documentsDirectory.appendingPathComponent("books.json")
+
+        do {
+            let data = try JSONEncoder().encode(books)
+            try data.write(to: fileURL, options: [.atomicWrite])
+        } catch {
+            fatalError("Error encoding JSON: \(error)")
+        }
+    }
+
 }
 
 struct AddListingView_Previews: PreviewProvider {

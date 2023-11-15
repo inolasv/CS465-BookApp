@@ -18,7 +18,7 @@ struct FlipButton: ButtonStyle {
     }
 }
 
-struct Book: Decodable {
+struct Book: Codable {
     var title: String
     var coverImage: String?
     var author: String
@@ -26,9 +26,10 @@ struct Book: Decodable {
     var description: String
     var availability: Bool
     var borrowedByMe: Bool
+    var lendedByMe: Bool
 
     enum CodingKeys: String, CodingKey {
-        case title, author, tags, description, availability, borrowedByMe
+        case title, author, tags, description, availability, borrowedByMe, lendedByMe
         case coverImage = "cover_image"
     }
 }
