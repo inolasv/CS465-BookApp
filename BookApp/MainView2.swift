@@ -199,7 +199,6 @@ struct CardView: View {
                     BookIconView(isFlipped: isFlipped, book: book)
                     ListedByView()
                     BorrowedByView()
-                    
                 }
             }
             else if swipeStatus == 1 {
@@ -247,6 +246,7 @@ struct CardView: View {
                 }
             }
         )
+        .modalView(sideModal: $sideModal)
     }
     func swipeCard(width: CGFloat) {
         switch width {
@@ -265,6 +265,9 @@ struct CardView: View {
             color = .red
         case 100...500: //swipe right
             swipeStatus = 1
+            if (true) {
+                sideModal = SideModal(title: "Available to Borrow", message: "The book is currently available to borrow! Check your wishlist to proceed")
+            }
         default:
             color = Color("lightGray")
             swipeStatus = 0
