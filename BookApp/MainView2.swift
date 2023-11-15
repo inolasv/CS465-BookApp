@@ -18,6 +18,7 @@ struct FlipButton: ButtonStyle {
     }
 }
 
+
 struct Book: Codable, Identifiable {
     var id: String{title}
     var title: String
@@ -34,6 +35,8 @@ struct Book: Codable, Identifiable {
         case coverImage = "cover_image"
     }
 }
+
+
 struct MainView2: View {
     @State private var offset: CGFloat = 0
     @State private var index = 0
@@ -91,6 +94,7 @@ struct MainView2: View {
     }
 }
 
+
 struct BookIconView: View {
     @State var isFlipped: Bool
     let book: Book
@@ -130,6 +134,7 @@ struct BookIconView: View {
     }
 }
 
+
 struct ListedByView: View {
     var body: some View {
         HStack {
@@ -151,6 +156,7 @@ struct ListedByView: View {
         }
     }
 }
+
 
 struct BorrowedByView: View {
     var body: some View {
@@ -179,31 +185,7 @@ struct BorrowedByView: View {
     }
 }
 
-struct CardView: View {
-    @State private var isFlipped = false
-    let book: Book
-    
-    var body: some View {
-        ZStack {
-        Color("lightGray").ignoresSafeArea()
-            VStack {
-                BookIconView(isFlipped: isFlipped, book: book)
-                ListedByView()
-                BorrowedByView()
-            }
-//            List(books, id: \.title) { book in
-//                VStack(alignment: .leading) {
-//                    Text(book.title).font(.headline)
-//                    Text(book.author).font(.subheadline)
-//                    // Display other properties as needed
-//                }
-//            }
-//            .onAppear {
-//                loadBooks()
-//            }
-        }
-    }
-}
+
 struct BackView: View {
     let book: Book
     var body: some View {
@@ -238,6 +220,41 @@ struct BackView: View {
 
     }
 }
+
+
+struct CardView: View {
+    @State private var isFlipped = false
+    
+    let book: Book
+    
+    var body: some View {
+        ZStack {
+        //Color("lightGray").ignoresSafeArea()
+            VStack {
+                BookIconView(isFlipped: isFlipped, book: book)
+                ListedByView()
+                BorrowedByView()
+            }
+//            List(books, id: \.title) { book in
+//                VStack(alignment: .leading) {
+//                    Text(book.title).font(.headline)
+//                    Text(book.author).font(.subheadline)
+//                    // Display other properties as needed
+//                }
+//            }
+//            .onAppear {
+//                loadBooks()
+//            }
+        }
+        .padding()
+        .background(Color("lightGray")).padding()
+        .cornerRadius(20)
+        .overlay(
+            RoundedRectangle(cornerRadius: 20).stroke(.black, lineWidth: 5).padding()
+        )
+    }
+}
+
 
 struct MainView2_Previews: PreviewProvider {
     static var previews: some View {
