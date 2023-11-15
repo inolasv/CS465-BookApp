@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		12B18BB32B045CFA00A46FA3 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 12B18BB22B045CFA00A46FA3 /* Data */; };
 		142E4C522AF55FC100104D13 /* BookAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C512AF55FC100104D13 /* BookAppApp.swift */; };
 		142E4C542AF55FC100104D13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C532AF55FC100104D13 /* ContentView.swift */; };
 		142E4C562AF55FC400104D13 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 142E4C552AF55FC400104D13 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 		142E4C8A2AFC465000104D13 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C892AFC465000104D13 /* ProfileView.swift */; };
 		846261A12AFEA45100CCD7C8 /* BorrowConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */; };
 		846261A32AFED92C00CCD7C8 /* AcceptConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */; };
+		847060F22B049D040032566A /* StarsBlinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847060F12B049D040032566A /* StarsBlinkView.swift */; };
 		AB2D807A2B0230D600554D52 /* MainView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2D80792B0230D600554D52 /* MainView2.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		12B18BB22B045CFA00A46FA3 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		142E4C4E2AF55FC100104D13 /* BookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		142E4C512AF55FC100104D13 /* BookAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAppApp.swift; sourceTree = "<group>"; };
 		142E4C532AF55FC100104D13 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -60,6 +63,7 @@
 		142E4C892AFC465000104D13 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorrowConfirmationView.swift; sourceTree = "<group>"; };
 		846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptConfirmationView.swift; sourceTree = "<group>"; };
+		847060F12B049D040032566A /* StarsBlinkView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StarsBlinkView.swift; path = ../../../../Downloads/StarsBlinkView.swift; sourceTree = "<group>"; };
 		AB2D80792B0230D600554D52 /* MainView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +115,7 @@
 		142E4C502AF55FC100104D13 /* BookApp */ = {
 			isa = PBXGroup;
 			children = (
+				12B18BB22B045CFA00A46FA3 /* Data */,
 				142E4C912B02C73700104D13 /* Preview Content */,
 				142E4C802AFBE77E00104D13 /* Info.plist */,
 				142E4C7B2AFBE6BA00104D13 /* Gochi_Hand */,
@@ -124,6 +129,7 @@
 				142E4C892AFC465000104D13 /* ProfileView.swift */,
 				846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */,
 				846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */,
+				847060F12B049D040032566A /* StarsBlinkView.swift */,
 			);
 			path = BookApp;
 			sourceTree = "<group>";
@@ -267,6 +273,7 @@
 			files = (
 				142E4C7E2AFBE6BA00104D13 /* GochiHand-Regular.ttf in Resources */,
 				142E4C7F2AFBE6BA00104D13 /* OFL.txt in Resources */,
+				12B18BB32B045CFA00A46FA3 /* Data in Resources */,
 				142E4C562AF55FC400104D13 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +308,7 @@
 				142E4C8A2AFC465000104D13 /* ProfileView.swift in Sources */,
 				142E4C522AF55FC100104D13 /* BookAppApp.swift in Sources */,
 				AB2D807A2B0230D600554D52 /* MainView2.swift in Sources */,
+				847060F22B049D040032566A /* StarsBlinkView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
