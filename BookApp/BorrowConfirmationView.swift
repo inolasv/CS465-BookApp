@@ -11,10 +11,12 @@ import SwiftUI
 
 struct BorrowConfirmationView: View {
     @State var borrowingMode = false
+    @State private var sideModal: SideModal? = nil
+
 
     
     var body: some View {
-        VStack{
+        VStack {
             HStack() {
 //                Button(action: {print("exit clicked")}) {
 //                    Image("Exit").padding(.top, 10).padding(.horizontal, 10)
@@ -38,8 +40,9 @@ struct BorrowConfirmationView: View {
             Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...").padding().font(.custom("GochiHand-Regular", size: 16))
             ZStack(alignment: .center) {
                 Button("Borrow") {
-                            print("borrow pressed!")
-                            scheduleNotification(title: "Someone wants to borrow!", subtitle: "user1 wants to borrow book1", secondsLater: 10, isRepeating: false)
+                    print("borrow pressed!")
+                    sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.")
+                    scheduleNotification(title: "Someone wants to borrow!", subtitle: "user1 wants to borrow book1", secondsLater: 10, isRepeating: false)
                     self.borrowingMode = true
                         }
                         .opacity(borrowingMode ? 0 : 1)
@@ -59,6 +62,8 @@ struct BorrowConfirmationView: View {
         .overlay(RoundedRectangle(cornerRadius: 25)
             .strokeBorder(Color.black, lineWidth: 3))
         .padding()
+        .modalView(sideModal: $sideModal)
+
     }
 }
 

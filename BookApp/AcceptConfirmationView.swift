@@ -26,11 +26,13 @@ struct AcceptConfirmationView: View {
             Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...").padding().font(.custom("GochiHand-Regular", size: 16))
             HStack(alignment: .center) {
                 Button("Accept") {
-                            print("Button pressed!")
-                        }
-                        .buttonStyle(RoundedButton())
+                    print("accept pressed!")
+                    scheduleNotification(title: "Your Borrow Reqeust has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 10, isRepeating: false)
+                }
+                .buttonStyle(RoundedButton())
                 Button("Decline") {
-                            print("Button pressed!")
+                    print("decline pressed!")
+                    scheduleNotification(title: "Your Borrow Reqeust has been Declined", subtitle: "", secondsLater: 10, isRepeating: false)
                         }
                         .buttonStyle(RoundedButton())
             }.padding()

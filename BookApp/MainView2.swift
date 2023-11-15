@@ -265,7 +265,7 @@ struct CardView: View {
             color = .red
         case 100...500: //swipe right
             swipeStatus = 1
-            if (true) {
+            if (true) { // TODO: add logic to check if actually avail.
                 sideModal = SideModal(title: "Available to Borrow", message: "The book is currently available to borrow! Check your wishlist to proceed")
             }
         default:

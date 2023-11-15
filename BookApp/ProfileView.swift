@@ -11,14 +11,7 @@ struct BorrowView: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-//        Button("Press to dismiss") {
-//            dismiss()
-//        }
-//        .font(.title)
-//        .padding()
         BorrowConfirmationView()
-        
-
     }
 }
 
@@ -94,7 +87,7 @@ struct ProfileView: View {
                                 }
                                 .buttonStyle(RoundedButton())
                                 .sheet(isPresented: $showingBorrowSheet) {
-                                    BorrowView()
+                                    AcceptConfirmationView()
                                 }
 
                             }
