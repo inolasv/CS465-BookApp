@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct AcceptConfirmationView: View {
-    var book: Book
+    @Binding var book: Book
     var borrower: User
+    @Binding var showingBorrowSheet: Bool
     
     var body: some View {
         VStack{
@@ -28,16 +29,17 @@ struct AcceptConfirmationView: View {
             }.padding(.horizontal, 35).padding(.bottom, 5)
             Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...").padding().font(.custom("GochiHand-Regular", size: 16))
             HStack(alignment: .center) {
-                NavigationLink(destination: ProfileView()) {
-                    Button("Accept") {
-                        print("accept pressed!")
-                        scheduleNotification(title: "Your Borrow Reqeust has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 5, isRepeating: false)
-                    }
+                Button("Accept") {
+                    print("accept pressed!")
+                    scheduleNotification(title: "Your Borrow Request has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 5, isRepeating: false)
+                    showingBorrowSheet = false
+
                 }
                 .buttonStyle(RoundedButton())
                 Button("Decline") {
                     print("decline pressed!")
                     scheduleNotification(title: "Your Borrow Reqeust has been Declined", subtitle: "", secondsLater: 5, isRepeating: false)
+                    showingBorrowSheet = false
                         }
                         .buttonStyle(RoundedButton())
             }.padding()
@@ -54,6 +56,6 @@ struct AcceptConfirmationView: View {
 
 //struct AcceptConfirmationView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        AcceptConfirmationView()
+//        AcceptConfirmationView(book: Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false), borrower: User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"))
 //    }
 //}

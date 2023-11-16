@@ -26,7 +26,6 @@ struct WhiteRoundedButton: ButtonStyle {
 struct WishlistView: View {
     
     @State private var showingBorrowSheet = false
-    
     @State private var books =
         [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
          Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
@@ -108,31 +107,31 @@ struct WishlistView: View {
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .center, spacing: 20) {
-                            ForEach(books) { book in
+                            ForEach(books.indices, id: \.self) { i in
                                 VStack() {
                                     Button(action: {print("exit clicked")}) {
                                         Image("Exit")
                                             .frame(width: 120, height: 1, alignment: .trailing)
                                     }
-                                    Text(book.title)
+                                    Text(books[i].title)
                                         .font(.custom("GochiHand-Regular", size: 25))
                                         .frame(width: 120, height: 20, alignment: .leading)
                                     
-                                    Text(book.author)
+                                    Text(books[i].author)
                                         .font(.custom("GochiHand-Regular", size: 16))
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
-                                    Image(book.coverImage ?? "book_cover")
+                                    Image(books[i].coverImage ?? "book_cover")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 85, height: 110, alignment: .center)
                                         .clipped()
-                                    Button(book.availability ? "Available" : "Unavailable"){
+                                    Button(books[i].availability ? "Available" : "Unavailable"){
                                         showingBorrowSheet.toggle()
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                        BorrowConfirmationView(book: book, lender: users[Int.random(in: 0..<5)])
+                                        BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
                                     }
                                 }
                                 .frame(width: 150, height: 230, alignment: .center)

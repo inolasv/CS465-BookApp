@@ -80,31 +80,31 @@ struct ProfileView: View {
                 
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .center, spacing: 20) {
-                        ForEach(books) { book in
+                        ForEach(books.indices, id: \.self) { i in
                             VStack() {
                                 Button(action: {print("delete book")}) {
                                     Image("Exit")
                                         .frame(width: 120, height: 1, alignment: .trailing)
                                 }
-                                Text(book.title)
+                                Text(books[i].title)
                                     .font(.custom("GochiHand-Regular", size: 25))
                                     .frame(width: 120, height: 20, alignment: .leading)
 
-                                Text(book.author)
+                                Text(books[i].author)
                                     .font(.custom("GochiHand-Regular", size: 16))
                                     .frame(width: 120, height: 10, alignment: .leading)
 
-                                Image(book.coverImage ?? "book_cover")
+                                Image(books[i].coverImage ?? "book_cover")
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
-                                Button(book.availability ? "Available" : "Borrowed"){ // can also be Borrowing
+                                Button(books[i].availability ? "Available" : "Borrowed"){ // can also be Borrowing
                                     showingBorrowSheet.toggle()
                                 }
                                 .buttonStyle(RoundedButton())
                                 .sheet(isPresented: $showingBorrowSheet) {
-                                    AcceptConfirmationView(book: book, borrower: users[Int.random(in: 0..<4)])
+                                    AcceptConfirmationView(book: $books[i], borrower: users[Int.random(in: 0..<4)], showingBorrowSheet: $showingBorrowSheet)
                                 }
 
                             }
