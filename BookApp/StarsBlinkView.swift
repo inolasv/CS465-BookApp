@@ -69,7 +69,7 @@ struct StarsBlinkView: View {
     // LEt's create a function which will provide stars random position
     // also we can control birth rate and other properties
     private func startAnimatingStars(in size: CGSize) {
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true) { timer in
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
             let randomX = CGFloat.random(in: 0...size.width)
             let randomY = CGFloat.random(in: 0...size.height)
             let randomSize = CGFloat.random(in: 0.5...2)
