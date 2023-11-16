@@ -224,7 +224,7 @@ struct CardView: View {
             }
             else if swipeStatus == 1 {
                 ZStack {
-//                    StarsBlinkView()
+                    StarsBlinkView()
                     VStack {
                         BookIconView(isFlipped: isFlipped, book: book)
                         ListedByView(lender: lender)
