@@ -13,7 +13,9 @@ struct BorrowConfirmationView: View {
     @State var borrowingMode = false
     @State private var sideModal: SideModal? = nil
 
-
+    var book: Book
+    var lender: User
+    
     
     var body: some View {
         VStack {
@@ -23,7 +25,7 @@ struct BorrowConfirmationView: View {
 //                 dismiss()
 //                }
             }
-            Image("book_cover")
+            Image(book.coverImage ?? "book_cover")
                 .resizable()
                 .aspectRatio(contentMode:.fill)
                 .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.height*0.3)
@@ -32,7 +34,7 @@ struct BorrowConfirmationView: View {
             
             HStack(alignment: .center) {
                 VStack(alignment: .center) {
-                    Image("ProfileIcon")
+                    Image(lender.profilePicture ?? "ProfileIcon")
                     Text("Name").font(.custom("GochiHand-Regular", size: 24))
                 }
                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ").font(.custom("GochiHand-Regular", size: 16))
@@ -42,7 +44,7 @@ struct BorrowConfirmationView: View {
                 Button("Borrow") {
                     print("borrow pressed!")
                     sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.")
-                    scheduleNotification(title: "Someone wants to borrow!", subtitle: "user1 wants to borrow book1", secondsLater: 10, isRepeating: false)
+                    scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + book.title, secondsLater: 5, isRepeating: false)
                     self.borrowingMode = true
                         }
                         .opacity(borrowingMode ? 0 : 1)
@@ -67,8 +69,8 @@ struct BorrowConfirmationView: View {
     }
 }
 
-struct BorrowConfirmationView_Previews: PreviewProvider {
-    static var previews: some View {
-        BorrowConfirmationView()
-    }
-}
+//struct BorrowConfirmationView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        BorrowConfirmationView()
+//    }
+//}

@@ -27,6 +27,21 @@ struct WishlistView: View {
     
     @State private var showingBorrowSheet = false
     
+    @State private var books =
+        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
+         Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
+         Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
+         Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
+    
+    @State private var user = User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre1")
+    
+    @State private var users = [User(name: "name2", lastname: "lname2", bio: "this is a bio2.", favoriteGenre: "genre2"),
+         User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"),
+         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
+         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
+         User(name: "name5", lastname: "lname5", bio: "this is a bio5.", favoriteGenre: "genre5"),
+         User(name: "name6", lastname: "lname6", bio: "this is a bio6.", favoriteGenre: "genre6")]
+    
     var body: some View {
         ZStack {
             VStack {
@@ -43,32 +58,25 @@ struct WishlistView: View {
                     GeometryReader { geometry in
                         ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
-                                ForEach(1..<3) { index in
+                                ForEach(books) { book in
                                     VStack() {
                                         Button(action: {print("exit clicked")}) {
                                             Image("Exit")
                                                 .frame(width: 120, height: 1, alignment: .trailing)
                                         }
-                                        Text("Book \(index)")
+                                        Text(book.title)
                                             .font(.custom("GochiHand-Regular", size: 25))
                                             .frame(width: 120, height: 20, alignment: .leading)
                                         
-                                        Text("Author \(index)")
+                                        Text(book.author)
                                             .font(.custom("GochiHand-Regular", size: 16))
                                             .frame(width: 120, height: 10, alignment: .leading)
                                         
-                                        Image("book_cover")
+                                        Image(book.coverImage ?? "book_cover")
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: 85, height: 110, alignment: .center)
                                             .clipped()
-                                        Button("Borrowing"){
-                                            showingBorrowSheet.toggle()
-                                        }
-                                        .buttonStyle(RoundedButton())
-                                        .sheet(isPresented: $showingBorrowSheet) {
-                                            BorrowView()
-                                        }
                                     }
                                     .frame(width: 150, height: 230, alignment: .center)
                                     .background(Color("lightGray"))
@@ -100,41 +108,31 @@ struct WishlistView: View {
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
                         LazyHStack(alignment: .center, spacing: 20) {
-                            ForEach(3..<7) { index in
+                            ForEach(books) { book in
                                 VStack() {
                                     Button(action: {print("exit clicked")}) {
                                         Image("Exit")
                                             .frame(width: 120, height: 1, alignment: .trailing)
                                     }
-                                    Text("Book \(index)")
+                                    Text(book.title)
                                         .font(.custom("GochiHand-Regular", size: 25))
                                         .frame(width: 120, height: 20, alignment: .leading)
                                     
-                                    Text("Author \(index)")
+                                    Text(book.author)
                                         .font(.custom("GochiHand-Regular", size: 16))
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
-                                    Image("book_cover")
+                                    Image(book.coverImage ?? "book_cover")
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 85, height: 110, alignment: .center)
                                         .clipped()
-                                    if index % 2 == 0 {
-                                        Button("Available"){
-                                            showingBorrowSheet.toggle()
-                                        }
-                                        .buttonStyle(RoundedButton())
-                                        .sheet(isPresented: $showingBorrowSheet) {
-                                            BorrowView()
-                                        }
-                                    } else {
-                                        Button("Unavailable"){
-                                            showingBorrowSheet.toggle()
-                                        }
-                                        .buttonStyle(RoundedButton())
-                                        .sheet(isPresented: $showingBorrowSheet) {
-                                            BorrowView()
-                                        }
+                                    Button(book.availability ? "Available" : "Unavailable"){
+                                        showingBorrowSheet.toggle()
+                                    }
+                                    .buttonStyle(RoundedButton())
+                                    .sheet(isPresented: $showingBorrowSheet) {
+                                        BorrowConfirmationView(book: book, lender: users[Int.random(in: 0..<5)])
                                     }
                                 }
                                 .frame(width: 150, height: 230, alignment: .center)

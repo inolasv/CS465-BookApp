@@ -107,7 +107,7 @@ struct ListedByView: View {
                     .font(.custom("GochiHand-Regular", size: 25))
                     .frame(width: 220, height: 20, alignment: .leading)
             }
-            Image(lender.profilePicture ?? "book_cover")
+            Image(lender.profilePicture ?? "ProfileIcon")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
@@ -131,7 +131,7 @@ struct BorrowedByView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(borrowers) { user in
-                            Image(user.profilePicture ?? "book_cover")
+                            Image(user.profilePicture ?? "ProfileIcon")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 40, height: 40)

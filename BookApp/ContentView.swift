@@ -13,7 +13,7 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-        Color("beige3").ignoresSafeArea()
+        Color("Beige2").ignoresSafeArea()
             
         TabView {
             MainView2()
@@ -46,6 +46,8 @@ func scheduleNotification(title: String, subtitle: String, secondsLater: TimeInt
             }
     }
     
+    print("sending notifff.....")
+    
     // Define the content
     let content = UNMutableNotificationContent()
     content.title = title
@@ -58,6 +60,7 @@ func scheduleNotification(title: String, subtitle: String, secondsLater: TimeInt
     
     UNUserNotificationCenter.current().add(request)
 
+    print("notif sent!")
 
 }
 

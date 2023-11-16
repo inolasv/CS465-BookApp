@@ -20,6 +20,11 @@ struct AddListingView: View {
 
     @State private var bookId: String = ""
     
+    @State private var showingPreviewSheet = false
+    @State private var sideModal: SideModal? = nil
+
+
+    
     func copyJSONIfNeeded() {
         let fileManager = FileManager.default
         guard let url = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("books.json") else {
@@ -41,18 +46,15 @@ struct AddListingView: View {
 
     init () {
         copyJSONIfNeeded()
-    }
-//    init() {
-//
-//        UISegmentedControl.appearance().selectedSegmentTintColor = .red
+//        UISegmentedControl.appearance().selectedSegmentTintColor = Color.pink
 //        UISegmentedControl.appearance().backgroundColor = .purple
-//
-//        //This will change the font size
+
+        //This will change the font size
 //        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("GochiHand-Regular", size: 12))], for: .highlighted)
 //
 //        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("GochiHand-Regular", size: 12))), for: .normal)
-//
-//    }
+
+    }
 
     var body: some View {
 
@@ -155,21 +157,17 @@ struct AddListingView: View {
                 .frame(width: 300, height: 0, alignment: .leading)
                 .padding(.top, 30)
                 
+                
             Picker(selection: $borrowLength, label: Text("Pick One")) {
-                            Text("1 week").tag(1)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("2 weeks").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("3 weeks").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("4 weeks").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-                        }
-                .pickerStyle(.segmented)
-                .padding(.leading, 40)
-                .padding(.trailing, 40)
-                .padding(.top, 10)
-                .font(.custom("GochiHand-Regular", size: 20))
-
+                ForEach(["1 week", "2 weeks", "3 weeks", "4 weeks"], id: \.self) {
+                                Text($0)
+                            }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.leading, 40)
+            .padding(.trailing, 40)
+            .padding(.top, 10)
+                
             }
             
             Group {
@@ -178,21 +176,16 @@ struct AddListingView: View {
                 .frame(width: 300, height: 0, alignment: .leading)
                 .padding(.top, 30)
                 
-            Picker(selection: $condition, label: Text("Pick One")) {
-                            Text("excellent").tag(1)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("decent").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("good").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("poor").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-                        }
-                .pickerStyle(.segmented)
+                Picker(selection: $condition, label: Text("Pick One")) {
+                    ForEach(["excellent", "decent", "good", "poor"], id: \.self) {
+                                    Text($0)
+                                }
+                }
+                .pickerStyle(SegmentedPickerStyle())
                 .padding(.leading, 40)
                 .padding(.trailing, 40)
                 .padding(.top, 10)
-                .font(.custom("GochiHand-Regular", size: 20))
-
+                
             }
             
             Group {
@@ -202,23 +195,30 @@ struct AddListingView: View {
                 .padding(.top, 30)
                 
             Picker(selection: $giveOrBorrow, label: Text("Pick One")) {
-                            Text("Giving Away").tag(1)                    .font(.custom("GochiHand-Regular", size: 20))
-
-                            Text("Lending").tag(2)                    .font(.custom("GochiHand-Regular", size: 20))
-                        }
-                .pickerStyle(.segmented)
-                .padding(.leading, 40)
-                .padding(.trailing, 40)
-                .padding(.top, 10)
-                .font(.custom("GochiHand-Regular", size: 20))
+                ForEach(["Giving Away", "Lending"], id: \.self) {
+                    Text($0)
+                }
+            }
+            .pickerStyle(.segmented)
+            .padding(.leading, 40)
+            .padding(.trailing, 40)
+            .padding(.top, 10)
 
             }
             
             HStack(alignment: .center, spacing: 30) {
+                
+                
                 Button("Preview"){
-                    print("previwing")
+                    showingPreviewSheet.toggle()
+
+                }
+                .onTapGesture {
                 }
                 .buttonStyle(RoundedButton())
+                .sheet(isPresented: $showingPreviewSheet) {
+                    BookIconView(isFlipped: false, book: Book(title: bookTitle, coverImage: "cover", author: bookAuthor, tags: tags, description: "description", availability: true, borrowedByMe: false, lendedByMe: true))
+                }
                 
                 Button("Submit"){
                     var books = loadBooks()
@@ -227,7 +227,7 @@ struct AddListingView: View {
                         saveBooks(books)
                         print("Book lending status updated")
                     } else {
-                        print("Book title not found")
+                        sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
                     }
                 }
                 .buttonStyle(RoundedButton())
@@ -241,7 +241,8 @@ struct AddListingView: View {
                 .cornerRadius(25)
                 .overlay(RoundedRectangle(cornerRadius: 25)
                     .strokeBorder(Color.black, lineWidth: 3))
-        
+                .modalView(sideModal: $sideModal)
+
        
         
     }
