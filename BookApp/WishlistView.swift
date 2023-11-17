@@ -115,33 +115,40 @@ struct WishlistView: View {
                     ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
                                 ForEach(books2.indices, id: \.self) { i in
-                                    VStack() {
-                                        Button(action: {print("exit clicked")}) {
-                                            Image("Exit")
-                                                .frame(width: 120, height: 1, alignment: .trailing)
+                                    if books2[i].wishlistedByMe {
+                                        VStack() {
+                                            Button(action: {print("exit clicked")}) {
+                                                Image("Exit")
+                                                    .frame(width: 120, height: 1, alignment: .trailing)
+                                            }
+                                            Text(books2[i].title)
+                                                .font(.custom("GochiHand-Regular", size: 25))
+                                                .frame(width: 120, height: 20, alignment: .leading)
+                                            
+                                            Text(books2[i].author)
+                                                .font(.custom("GochiHand-Regular", size: 16))
+                                                .frame(width: 120, height: 10, alignment: .leading)
+                                            
+                                            // Place holder image for now
+                                            Image("book_cover") // Placeholder image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 85, height: 110, alignment: .center)
+                                                .clipped()
+                                            Button(books2[i].availability ? "Available!" : "Unavailable") {
+                                                showingBorrowSheet.toggle()
+                                            }
+                                            .buttonStyle(RoundedButton())
+                                            // You might need to modify this part to work with Book2
+                                             .sheet(isPresented: $showingBorrowSheet) {
+                                                 BorrowConfirmationView(book: $books2[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
+                                             }
                                         }
-                                        Text(books2[i].title)
-                                            .font(.custom("GochiHand-Regular", size: 25))
-                                            .frame(width: 120, height: 20, alignment: .leading)
-                                        
-                                        Text(books2[i].author)
-                                            .font(.custom("GochiHand-Regular", size: 16))
-                                            .frame(width: 120, height: 10, alignment: .leading)
-                                        
-                                        // Place holder image for now
-                                        Image("book_cover") // Placeholder image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 85, height: 110, alignment: .center)
-                                            .clipped()
-                                        Button(books2[i].availability ? "Available!" : "Unavailable") {
-                                            showingBorrowSheet.toggle()
-                                        }
-                                        .buttonStyle(RoundedButton())
-                                        // You might need to modify this part to work with Book2
-                                         .sheet(isPresented: $showingBorrowSheet) {
-                                             BorrowConfirmationView(book: $books2[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
-                                         }
+                                        .frame(width: 150, height: 230, alignment: .center)
+                                        .background(Color("lightGray"))
+                                        .cornerRadius(25)
+                                        .overlay(RoundedRectangle(cornerRadius: 25)
+                                            .strokeBorder(Color.black, lineWidth: 3))
                                     }
                                 }
                             }

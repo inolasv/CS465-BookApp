@@ -283,9 +283,9 @@ struct CardView: View {
     
     func sparkle(width: CGFloat) {
         switch width {
-        case -500...(-200): //swipe left
+        case -500...(-200): // swipe left
             color = .red
-        case 100...500: //swipe right
+        case 100...500: // swipe right
             swipeStatus = 1
             print(book.availability)
             if (book.availability) {
