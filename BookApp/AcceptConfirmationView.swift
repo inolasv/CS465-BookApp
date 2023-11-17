@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AcceptConfirmationView: View {
-    @Binding var book: Book
-    var borrower: User
+    @Binding var book: Book2
+    @Binding var borrower: User
     @Binding var showingBorrowSheet: Bool
     
     var body: some View {
@@ -23,13 +23,16 @@ struct AcceptConfirmationView: View {
             HStack(alignment: .center) {
                 VStack(alignment: .center) {
                     Image(borrower.profilePicture ?? "ProfileIcon")
-                    Text("Name").font(.custom("GochiHand-Regular", size: 24))
+                    Text(borrower.name + " " + borrower.lastname).font(.custom("GochiHand-Regular", size: 24))
                 }
                 Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ").font(.custom("GochiHand-Regular", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
             Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...").padding().font(.custom("GochiHand-Regular", size: 16))
             HStack(alignment: .center) {
                 Button("Accept") {
+                    book.borrowedByMe = true
+                    book.wishlistedByMe = false
+                    book.availability = false
                     print("accept pressed!")
                     scheduleNotification(title: "Your Borrow Request has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 5, isRepeating: false)
                     showingBorrowSheet = false
