@@ -102,7 +102,7 @@ struct ProfileView: View {
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
                                     // Place holder image for now
-                                    AsyncImage(url: URL(string: books2[i].coverImage)) { phase in
+                                    AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
                                         switch phase {
                                             case .empty:
                                                 ProgressView() // Shown while the image is loading
@@ -120,14 +120,14 @@ struct ProfileView: View {
                                     }
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
-                                    Button(books2[i].availability ? "Available" : "Borrowed") {
-                                        if books2[i].availability {
+                                    Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
+                                        if booksFromJson[i].availability {
                                             showingBorrowSheet.toggle()
                                         }
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                            AcceptConfirmationView(book: $books2[i], borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                            AcceptConfirmationView(book: $booksFromJson[i], borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                      }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)

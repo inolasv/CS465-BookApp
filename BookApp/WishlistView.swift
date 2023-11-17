@@ -138,7 +138,7 @@ struct WishlistView: View {
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // Place holder image for now
-                                            AsyncImage(url: URL(string: books2[i].coverImage)) { phase in
+                                            AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
                                                 switch phase {
                                                     case .empty:
                                                         ProgressView() // Shown while the image is loading
@@ -156,15 +156,15 @@ struct WishlistView: View {
                                             }
                                             .frame(width: 85, height: 110, alignment: .center)
                                             .clipped()
-                                            Button(books2[i].availability ? "Available!" : "Unavailable") {
-                                                if books2[i].availability {
+                                            Button(booksFromJson[i].availability ? "Available!" : "Unavailable") {
+                                                if booksFromJson[i].availability {
                                                     showingBorrowSheet.toggle()
                                                 }
                                             }
                                             .buttonStyle(RoundedButton())
                                             // You might need to modify this part to work with Book2
                                              .sheet(isPresented: $showingBorrowSheet) {
-                                                     BorrowConfirmationView(book: $books2[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                                     BorrowConfirmationView(book: $booksFromJson[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                                  
                                              }
                                         }
