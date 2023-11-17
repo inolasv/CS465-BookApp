@@ -10,6 +10,9 @@ import SwiftUI
 
 struct AddListingView: View {
     
+    var books: [Book2] = []
+
+    
     @State private var bookTitle: String = ""
     @State private var bookAuthor: String = ""
     @State private var bookTag: String = ""
@@ -22,6 +25,8 @@ struct AddListingView: View {
     
     @State private var showingPreviewSheet = false
     @State private var sideModal: SideModal? = nil
+    
+    
     
     @State private var selectedPreview: Book = Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
 
@@ -210,10 +215,8 @@ struct AddListingView: View {
             HStack(alignment: .center, spacing: 30) {
                 
                 Button("Preview"){
-                    var books = loadBooks()
                     if let index = books.firstIndex(where: { $0.title == bookTitle }) {
                         books[index].lendedByMe = true
-                        saveBooks(books)
                         selectedPreview = books[index]
                     }
                     else {
@@ -234,10 +237,8 @@ struct AddListingView: View {
                 }
                 
                 Button("Submit"){
-                    var books = loadBooks()
                     if let index = books.firstIndex(where: { $0.title == bookTitle }) {
                         books[index].lendedByMe = true
-                        saveBooks(books)
                         print("Book lending status updated")
                     } else {
                         sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
