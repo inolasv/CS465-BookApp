@@ -119,8 +119,8 @@ struct ProfileView: View {
                             .cornerRadius(25)
                             .overlay(RoundedRectangle(cornerRadius: 25)
                                 .strokeBorder(Color.black, lineWidth: 3))
-                            }
                         }
+                    }
                     }
                 .frame(width: .infinity, height: 240, alignment: .center)
             }

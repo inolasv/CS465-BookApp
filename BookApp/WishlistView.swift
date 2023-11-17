@@ -106,43 +106,43 @@ struct WishlistView: View {
                     }
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
-                        LazyHStack(alignment: .center, spacing: 20) {
+                            LazyHStack(alignment: .center, spacing: 20) {
                             ForEach(books.indices, id: \.self) { i in
-                                VStack() {
-                                    Button(action: {print("exit clicked")}) {
-                                        Image("Exit")
-                                            .frame(width: 120, height: 1, alignment: .trailing)
-                                    }
+                                    VStack() {
+                                        Button(action: {print("exit clicked")}) {
+                                            Image("Exit")
+                                                .frame(width: 120, height: 1, alignment: .trailing)
+                                        }
                                     Text(books[i].title)
-                                        .font(.custom("GochiHand-Regular", size: 25))
-                                        .frame(width: 120, height: 20, alignment: .leading)
-                                    
+                                            .font(.custom("GochiHand-Regular", size: 25))
+                                            .frame(width: 120, height: 20, alignment: .leading)
+                                        
                                     Text(books[i].author)
-                                        .font(.custom("GochiHand-Regular", size: 16))
-                                        .frame(width: 120, height: 10, alignment: .leading)
-                                    
+                                            .font(.custom("GochiHand-Regular", size: 16))
+                                            .frame(width: 120, height: 10, alignment: .leading)
+                                        
                                     Image(books[i].coverImage ?? "book_cover")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 85, height: 110, alignment: .center)
-                                        .clipped()
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 85, height: 110, alignment: .center)
+                                            .clipped()
                                     Button(books[i].availability ? "Available" : "Unavailable"){
-                                        showingBorrowSheet.toggle()
-                                    }
-                                    .buttonStyle(RoundedButton())
+                                            showingBorrowSheet.toggle()
+                                        }
+                                        .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
                                         BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
                                     }
+                                    }
+                                    .frame(width: 150, height: 230, alignment: .center)
+                                    .background(Color("lightGray"))
+                                    .cornerRadius(25)
+                                    .overlay(RoundedRectangle(cornerRadius: 25)
+                                        .strokeBorder(Color.black, lineWidth: 3))
                                 }
-                                .frame(width: 150, height: 230, alignment: .center)
-                                .background(Color("lightGray"))
-                                .cornerRadius(25)
-                                .overlay(RoundedRectangle(cornerRadius: 25)
-                                    .strokeBorder(Color.black, lineWidth: 3))
                             }
+                            .frame(width: .infinity, height: 230, alignment: .center)
                         }
-                        .frame(width: .infinity, height: 230, alignment: .center)
-                    }
                 }
                 .frame(width: 460, height: 330)
                 .background(Color("Beige3"))
