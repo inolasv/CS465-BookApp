@@ -10,21 +10,21 @@ import UserNotifications
 
 
 struct ContentView: View {
-
+    @State private var booksFromJson = Book2.allBooks
     var body: some View {
         ZStack {
         Color("Beige2").ignoresSafeArea()
             
         TabView {
-            MainView2()
+            MainView2(booksFromJson: $booksFromJson)
                 .tabItem {
                     Label("Home", systemImage: "book")
                 }
-            WishlistView()
+            WishlistView(booksFromJson: $booksFromJson)
                 .tabItem {
                     Label("Wishlist", systemImage: "checklist")
                 }
-            ProfileView()
+            ProfileView(booksFromJson: $booksFromJson)
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }

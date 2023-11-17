@@ -50,9 +50,9 @@ struct AddListingView: View {
             }
         }
     }
-
     init () {
         copyJSONIfNeeded()
+    
 //        UISegmentedControl.appearance().selectedSegmentTintColor = Color.pink
 //        UISegmentedControl.appearance().backgroundColor = .purple
 

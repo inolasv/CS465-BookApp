@@ -25,7 +25,7 @@ struct WhiteRoundedButton: ButtonStyle {
 }
 
 struct WishlistView: View {
-    
+    @Binding var booksFromJson: [Book2]
     @State private var showingBorrowSheet = false
     @State private var books =
         [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
@@ -33,7 +33,7 @@ struct WishlistView: View {
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
-    @State private var books2: [Book2] = Book2.allBooks
+    
     
     @State private var user = Person.allPersons[1]
     
@@ -122,23 +122,23 @@ struct WishlistView: View {
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
-                                ForEach(books2.indices, id: \.self) { i in
-                                    if books2[i].wishlistedByMe {
+                                ForEach(booksFromJson.indices, id: \.self) { i in
+                                    if booksFromJson[i].wishlistedByMe {
                                         VStack() {
                                             Button(action: {print("exit clicked")}) {
                                                 Image("Exit")
                                                     .frame(width: 120, height: 1, alignment: .trailing)
                                             }
-                                            Text(books2[i].title)
+                                            Text(booksFromJson[i].title)
                                                 .font(.custom("GochiHand-Regular", size: 25))
                                                 .frame(width: 120, height: 20, alignment: .leading)
                                             
-                                            Text(books2[i].author)
+                                            Text(booksFromJson[i].author)
                                                 .font(.custom("GochiHand-Regular", size: 16))
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // Place holder image for now
-                                            AsyncImage(url: URL(string: books2[i].coverImage)) { phase in
+                                            AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
                                                 switch phase {
                                                     case .empty:
                                                         ProgressView() // Shown while the image is loading
@@ -156,15 +156,15 @@ struct WishlistView: View {
                                             }
                                             .frame(width: 85, height: 110, alignment: .center)
                                             .clipped()
-                                            Button(books2[i].availability ? "Available!" : "Unavailable") {
-                                                if books2[i].availability {
+                                            Button(booksFromJson[i].availability ? "Available!" : "Unavailable") {
+                                                if booksFromJson[i].availability {
                                                     showingBorrowSheet.toggle()
                                                 }
                                             }
                                             .buttonStyle(RoundedButton())
                                             // You might need to modify this part to work with Book2
                                              .sheet(isPresented: $showingBorrowSheet) {
-                                                     BorrowConfirmationView(book: $books2[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                                     BorrowConfirmationView(book: $booksFromJson[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                                  
                                              }
                                         }
@@ -184,17 +184,10 @@ struct WishlistView: View {
             }
         }
     }
-    
-    init() {
-        self.books2 = Book2.allBooks
-//        print("book2allbooks: \(Book2.allBooks)")
-        print("books2: \(books2)")
-    
-    }
 }
 
-struct WishlistView_Previews: PreviewProvider {
-    static var previews: some View {
-        WishlistView()
-    }
-}
+//struct WishlistView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WishlistView()
+//    }
+//}
