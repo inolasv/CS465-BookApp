@@ -66,13 +66,13 @@ struct AddListingView: View {
     var body: some View {
 
         VStack{
-            Text("Add a Listing")            .font(.custom("Futura", size: 30))
+            Text("Add a Listing").font(.custom("Futura", size: 30))
                 .padding()
             
             
             Group {
 
-            Text("Title:")            .font(.custom("Futura", size: 25))
+            Text("Title:").font(.custom("Futura", size: 22))
                 .frame(width: 290, height: 0, alignment: .leading)
             
             TextField( "Book Title",
@@ -91,9 +91,9 @@ struct AddListingView: View {
             }
             Group {
 
-            Text("Author:")            .font(.custom("Futura", size: 25))
+            Text("Author:")            .font(.custom("Futura", size: 22))
                 .frame(width: 290, height: 0, alignment: .leading)
-                .padding(.top, 30)
+                .padding(.top, 20)
             
             TextField( "Book Author",
                        text: $bookAuthor)
@@ -111,11 +111,11 @@ struct AddListingView: View {
             Group {
 
             
-            Text("Tags:")            .font(.custom("Futura", size: 25))
+            Text("Tags:")            .font(.custom("Futura", size: 22))
                 .frame(width: 290, height: 0, alignment: .leading)
-                .padding(.top, 30)
+                .padding(.top, 20)
             
-            TextField( "add tags here",
+            TextField( "Add tags here",
                        text: $bookTag)
                 .onSubmit {
                     tags.append(bookTag)
@@ -153,15 +153,15 @@ struct AddListingView: View {
             .padding(.top, 12)
             .padding(.leading, 40)
             .background(Color("cream"))
-            .frame(height: 50, alignment: .center)
+            .frame(height: 30, alignment: .center)
                 
             }
             
             Group {
 
-            Text("Borrow Length:")            .font(.custom("Futura", size: 25))
+            Text("Borrow Length:")            .font(.custom("Futura", size: 22))
                 .frame(width: 290, height: 0, alignment: .leading)
-                .padding(.top, 30)
+                .padding(.top, 20)
                 
                 
             Picker(selection: $borrowLength, label: Text("Pick One")) {
@@ -178,9 +178,9 @@ struct AddListingView: View {
             
             Group {
 
-            Text("Condition:")            .font(.custom("Futura", size: 25))
+            Text("Condition:")            .font(.custom("Futura", size: 22))
                 .frame(width: 290, height: 0, alignment: .leading)
-                .padding(.top, 30)
+                .padding(.top, 20)
                 
                 Picker(selection: $condition, label: Text("Pick One")) {
                     ForEach(["Unused", "Decent", "Worn"], id: \.self) {
@@ -196,9 +196,9 @@ struct AddListingView: View {
             
             Group {
 
-            Text("Listing type:")            .font(.custom("Futura", size: 25))
+            Text("Listing type:")            .font(.custom("Futura", size: 22))
                 .frame(width: 290, height: 0, alignment: .leading)
-                .padding(.top, 30)
+                .padding(.top, 20)
                 
             Picker(selection: $giveOrBorrow, label: Text("Pick One")) {
                 ForEach(["Lending", "Giving away"], id: \.self) {
@@ -247,10 +247,10 @@ struct AddListingView: View {
                 .buttonStyle(RoundedButton())
             }
             .padding(.top, 25)
-            .padding(.bottom, 25)
+            .padding(.bottom, 20)
             
             
-        }.frame(maxWidth: 370, maxHeight: 720, alignment: .center)
+        }.frame(maxWidth: 370, maxHeight: 670, alignment: .center)
                 .background(Color("cream"))
                 .cornerRadius(25)
                 .overlay(RoundedRectangle(cornerRadius: 25)
@@ -293,9 +293,17 @@ struct AddListingView: View {
     }
 
 }
-//
+
 //struct AddListingView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddListingView()
+//    }
+//}
+//struct AddListingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Create a constant binding to an array of 'Book2' which contains the example book
+//        let exampleBooks = [Book2(title: "Sample Book", coverImage: "SampleCover", author: "Sample Author", tags: ["Fiction", "Adventure"], description: "This is a sample book description.", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
+//        
+//        AddListingView(booksFromJson: .constant(exampleBooks))
 //    }
 //}

@@ -76,12 +76,14 @@ struct ProfileView: View {
                 Text(user.name + " " + user.lastname)
                     .font(.custom("Futura", size: 30))
                     .foregroundColor(.black)
+                    .frame(width: 400, height: 30, alignment: .center)
                 Text(user.bio)
                     .font(.custom("Futura", size: 18))
-                    .frame(width: 310, height: .infinity, alignment: .leading)
+                    .frame(width: 310, height: 70, alignment: .leading)
                     .foregroundColor(.black)
                     .padding(.vertical)
                     .padding(.vertical)
+
 
             }
             VStack {
@@ -95,11 +97,11 @@ struct ProfileView: View {
                                             .frame(width: 120, height: 1, alignment: .trailing)
                                     }
                                     Text(booksFromJson[i].title)
-                                        .font(.custom("GochiHand-Regular", size: 25))
+                                        .font(.custom("Futura", size: 25))
                                         .frame(width: 120, height: 20, alignment: .leading)
                                     
                                     Text(booksFromJson[i].author)
-                                        .font(.custom("GochiHand-Regular", size: 16))
+                                        .font(.custom("Futura", size: 16))
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
                                     // Place holder image for now
@@ -144,15 +146,23 @@ struct ProfileView: View {
                 .frame(width: .infinity, height: 240, alignment: .center)
 
             }
-            .frame(width: 460, height: 300)
+            .frame(width: 460, height: 310)
             .background(Color("yellow"))
         }
         }
     }
 }
-
+//
 //    struct ProfileView_Previews: PreviewProvider {
 //        static var previews: some View {
 //            ProfileView()
 //        }
 //    }
+//struct ProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Create a constant binding to an array of 'Book2' which contains the example book
+//        let exampleBooks = [Book2(title: "Sample Book", coverImage: "SampleCover", author: "Sample Author", tags: ["Fiction", "Adventure"], description: "This is a sample book description.", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
+//        
+//        ProfileView(booksFromJson: .constant(exampleBooks))
+//    }
+//}

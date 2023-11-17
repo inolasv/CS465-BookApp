@@ -13,7 +13,7 @@ import Foundation
 struct WhiteRoundedButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .font(.custom("GochiHand-Regular", size: 15))
+            .font(.custom("Futura", size: 15))
             .foregroundColor(.black)
             .frame(width: 100, height: 30)
             .background(Color(UIColor.white))
@@ -43,15 +43,16 @@ struct WishlistView: View {
         ZStack {
             VStack {
                 Text("My Wishlist")
-                    .font(.custom("GochiHand-Regular", size: 30))
+                    .font(.custom("Futura", size: 30))
                     .foregroundColor(.black)
+                    .frame(width: 400, height: 25, alignment: .center)
                 VStack {
                     LazyHStack(alignment: .center, spacing: 130) {
-                        Text("Current Borrowing")
-                            .font(.custom("GochiHand-Regular", size: 26))
+                        Text("Currently Borrowing")
+                            .font(.custom("Futura", size: 26))
                             .foregroundColor(.black)
                     }
-                    .frame(width: 330, height: 40, alignment: .leading)
+                    .frame(width: 360, height: 50, alignment: .leading)
                     GeometryReader { geometry in
                         ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
@@ -63,11 +64,11 @@ struct WishlistView: View {
                                                     .frame(width: 120, height: 1, alignment: .trailing)
                                             }
                                             Text(book.title)
-                                                .font(.custom("GochiHand-Regular", size: 25))
+                                                .font(.custom("Futura", size: 25))
                                                 .frame(width: 120, height: 20, alignment: .leading)
                                             
                                             Text(book.author)
-                                                .font(.custom("GochiHand-Regular", size: 16))
+                                                .font(.custom("Futura", size: 16))
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // It is reading the book url in here, but we need to write a image url decoder into the image as XCode does not support displaying image from URL
@@ -88,11 +89,11 @@ struct WishlistView: View {
                                                         EmptyView()
                                                 }
                                             }
-                                            .frame(width: 85, height: 110, alignment: .center)
+                                            .frame(width: 85, height: 130, alignment: .center)
                                             .clipped()
                                         }
                                         .frame(width: 150, height: 230, alignment: .center)
-                                        .background(Color("lightGray"))
+                                        .background(Color("cream"))
                                         .cornerRadius(25)
                                         .overlay(RoundedRectangle(cornerRadius: 25)
                                             .strokeBorder(Color.black, lineWidth: 3))
@@ -104,11 +105,12 @@ struct WishlistView: View {
                     }
                 }
                 .frame(width: 460, height: 310)
-                .background(Color("Beige3"))
+                .background(Color("yellow"))
+                .padding()
                 VStack {
                     LazyHStack(alignment: .center, spacing: 130) {
                         Text("Considering")
-                            .font(.custom("GochiHand-Regular", size: 26))
+                            .font(.custom("Futura", size: 26))
                             .foregroundColor(.black)
 //                        Button("Add Books")
 //                        {
@@ -119,7 +121,7 @@ struct WishlistView: View {
 //                            BorrowView()
 //                        }
                     }
-                    .frame(width: 330, height: 40, alignment: .leading)
+                    .frame(width: 360, height: 50, alignment: .leading)
                     ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
                                 ForEach(booksFromJson.indices, id: \.self) { i in
@@ -130,11 +132,11 @@ struct WishlistView: View {
                                                     .frame(width: 120, height: 1, alignment: .trailing)
                                             }
                                             Text(booksFromJson[i].title)
-                                                .font(.custom("GochiHand-Regular", size: 25))
+                                                .font(.custom("Futura", size: 25))
                                                 .frame(width: 120, height: 20, alignment: .leading)
                                             
                                             Text(booksFromJson[i].author)
-                                                .font(.custom("GochiHand-Regular", size: 16))
+                                                .font(.custom("Futura", size: 16))
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // Place holder image for now
@@ -170,25 +172,34 @@ struct WishlistView: View {
                                              }
                                         }
                                         .frame(width: 150, height: 230, alignment: .center)
-                                        .background(Color("lightGray"))
+                                        .background(Color("cream"))
                                         .cornerRadius(25)
                                         .overlay(RoundedRectangle(cornerRadius: 25)
                                             .strokeBorder(Color.black, lineWidth: 3))
                                     }
                                 }
                             }
-                            .frame(width: .infinity, height: 230, alignment: .center)
+                            .frame(width: 460, height: 230, alignment: .center)
                         }
                 }
-                .frame(width: 460, height: 330)
-                .background(Color("Beige3"))
+                .frame(width: 460, height: 300)
+                .background(Color("yellow"))
             }
         }
     }
-}
+} 
 
 //struct WishlistView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        WishlistView()
 //    }
 //}
+//struct WishlistView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Create a constant binding to an array of 'Book2' which contains the example book
+//        let exampleBooks = [Book2(title: "Sample Book", coverImage: "SampleCover", author: "Sample Author", tags: ["Fiction", "Adventure"], description: "This is a sample book description.", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
+//        
+//        WishlistView(booksFromJson: .constant(exampleBooks))
+//    }
+//}
+
