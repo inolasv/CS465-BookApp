@@ -12,7 +12,7 @@ import SwiftUI
 struct BorrowConfirmationView: View {
     @State private var sideModal: SideModal? = nil
     
-    @Binding var book: Book
+    @Binding var book: Book2
     var lender: User
     @Binding var showingBorrowSheet: Bool
     

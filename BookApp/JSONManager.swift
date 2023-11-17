@@ -14,7 +14,7 @@ struct Book2: Codable, Identifiable {
     let author: String
     let tags: [String]
     let description: String
-    let availability, borrowedByMe, lendedByMe: Bool
+    var availability, borrowedByMe, lendedByMe: Bool
 
     enum CodingKeys: String, CodingKey {
         case title
