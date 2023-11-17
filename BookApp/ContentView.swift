@@ -28,7 +28,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
-            AddListingView()
+            AddListingView(booksFromJson: $booksFromJson)
                 .tabItem {
                     Label("Add Listing", systemImage: "plus")
                 }

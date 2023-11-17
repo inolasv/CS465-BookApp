@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AddListingView: View {
     
-    var books: [Book2] = []
+    @Binding var booksFromJson: [Book2]
 
     
     @State private var bookTitle: String = ""
@@ -28,7 +28,7 @@ struct AddListingView: View {
     
     
     
-    @State private var selectedPreview: Book = Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
+    @State private var selectedPreview: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
 
 
     
@@ -50,18 +50,18 @@ struct AddListingView: View {
             }
         }
     }
-    init () {
-        copyJSONIfNeeded()
-    
-//        UISegmentedControl.appearance().selectedSegmentTintColor = Color.pink
-//        UISegmentedControl.appearance().backgroundColor = .purple
-
-        //This will change the font size
-//        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("Futura", size: 12))], for: .highlighted)
+//    init () {
+//        copyJSONIfNeeded()
 //
-//        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("Futura", size: 12))), for: .normal)
-
-    }
+////        UISegmentedControl.appearance().selectedSegmentTintColor = Color.pink
+////        UISegmentedControl.appearance().backgroundColor = .purple
+//
+//        //This will change the font size
+////        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("Futura", size: 12))], for: .highlighted)
+////
+////        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("Futura", size: 12))), for: .normal)
+//
+//    }
 
     var body: some View {
 
@@ -215,9 +215,9 @@ struct AddListingView: View {
             HStack(alignment: .center, spacing: 30) {
                 
                 Button("Preview"){
-                    if let index = books.firstIndex(where: { $0.title == bookTitle }) {
-                        books[index].lendedByMe = true
-                        selectedPreview = books[index]
+                    if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+                        booksFromJson[index].lendedByMe = true
+                        selectedPreview = booksFromJson[index]
                     }
                     else {
                        sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
@@ -229,7 +229,7 @@ struct AddListingView: View {
                 .buttonStyle(RoundedButton())
                 .sheet(isPresented: $showingPreviewSheet) {
                     if selectedPreview.title == "title1" {
-//                      BookIconView(isFlipped: false, book: $selectedPreview)
+                      BookIconView(isFlipped: false, book: $selectedPreview)
                     }
                     else {
                         Text("Please fill out a valid book.")
@@ -237,8 +237,8 @@ struct AddListingView: View {
                 }
                 
                 Button("Submit"){
-                    if let index = books.firstIndex(where: { $0.title == bookTitle }) {
-                        books[index].lendedByMe = true
+                    if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+                        booksFromJson[index].lendedByMe = true
                         print("Book lending status updated")
                     } else {
                         sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
@@ -293,9 +293,9 @@ struct AddListingView: View {
     }
 
 }
-
-struct AddListingView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddListingView()
-    }
-}
+//
+//struct AddListingView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        AddListingView()
+//    }
+//}
