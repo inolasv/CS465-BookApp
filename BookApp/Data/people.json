@@ -1,5 +1,4 @@
-{
-    "people": [
+[
       {
         "name": "Sarah",
         "lastname": "Johnson",
@@ -140,6 +139,4 @@
         "favorite_genre": "Animals",
         "profile_picture": "17.jpg"
       }
-    ]
-  }
-  
+]

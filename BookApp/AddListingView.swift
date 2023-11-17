@@ -215,9 +215,9 @@ struct AddListingView: View {
                 .onTapGesture {
                 }
                 .buttonStyle(RoundedButton())
-                .sheet(isPresented: $showingPreviewSheet) {
-                    BookIconView(isFlipped: false, book: Book(title: bookTitle, coverImage: "cover", author: bookAuthor, tags: tags, description: "description", availability: true, borrowedByMe: false, lendedByMe: true, wishlistedByMe: false))
-                }
+//                .sheet(isPresented: $showingPreviewSheet) {
+//                    BookIconView(isFlipped: false, book: Book(title: bookTitle, coverImage: "cover", author: bookAuthor, tags: tags, description: "description", availability: true, borrowedByMe: false, lendedByMe: true, wishlistedByMe: false))
+//                }
                 
                 Button("Submit"){
                     var books = loadBooks()

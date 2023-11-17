@@ -5,6 +5,7 @@
 //  Created by Aditi Shah on 11/13/23.
 //
 import SwiftUI
+import Foundation
 
 struct FlipButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
@@ -57,7 +58,7 @@ struct User: Codable, Identifiable {
 
 struct BookIconView: View {
     @State var isFlipped: Bool
-    @Binding var book: Book
+    @Binding var book: Book2
     var body: some View {
         HStack {
             Button(action: {
@@ -96,7 +97,7 @@ struct BookIconView: View {
 
 
 struct ListedByView: View {
-    @Binding var lender: User
+    @Binding var lender: Person
     
     var body: some View {
         HStack {
@@ -121,7 +122,7 @@ struct ListedByView: View {
 
 
 struct BorrowedByView: View {
-    @Binding var borrowers: [User]
+    @Binding var borrowers: [Person]
     
     var body: some View {
         HStack {
@@ -132,7 +133,7 @@ struct BorrowedByView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(borrowers) { user in
-                            Image(user.profilePicture ?? "ProfileIcon")
+                            Image("ProfileIcon")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 40, height: 40)
@@ -152,7 +153,7 @@ struct BorrowedByView: View {
 
 
 struct BackView: View {
-    @Binding var book: Book
+    @Binding var book: Book2
     var body: some View {
         VStack (alignment: .leading, spacing: 10){
             Text(book.title)
@@ -205,9 +206,9 @@ struct CardView: View {
     @State private var isFlipped = false
     @State private var swipeStatus = 0
     @State private var color = Color("lightGray")
-    @Binding var book: Book
-    @Binding var lender: User
-    @Binding var borrowers: [User]
+    @Binding var book: Book2
+    @Binding var lender: Person
+    @Binding var borrowers: [Person]
     
     @State private var sideModal: SideModal? = nil
 
@@ -304,20 +305,17 @@ struct MainView2: View {
     //@State private var index = 0
     
     
-    @State private var books =
-        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
-         Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
-         Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
-         Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
+    @State private var books = Book2.allBooks
         
-    @State private var users =
-        [User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"),
-         User(name: "name2", lastname: "lname2", bio: "this is a bio2.", favoriteGenre: "genre2"),
-         User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre3"),
-         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
-         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
-         User(name: "name5", lastname: "lname5", bio: "this is a bio5.", favoriteGenre: "genre5"),
-         User(name: "name6", lastname: "lname6", bio: "this is a bio6.", favoriteGenre: "genre6")]
+//    @State private var users =
+//        [User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"),
+//         User(name: "name2", lastname: "lname2", bio: "this is a bio2.", favoriteGenre: "genre2"),
+//         User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre3"),
+//         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
+//         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
+//         User(name: "name5", lastname: "lname5", bio: "this is a bio5.", favoriteGenre: "genre5"),
+//         User(name: "name6", lastname: "lname6", bio: "this is a bio6.", favoriteGenre: "genre6")]
+    @State private var users = Person.allPersons
     
     let spacing: CGFloat = 10
 
@@ -358,20 +356,20 @@ struct MainView2: View {
 //        }
     }
     
-    func loadBooks() {
-        // Load the JSON file from the bundle
-        guard let url = Bundle.main.url(forResource: "books", withExtension: "json", subdirectory: "Data") else {
-            print("JSON file not found")
-            return
-        }
-
-        do {
-            let data = try Data(contentsOf: url)
-            books = try JSONDecoder().decode([Book].self, from: data)
-        } catch {
-            print("Error decoding JSON: \(error)")
-        }
-    }
+//    func loadBooks() {
+//        // Load the JSON file from the bundle
+//        guard let url = Bundle.main.url(forResource: "books", withExtension: "json", subdirectory: "Data") else {
+//            print("JSON file not found")
+//            return
+//        }
+//
+//        do {
+//            let data = try Data(contentsOf: url)
+//            books = try JSONDecoder().decode([Book].self, from: data)
+//        } catch {
+//            print("Error decoding JSON: \(error)")
+//        }
+//    }
 }
 
 
