@@ -28,10 +28,10 @@ struct WishlistView: View {
     
     @State private var showingBorrowSheet = false
     @State private var books =
-        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
+        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
     @State private var books2: [Book2] = []
     
@@ -61,32 +61,34 @@ struct WishlistView: View {
                         ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
                                 ForEach(Book2.allBooks) { book in
-                                    VStack() {
-                                        Button(action: {print("exit clicked")}) {
-                                            Image("Exit")
-                                                .frame(width: 120, height: 1, alignment: .trailing)
+                                    if book.borrowedByMe {
+                                        VStack() {
+                                            Button(action: {print("exit clicked")}) {
+                                                Image("Exit")
+                                                    .frame(width: 120, height: 1, alignment: .trailing)
+                                            }
+                                            Text(book.title)
+                                                .font(.custom("GochiHand-Regular", size: 25))
+                                                .frame(width: 120, height: 20, alignment: .leading)
+                                            
+                                            Text(book.author)
+                                                .font(.custom("GochiHand-Regular", size: 16))
+                                                .frame(width: 120, height: 10, alignment: .leading)
+                                            
+                                            // It is reading the book url in here, but we need to write a image url decoder into the image as XCode does not support displaying image from URL
+                                            // Using place holder image for now
+                                            Image("book_cover")
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 85, height: 110, alignment: .center)
+                                                .clipped()
                                         }
-                                        Text(book.title)
-                                            .font(.custom("GochiHand-Regular", size: 25))
-                                            .frame(width: 120, height: 20, alignment: .leading)
-                                        
-                                        Text(book.author)
-                                            .font(.custom("GochiHand-Regular", size: 16))
-                                            .frame(width: 120, height: 10, alignment: .leading)
-                                        
-                                        // It is reading the book url in here, but we need to write a image url decoder into the image as XCode does not support displaying image from URL
-                                        // Using place holder image for now
-                                        Image("book_cover")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 85, height: 110, alignment: .center)
-                                            .clipped()
+                                        .frame(width: 150, height: 230, alignment: .center)
+                                        .background(Color("lightGray"))
+                                        .cornerRadius(25)
+                                        .overlay(RoundedRectangle(cornerRadius: 25)
+                                            .strokeBorder(Color.black, lineWidth: 3))
                                     }
-                                    .frame(width: 150, height: 230, alignment: .center)
-                                    .background(Color("lightGray"))
-                                    .cornerRadius(25)
-                                    .overlay(RoundedRectangle(cornerRadius: 25)
-                                        .strokeBorder(Color.black, lineWidth: 3))
                                 }
                             }
                             .frame(width: geometry.size.width, height: 230, alignment: .center)
@@ -113,39 +115,41 @@ struct WishlistView: View {
                     ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
                                 ForEach(Book2.allBooks) { book in
-                                    VStack() {
-                                        Button(action: {print("exit clicked")}) {
-                                            Image("Exit")
-                                                .frame(width: 120, height: 1, alignment: .trailing)
+                                    if book.wishlistedByMe {
+                                        VStack() {
+                                            Button(action: {print("exit clicked")}) {
+                                                Image("Exit")
+                                                    .frame(width: 120, height: 1, alignment: .trailing)
+                                            }
+                                            Text(book.title)
+                                                .font(.custom("GochiHand-Regular", size: 25))
+                                                .frame(width: 120, height: 20, alignment: .leading)
+                                            
+                                            Text(book.author)
+                                                .font(.custom("GochiHand-Regular", size: 16))
+                                                .frame(width: 120, height: 10, alignment: .leading)
+                                            
+                                            // Place holder image for now
+                                            Image("book_cover") // Placeholder image
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fill)
+                                                .frame(width: 85, height: 110, alignment: .center)
+                                                .clipped()
+                                            Button(book.availability ? "Available!" : "Unavailable") {
+                                                showingBorrowSheet.toggle()
+                                            }
+                                            .buttonStyle(RoundedButton())
+                                            // You might need to modify this part to work with Book2
+                                            // .sheet(isPresented: $showingBorrowSheet) {
+                                            //     BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
+                                            // }
                                         }
-                                        Text(book.title)
-                                            .font(.custom("GochiHand-Regular", size: 25))
-                                            .frame(width: 120, height: 20, alignment: .leading)
-                                        
-                                        Text(book.author)
-                                            .font(.custom("GochiHand-Regular", size: 16))
-                                            .frame(width: 120, height: 10, alignment: .leading)
-                                        
-                                        // Place holder image for now
-                                        Image("book_cover") // Placeholder image
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 85, height: 110, alignment: .center)
-                                            .clipped()
-                                        Button(book.availability ? "Available!" : "Unavailable") {
-                                            showingBorrowSheet.toggle()
-                                        }
-                                        .buttonStyle(RoundedButton())
-                                        // You might need to modify this part to work with Book2
-                                        // .sheet(isPresented: $showingBorrowSheet) {
-                                        //     BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
-                                        // }
+                                        .frame(width: 150, height: 230, alignment: .center)
+                                        .background(Color("lightGray"))
+                                        .cornerRadius(25)
+                                        .overlay(RoundedRectangle(cornerRadius: 25)
+                                            .strokeBorder(Color.black, lineWidth: 3))
                                     }
-                                    .frame(width: 150, height: 230, alignment: .center)
-                                    .background(Color("lightGray"))
-                                    .cornerRadius(25)
-                                    .overlay(RoundedRectangle(cornerRadius: 25)
-                                        .strokeBorder(Color.black, lineWidth: 3))
                                 }
                             }
                             .frame(width: .infinity, height: 230, alignment: .center)

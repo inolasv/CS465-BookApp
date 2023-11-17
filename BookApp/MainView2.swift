@@ -29,9 +29,10 @@ struct Book: Codable, Identifiable {
     var availability: Bool
     var borrowedByMe: Bool
     var lendedByMe: Bool
+    var wishlistedByMe: Bool
 
     enum CodingKeys: String, CodingKey {
-        case title, author, tags, description, availability, borrowedByMe, lendedByMe
+        case title, author, tags, description, availability, borrowedByMe, lendedByMe, wishlistedByMe
         case coverImage = "cover_image"
     }
 }
@@ -56,7 +57,7 @@ struct User: Codable, Identifiable {
 
 struct BookIconView: View {
     @State var isFlipped: Bool
-    let book: Book
+    @Binding var book: Book
     var body: some View {
         HStack {
             Button(action: {
@@ -66,7 +67,7 @@ struct BookIconView: View {
             }) {
                 if isFlipped {
                     // The back of the card
-                    BackView(book: book)
+                    BackView(book: $book)
                         .frame(width: 310, height: 500)
                     //                                .background(Color("Beige1"))
                         .cornerRadius(20)
@@ -95,7 +96,7 @@ struct BookIconView: View {
 
 
 struct ListedByView: View {
-    let lender: User
+    @Binding var lender: User
     
     var body: some View {
         HStack {
@@ -120,7 +121,7 @@ struct ListedByView: View {
 
 
 struct BorrowedByView: View {
-    let borrowers: [User]
+    @Binding var borrowers: [User]
     
     var body: some View {
         HStack {
@@ -151,7 +152,7 @@ struct BorrowedByView: View {
 
 
 struct BackView: View {
-    let book: Book
+    @Binding var book: Book
     var body: some View {
         VStack (alignment: .leading, spacing: 10){
             Text(book.title)
@@ -181,7 +182,6 @@ struct BackView: View {
                 }
             }
         }
-
     }
 }
 
@@ -205,9 +205,9 @@ struct CardView: View {
     @State private var isFlipped = false
     @State private var swipeStatus = 0
     @State private var color = Color("lightGray")
-    let book: Book
-    let lender: User
-    let borrowers: [User]
+    @Binding var book: Book
+    @Binding var lender: User
+    @Binding var borrowers: [User]
     
     @State private var sideModal: SideModal? = nil
 
@@ -217,18 +217,18 @@ struct CardView: View {
         //Color("lightGray").ignoresSafeArea()
             if swipeStatus == 0 {
                 VStack {
-                    BookIconView(isFlipped: isFlipped, book: book)
-                    ListedByView(lender: lender)
-                    BorrowedByView(borrowers: borrowers)
+                    BookIconView(isFlipped: isFlipped, book: $book)
+                    ListedByView(lender: $lender)
+                    BorrowedByView(borrowers: $borrowers)
                 }
             }
             else if swipeStatus == 1 {
                 ZStack {
                     StarsBlinkView()
                     VStack {
-                        BookIconView(isFlipped: isFlipped, book: book)
-                        ListedByView(lender: lender)
-                        BorrowedByView(borrowers: borrowers)
+                        BookIconView(isFlipped: isFlipped, book: $book)
+                        ListedByView(lender: $lender)
+                        BorrowedByView(borrowers: $borrowers)
                     }
                 }
                 
@@ -287,9 +287,10 @@ struct CardView: View {
         case 100...500: //swipe right
             swipeStatus = 1
             print(book.availability)
-            if (book.availability) { // TODO: add logic to check if actually avail.
+            if (book.availability) {
                 sideModal = SideModal(title: "Available to Borrow", message: book.title + " is currently available to borrow! Check your wishlist to proceed")
             }
+            book.wishlistedByMe = true
         default:
             color = Color("lightGray")
             swipeStatus = 0
@@ -304,10 +305,10 @@ struct MainView2: View {
     
     
     @State private var books =
-        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
+        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
         
     @State private var users =
         [User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"),
@@ -323,8 +324,8 @@ struct MainView2: View {
     var body: some View {
         VStack {
             ZStack {
-                ForEach(self.books) {
-                    book in CardView(book: book, lender: users[Int.random(in: 0..<6)], borrowers: users)
+                ForEach(books.indices, id: \.self) { i in
+                    CardView(book: $books[i], lender: $users[Int.random(in: 0..<6)], borrowers: $users)
                 }
             }
         }

@@ -35,10 +35,10 @@ struct ProfileView: View {
     @State private var showingBorrowSheet = false
     
     @State private var books =
-        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false),
-         Book(title: "Title2", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false),
-         Book(title: "Title3", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
-         Book(title: "Title4", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
+        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "Title2", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "Title3", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
+         Book(title: "Title4", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
     @State private var user = User(name: "Name1", lastname: "Lname1", bio: "This is a bio1.", favoriteGenre: "genre1")
     
@@ -87,40 +87,42 @@ struct ProfileView: View {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .center, spacing: 20) {
                         ForEach(Book2.allBooks) { book in
-                            VStack() {
-                                Button(action: {print("delete book")}) {
-                                    Image("Exit")
-                                        .frame(width: 120, height: 1, alignment: .trailing)
-                                }
-                                Text(book.title)
-                                    .font(.custom("GochiHand-Regular", size: 25))
-                                    .frame(width: 120, height: 20, alignment: .leading)
+                            if book.lendedByMe {
+                                VStack() {
+                                    Button(action: {print("delete book")}) {
+                                        Image("Exit")
+                                            .frame(width: 120, height: 1, alignment: .trailing)
+                                    }
+                                    Text(book.title)
+                                        .font(.custom("GochiHand-Regular", size: 25))
+                                        .frame(width: 120, height: 20, alignment: .leading)
 
-                                Text(book.author)
-                                    .font(.custom("GochiHand-Regular", size: 16))
-                                    .frame(width: 120, height: 10, alignment: .leading)
+                                    Text(book.author)
+                                        .font(.custom("GochiHand-Regular", size: 16))
+                                        .frame(width: 120, height: 10, alignment: .leading)
 
-                                Image("book_cover") // Placeholder image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 85, height: 110, alignment: .center)
-                                    .clipped()
-                                Button(book.availability ? "Available" : "Borrowed") {
-                                    showingBorrowSheet.toggle()
-                                }
-                                .buttonStyle(RoundedButton())
-                                // Adjust the sheet logic as needed for Book2
-                                .sheet(isPresented: $showingBorrowSheet) {
-                                    // You need to modify AcceptConfirmationView to use Book2
-                                    // AcceptConfirmationView(book: book, borrower: users[Int.random(in: 0..<4)], showingBorrowSheet: $showingBorrowSheet)
-                                }
+                                    Image("book_cover") // Placeholder image
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 85, height: 110, alignment: .center)
+                                        .clipped()
+                                    Button(book.availability ? "Available" : "Borrowed") {
+                                        showingBorrowSheet.toggle()
+                                    }
+                                    .buttonStyle(RoundedButton())
+                                    // Adjust the sheet logic as needed for Book2
+                                    .sheet(isPresented: $showingBorrowSheet) {
+                                        // You need to modify AcceptConfirmationView to use Book2
+                                        // AcceptConfirmationView(book: book, borrower: users[Int.random(in: 0..<4)], showingBorrowSheet: $showingBorrowSheet)
+                                    }
 
+                                }
+                                .frame(width: 150, height: 240, alignment: .center)
+                                .background(Color("cream"))
+                                .cornerRadius(25)
+                                .overlay(RoundedRectangle(cornerRadius: 25)
+                                    .strokeBorder(Color.black, lineWidth: 3))
                             }
-                            .frame(width: 150, height: 240, alignment: .center)
-                            .background(Color("cream"))
-                            .cornerRadius(25)
-                            .overlay(RoundedRectangle(cornerRadius: 25)
-                                .strokeBorder(Color.black, lineWidth: 3))
                         }
                     }
                 }
