@@ -40,14 +40,9 @@ struct ProfileView: View {
          Book(title: "Title3", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "Title4", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
-    @State private var user = User(name: "Name1", lastname: "Lname1", bio: "This is a bio1.", favoriteGenre: "genre1")
+    @State private var user = Person.allPersons[0]
     
-    @State private var users = [User(name: "Name2", lastname: "Lname2", bio: "This is a bio2.", favoriteGenre: "genre2"),
-         User(name: "Name3", lastname: "Lname3", bio: "This is a bio3.", favoriteGenre: "genre3"),
-         User(name: "Name4", lastname: "Lname4", bio: "This is a bio4.", favoriteGenre: "genre4"),
-         User(name: "Name4", lastname: "Lname4", bio: "This is a bio4.", favoriteGenre: "genre4"),
-         User(name: "Name5", lastname: "Lname5", bio: "This is a bio5.", favoriteGenre: "genre5"),
-         User(name: "Name6", lastname: "Lname6", bio: "This is a bio6.", favoriteGenre: "genre6")]
+    @State private var users = Person.allPersons
 
     @Binding var booksFromJson: [Book2]
 
@@ -58,13 +53,24 @@ struct ProfileView: View {
         VStack {
                             
             VStack {
-                Image(user.profilePicture ?? "alt_profile")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 180, height: 180, alignment: .center)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color("magenta"), lineWidth: 10))
-                    .padding()
+                AsyncImage(url: URL(string: user.profilePicture)) { phase in
+                    switch phase {
+                        case .empty:
+                            ProgressView() // Shown while loading
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                        case .failure:
+                            Image(systemName: "photo") // Shown on failure
+                        @unknown default:
+                            EmptyView()
+                    }
+                }
+                .frame(width: 180, height: 180, alignment: .center)
+                .clipShape(Circle())
+                .overlay(Circle().stroke(Color("magenta"), lineWidth: 10))
+                .padding()
             
                 Text(user.name + " " + user.lastname)
                     .font(.custom("Futura", size: 30))
@@ -96,19 +102,32 @@ struct ProfileView: View {
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
                                     // Place holder image for now
-                                    Image("book_cover") // Placeholder image
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 85, height: 110, alignment: .center)
-                                        .clipped()
-                                    Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
-                                        if booksFromJson[i].availability {
+                                    AsyncImage(url: URL(string: books2[i].coverImage)) { phase in
+                                        switch phase {
+                                            case .empty:
+                                                ProgressView() // Shown while the image is loading
+                                            case .success(let image):
+                                                image
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                            case .failure:
+                                                Image(systemName: "photo") // Fallback image or icon in case of failure
+                                                    .resizable()
+                                                    .aspectRatio(contentMode: .fill)
+                                            @unknown default:
+                                                EmptyView()
+                                        }
+                                    }
+                                    .frame(width: 85, height: 110, alignment: .center)
+                                    .clipped()
+                                    Button(books2[i].availability ? "Available" : "Borrowed") {
+                                        if books2[i].availability {
                                             showingBorrowSheet.toggle()
                                         }
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                            AcceptConfirmationView(book: $booksFromJson[i], borrower: $users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
+                                            AcceptConfirmationView(book: $books2[i], borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                      }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)
@@ -120,7 +139,7 @@ struct ProfileView: View {
                         }
                     }
                 }
-                .frame(width: .infinity, height: 230, alignment: .center)
+                .frame(width: .infinity, height: 240, alignment: .center)
 
             }
             .frame(width: 460, height: 300)

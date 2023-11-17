@@ -78,7 +78,7 @@ struct BookIconView: View {
                         .rotation3DEffect(.degrees(isFlipped ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 } else {
                     // The front of the card
-                    AsyncImage(url: URL(string: book.coverImage!)) { image in
+                    AsyncImage(url: URL(string: book.coverImage)) { image in
                         image
                             .resizable()
                             .scaledToFit()
