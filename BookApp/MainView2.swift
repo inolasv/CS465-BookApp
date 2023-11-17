@@ -78,16 +78,20 @@ struct BookIconView: View {
                         .rotation3DEffect(.degrees(isFlipped ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 } else {
                     // The front of the card
-                    Image(book.coverImage!)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 310, height: 500)
-                        .background(Color("Beige3"))
-                        .cornerRadius(20)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(.black, lineWidth: 2))
-                        .rotation3DEffect(.degrees(isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
+                    AsyncImage(url: URL(string: book.coverImage!)) { image in
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    } placeholder: {
+                        ProgressView()
+                    }
+                    .frame(width: 310, height: 500)
+                    .background(Color("Beige3"))
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(.black, lineWidth: 2))
+                    .rotation3DEffect(.degrees(isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
                 }
             }
             .buttonStyle(FlipButton())

@@ -226,7 +226,7 @@ struct AddListingView: View {
                 .buttonStyle(RoundedButton())
                 .sheet(isPresented: $showingPreviewSheet) {
                     if selectedPreview.title == "title1" {
-                      BookIconView(isFlipped: false, book: $selectedPreview)
+//                      BookIconView(isFlipped: false, book: $selectedPreview)
                     }
                     else {
                         Text("Please fill out a valid book.")
