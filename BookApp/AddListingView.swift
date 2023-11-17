@@ -115,7 +115,7 @@ struct AddListingView: View {
                 .frame(width: 290, height: 0, alignment: .leading)
                 .padding(.top, 30)
             
-            TextField( "Book Author",
+            TextField( "add tags here",
                        text: $bookTag)
                 .onSubmit {
                     tags.append(bookTag)
