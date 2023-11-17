@@ -26,6 +26,20 @@ struct Book2: Codable, Identifiable {
     
 }
 
+struct Person: Codable, Identifiable {
+    let id = UUID()
+    let name, lastname, bio, favoriteGenre: String
+    let profilePicture: String
+
+    enum CodingKeys: String, CodingKey {
+        case name, lastname, bio
+        case favoriteGenre = "favorite_genre"
+        case profilePicture = "profile_picture"
+    }
+    
+    static let allPersons: [Person] = Bundle.main.decode(file: "people.json", inDirectory: "Data")
+}
+
 extension Bundle {
     func decode<T: Decodable>(file: String, inDirectory directory: String? = nil) -> T {
         guard let url = self.url(forResource: file, withExtension: nil, subdirectory: directory) else {
