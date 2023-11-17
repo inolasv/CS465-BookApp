@@ -33,7 +33,7 @@ struct WishlistView: View {
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
-    
+    @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
     
     @State private var user = Person.allPersons[1]
     
@@ -158,13 +158,14 @@ struct WishlistView: View {
                                             .clipped()
                                             Button(booksFromJson[i].availability ? "Available!" : "Unavailable") {
                                                 if booksFromJson[i].availability {
+                                                    currentBook = booksFromJson[i]
                                                     showingBorrowSheet.toggle()
                                                 }
                                             }
                                             .buttonStyle(RoundedButton())
                                             // You might need to modify this part to work with Book2
                                              .sheet(isPresented: $showingBorrowSheet) {
-                                                     BorrowConfirmationView(book: $booksFromJson[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                                     BorrowConfirmationView(book: $currentBook, lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                                  
                                              }
                                         }
