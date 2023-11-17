@@ -15,7 +15,7 @@ struct BorrowConfirmationView: View {
 
     
     @Binding var book: Book2
-    let lender: User
+    let lender: Person
     @Binding var showingBorrowSheet: Bool
     
     
@@ -29,21 +29,35 @@ struct BorrowConfirmationView: View {
 //                 dismiss()
 //                }
             }
-            Image(book.coverImage ?? "book_cover")
-                .resizable()
-                .aspectRatio(contentMode:.fill)
-                .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.height*0.3)
-                .clipShape(RoundedRectangle(cornerRadius: 25))
-                .padding(.top, 30)
+            AsyncImage(url: URL(string: book.coverImage ?? "book_cover")) { phase in
+                switch phase {
+                    case .empty:
+                        ProgressView() // Shown while loading
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .failure:
+                        Image("book_cover") // Fallback image in case of failure
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    @unknown default:
+                        EmptyView()
+                }
+            }
+            .frame(width: UIScreen.main.bounds.width*0.4, height: UIScreen.main.bounds.height*0.3)
+            .clipShape(RoundedRectangle(cornerRadius: 25))
+            .padding(.top, 30)
+
             
             HStack(alignment: .center) {
                 VStack(alignment: .center) {
                     Image(lender.profilePicture ?? "ProfileIcon")
-                    Text("Name").font(.custom("GochiHand-Regular", size: 24))
+                    Text(lender.name + " " + lender.lastname).font(.custom("GochiHand-Regular", size: 24))
                 }
-                Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ").font(.custom("GochiHand-Regular", size: 16))
+                Text(lender.bio).font(.custom("GochiHand-Regular", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
-            Text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt...").padding().font(.custom("GochiHand-Regular", size: 16))
+            Text("Interested in borrowing  \(book.title)? Click the borrow button and we will notify you if your request is approved by the lender. Once this happens, we will provide contact information to set up the lending process. If you wish to cancel, you may do so after clicking the borrow button.").padding().font(.custom("GochiHand-Regular", size: 16))
             ZStack(alignment: .center) {
                 Button("Borrow") {
                     print("borrow pressed!")
