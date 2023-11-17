@@ -50,31 +50,30 @@ struct AddListingView: View {
 //        UISegmentedControl.appearance().backgroundColor = .purple
 
         //This will change the font size
-//        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("GochiHand-Regular", size: 12))], for: .highlighted)
+//        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("Futura", size: 12))], for: .highlighted)
 //
-//        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("GochiHand-Regular", size: 12))), for: .normal)
+//        UISegmentedControl.appearance().setTitleTextAttributes([.font : UIFont.preferredFont(forTextStyle: .custom("Futura", size: 12))), for: .normal)
 
     }
 
     var body: some View {
 
         VStack{
-            
-            Text("Add a Listing")            .font(.custom("GochiHand-Regular", size: 30))
+            Text("Add a Listing")            .font(.custom("Futura", size: 30))
                 .padding()
             
             
             Group {
 
-            Text("Title:")            .font(.custom("GochiHand-Regular", size: 25))
-                .frame(width: 300, height: 0, alignment: .leading)
+            Text("Title:")            .font(.custom("Futura", size: 25))
+                .frame(width: 290, height: 0, alignment: .leading)
             
             TextField( "Book Title",
                        text: $bookTitle)
                 .padding(.leading, 40)
                 .padding(.trailing, 40)
                 .padding(.top, 10)
-                .font(.custom("GochiHand-Regular", size: 20))
+                .font(.custom("Futura", size: 20))
             
             Rectangle()
                 .frame(height: 1)
@@ -85,8 +84,8 @@ struct AddListingView: View {
             }
             Group {
 
-            Text("Author:")            .font(.custom("GochiHand-Regular", size: 25))
-                .frame(width: 300, height: 0, alignment: .leading)
+            Text("Author:")            .font(.custom("Futura", size: 25))
+                .frame(width: 290, height: 0, alignment: .leading)
                 .padding(.top, 30)
             
             TextField( "Book Author",
@@ -94,7 +93,7 @@ struct AddListingView: View {
                 .padding(.leading, 40)
                 .padding(.trailing, 40)
                 .padding(.top, 10)
-                .font(.custom("GochiHand-Regular", size: 20))
+                .font(.custom("Futura", size: 20))
             
             Rectangle()
                 .frame(height: 1)
@@ -105,8 +104,8 @@ struct AddListingView: View {
             Group {
 
             
-            Text("Tags:")            .font(.custom("GochiHand-Regular", size: 25))
-                .frame(width: 300, height: 0, alignment: .leading)
+            Text("Tags:")            .font(.custom("Futura", size: 25))
+                .frame(width: 290, height: 0, alignment: .leading)
                 .padding(.top, 30)
             
             TextField( "Book Author",
@@ -117,7 +116,7 @@ struct AddListingView: View {
                 .padding(.leading, 40)
                 .padding(.trailing, 40)
                 .padding(.top, 10)
-                .font(.custom("GochiHand-Regular", size: 20))
+                .font(.custom("Futura", size: 20))
             
             Rectangle()
                 .frame(height: 1)
@@ -132,10 +131,10 @@ struct AddListingView: View {
                     ForEach(tags, id: \.self) { tag in
                         VStack() {
                             Text(tag)
-                                .font(.custom("GochiHand-Regular", size: 13))
+                                .font(.custom("Futura", size: 13))
                                 .foregroundColor(.black)
                                 .frame(width: 80, height: 25, alignment: .center)
-                                .background(Color("Beige4"))
+                                .background(Color("lightGray"))
                                 .cornerRadius(20)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
@@ -146,20 +145,20 @@ struct AddListingView: View {
             }
             .padding(.top, 12)
             .padding(.leading, 40)
-            .background(Color("Beige3"))
+            .background(Color("cream"))
             .frame(height: 50, alignment: .center)
                 
             }
             
             Group {
 
-            Text("Borrow Length:")            .font(.custom("GochiHand-Regular", size: 25))
-                .frame(width: 300, height: 0, alignment: .leading)
+            Text("Borrow Length:")            .font(.custom("Futura", size: 25))
+                .frame(width: 290, height: 0, alignment: .leading)
                 .padding(.top, 30)
                 
                 
             Picker(selection: $borrowLength, label: Text("Pick One")) {
-                ForEach(["1 week", "2 weeks", "3 weeks", "4 weeks"], id: \.self) {
+                ForEach(["1w", "2w", "3w", "4w"], id: \.self) {
                                 Text($0)
                             }
             }
@@ -172,12 +171,12 @@ struct AddListingView: View {
             
             Group {
 
-            Text("Condition of Book:")            .font(.custom("GochiHand-Regular", size: 25))
-                .frame(width: 300, height: 0, alignment: .leading)
+            Text("Condition:")            .font(.custom("Futura", size: 25))
+                .frame(width: 290, height: 0, alignment: .leading)
                 .padding(.top, 30)
                 
                 Picker(selection: $condition, label: Text("Pick One")) {
-                    ForEach(["excellent", "decent", "good", "poor"], id: \.self) {
+                    ForEach(["Unused", "Decent", "Worn"], id: \.self) {
                                     Text($0)
                                 }
                 }
@@ -190,12 +189,12 @@ struct AddListingView: View {
             
             Group {
 
-            Text("Type of Listing")            .font(.custom("GochiHand-Regular", size: 25))
-                .frame(width: 300, height: 0, alignment: .leading)
+            Text("Listing type:")            .font(.custom("Futura", size: 25))
+                .frame(width: 290, height: 0, alignment: .leading)
                 .padding(.top, 30)
                 
             Picker(selection: $giveOrBorrow, label: Text("Pick One")) {
-                ForEach(["Giving Away", "Lending"], id: \.self) {
+                ForEach(["Lending", "Giving away"], id: \.self) {
                     Text($0)
                 }
             }
@@ -236,8 +235,8 @@ struct AddListingView: View {
             .padding(.bottom, 25)
             
             
-        }.frame(maxWidth: 370, alignment: .center)
-                .background(Color("lightGray"))
+        }.frame(maxWidth: 370, maxHeight: 720, alignment: .center)
+                .background(Color("cream"))
                 .cornerRadius(25)
                 .overlay(RoundedRectangle(cornerRadius: 25)
                     .strokeBorder(Color.black, lineWidth: 3))

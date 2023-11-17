@@ -67,7 +67,7 @@ struct BookIconView: View {
                 if isFlipped {
                     // The back of the card
                     BackView(book: book)
-                        .frame(width: 340, height: 500)
+                        .frame(width: 310, height: 500)
                     //                                .background(Color("Beige1"))
                         .cornerRadius(20)
                         .overlay(
@@ -79,7 +79,7 @@ struct BookIconView: View {
                     Image(book.coverImage!)
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 340, height: 500)
+                        .frame(width: 310, height: 500)
                         .background(Color("Beige3"))
                         .cornerRadius(20)
                         .overlay(
@@ -246,10 +246,10 @@ struct CardView: View {
 //            }
         }
         .padding()
-        .background(color).padding()
+        .background(Color("cream")).padding()
         .cornerRadius(20)
         .overlay(
-            RoundedRectangle(cornerRadius: 20).stroke(.black, lineWidth: 5).padding()
+            RoundedRectangle(cornerRadius: 20).stroke(Color("cream"), lineWidth: 5).padding()
         )
         .offset(x: offset.width, y: offset.height*0.4)
         .rotationEffect(.degrees(Double(offset.width / 40)))
@@ -301,6 +301,7 @@ struct CardView: View {
 struct MainView2: View {
     //@State private var offset: CGFloat = 0
     //@State private var index = 0
+    
     
     @State private var books =
         [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
