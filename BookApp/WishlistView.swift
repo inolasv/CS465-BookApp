@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 //import BookApp
 
@@ -32,6 +33,8 @@ struct WishlistView: View {
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
     
+    @State private var books2: [Book2] = []
+    
     @State private var user = User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre1")
     
     @State private var users = [User(name: "name2", lastname: "lname2", bio: "this is a bio2.", favoriteGenre: "genre2"),
@@ -57,7 +60,7 @@ struct WishlistView: View {
                     GeometryReader { geometry in
                         ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
-                                ForEach(books) { book in
+                                ForEach(Book2.allBooks) { book in
                                     VStack() {
                                         Button(action: {print("exit clicked")}) {
                                             Image("Exit")
@@ -71,7 +74,9 @@ struct WishlistView: View {
                                             .font(.custom("GochiHand-Regular", size: 16))
                                             .frame(width: 120, height: 10, alignment: .leading)
                                         
-                                        Image(book.coverImage ?? "book_cover")
+                                        // It is reading the book url in here, but we need to write a image url decoder into the image as XCode does not support displaying image from URL
+                                        // Using place holder image for now
+                                        Image("book_cover")
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: 85, height: 110, alignment: .center)
@@ -107,32 +112,34 @@ struct WishlistView: View {
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
-                            ForEach(books.indices, id: \.self) { i in
+                                ForEach(Book2.allBooks) { book in
                                     VStack() {
                                         Button(action: {print("exit clicked")}) {
                                             Image("Exit")
                                                 .frame(width: 120, height: 1, alignment: .trailing)
                                         }
-                                    Text(books[i].title)
+                                        Text(book.title)
                                             .font(.custom("GochiHand-Regular", size: 25))
                                             .frame(width: 120, height: 20, alignment: .leading)
                                         
-                                    Text(books[i].author)
+                                        Text(book.author)
                                             .font(.custom("GochiHand-Regular", size: 16))
                                             .frame(width: 120, height: 10, alignment: .leading)
                                         
-                                    Image(books[i].coverImage ?? "book_cover")
+                                        // Place holder image for now
+                                        Image("book_cover") // Placeholder image
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
                                             .frame(width: 85, height: 110, alignment: .center)
                                             .clipped()
-                                    Button(books[i].availability ? "Available" : "Unavailable"){
+                                        Button(book.availability ? "Available!" : "Unavailable") {
                                             showingBorrowSheet.toggle()
                                         }
                                         .buttonStyle(RoundedButton())
-                                    .sheet(isPresented: $showingBorrowSheet) {
-                                        BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
-                                    }
+                                        // You might need to modify this part to work with Book2
+                                        // .sheet(isPresented: $showingBorrowSheet) {
+                                        //     BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
+                                        // }
                                     }
                                     .frame(width: 150, height: 230, alignment: .center)
                                     .background(Color("lightGray"))
@@ -148,6 +155,12 @@ struct WishlistView: View {
                 .background(Color("Beige3"))
             }
         }
+    }
+    
+    init() {
+        self.books2 = Book2.allBooks
+//        print("This is books2: \(Book2.allBooks)")
+//        print("This is books2: \(self.books2)")
     }
 }
 
