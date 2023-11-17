@@ -33,7 +33,7 @@ struct WishlistView: View {
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
-    @State private var books2: [Book2] = []
+    @State private var books2: [Book2] = Book2.allBooks
     
     @State private var user = User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre1")
     
@@ -114,41 +114,34 @@ struct WishlistView: View {
                     .frame(width: 330, height: 40, alignment: .leading)
                     ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
-                                ForEach(Book2.allBooks) { book in
-                                    if book.wishlistedByMe {
-                                        VStack() {
-                                            Button(action: {print("exit clicked")}) {
-                                                Image("Exit")
-                                                    .frame(width: 120, height: 1, alignment: .trailing)
-                                            }
-                                            Text(book.title)
-                                                .font(.custom("GochiHand-Regular", size: 25))
-                                                .frame(width: 120, height: 20, alignment: .leading)
-                                            
-                                            Text(book.author)
-                                                .font(.custom("GochiHand-Regular", size: 16))
-                                                .frame(width: 120, height: 10, alignment: .leading)
-                                            
-                                            // Place holder image for now
-                                            Image("book_cover") // Placeholder image
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fill)
-                                                .frame(width: 85, height: 110, alignment: .center)
-                                                .clipped()
-                                            Button(book.availability ? "Available!" : "Unavailable") {
-                                                showingBorrowSheet.toggle()
-                                            }
-                                            .buttonStyle(RoundedButton())
-                                            // You might need to modify this part to work with Book2
-                                            // .sheet(isPresented: $showingBorrowSheet) {
-                                            //     BorrowConfirmationView(book: $books[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
-                                            // }
+                                ForEach(books2.indices, id: \.self) { i in
+                                    VStack() {
+                                        Button(action: {print("exit clicked")}) {
+                                            Image("Exit")
+                                                .frame(width: 120, height: 1, alignment: .trailing)
                                         }
-                                        .frame(width: 150, height: 230, alignment: .center)
-                                        .background(Color("lightGray"))
-                                        .cornerRadius(25)
-                                        .overlay(RoundedRectangle(cornerRadius: 25)
-                                            .strokeBorder(Color.black, lineWidth: 3))
+                                        Text(books2[i].title)
+                                            .font(.custom("GochiHand-Regular", size: 25))
+                                            .frame(width: 120, height: 20, alignment: .leading)
+                                        
+                                        Text(books2[i].author)
+                                            .font(.custom("GochiHand-Regular", size: 16))
+                                            .frame(width: 120, height: 10, alignment: .leading)
+                                        
+                                        // Place holder image for now
+                                        Image("book_cover") // Placeholder image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 85, height: 110, alignment: .center)
+                                            .clipped()
+                                        Button(books2[i].availability ? "Available!" : "Unavailable") {
+                                            showingBorrowSheet.toggle()
+                                        }
+                                        .buttonStyle(RoundedButton())
+                                        // You might need to modify this part to work with Book2
+                                         .sheet(isPresented: $showingBorrowSheet) {
+                                             BorrowConfirmationView(book: $books2[i], lender: users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
+                                         }
                                     }
                                 }
                             }
@@ -163,8 +156,9 @@ struct WishlistView: View {
     
     init() {
         self.books2 = Book2.allBooks
-//        print("This is books2: \(Book2.allBooks)")
-//        print("This is books2: \(self.books2)")
+//        print("book2allbooks: \(Book2.allBooks)")
+        print("books2: \(books2)")
+    
     }
 }
 
