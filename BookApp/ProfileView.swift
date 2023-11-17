@@ -39,6 +39,7 @@ struct ProfileView: View {
          Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false),
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false)]
+
     
     @State private var user = User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1")
     
@@ -80,31 +81,33 @@ struct ProfileView: View {
                 
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .center, spacing: 20) {
-                        ForEach(books.indices, id: \.self) { i in
+                        ForEach(Book2.allBooks) { book in
                             VStack() {
                                 Button(action: {print("delete book")}) {
                                     Image("Exit")
                                         .frame(width: 120, height: 1, alignment: .trailing)
                                 }
-                                Text(books[i].title)
+                                Text(book.title)
                                     .font(.custom("GochiHand-Regular", size: 25))
                                     .frame(width: 120, height: 20, alignment: .leading)
 
-                                Text(books[i].author)
+                                Text(book.author)
                                     .font(.custom("GochiHand-Regular", size: 16))
                                     .frame(width: 120, height: 10, alignment: .leading)
 
-                                Image(books[i].coverImage ?? "book_cover")
+                                Image("book_cover") // Placeholder image
                                     .resizable()
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
-                                Button(books[i].availability ? "Available" : "Borrowed"){ // can also be Borrowing
+                                Button(book.availability ? "Available" : "Borrowed") {
                                     showingBorrowSheet.toggle()
                                 }
                                 .buttonStyle(RoundedButton())
+                                // Adjust the sheet logic as needed for Book2
                                 .sheet(isPresented: $showingBorrowSheet) {
-                                    AcceptConfirmationView(book: $books[i], borrower: users[Int.random(in: 0..<4)], showingBorrowSheet: $showingBorrowSheet)
+                                    // You need to modify AcceptConfirmationView to use Book2
+                                    // AcceptConfirmationView(book: book, borrower: users[Int.random(in: 0..<4)], showingBorrowSheet: $showingBorrowSheet)
                                 }
 
                             }
@@ -113,10 +116,11 @@ struct ProfileView: View {
                             .cornerRadius(25)
                             .overlay(RoundedRectangle(cornerRadius: 25)
                                 .strokeBorder(Color.black, lineWidth: 3))
-                            }
                         }
                     }
+                }
                 .frame(width: .infinity, height: 230, alignment: .center)
+
             }
             .frame(width: 460, height: 330)
             .background(Color("Beige3"))

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		120CB27F2B06FADA00112B42 /* JSONManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 120CB27E2B06FADA00112B42 /* JSONManager.swift */; };
 		12B18BB32B045CFA00A46FA3 /* Data in Resources */ = {isa = PBXBuildFile; fileRef = 12B18BB22B045CFA00A46FA3 /* Data */; };
 		142E4C522AF55FC100104D13 /* BookAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C512AF55FC100104D13 /* BookAppApp.swift */; };
 		142E4C542AF55FC100104D13 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 142E4C532AF55FC100104D13 /* ContentView.swift */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		120CB27E2B06FADA00112B42 /* JSONManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONManager.swift; sourceTree = "<group>"; };
 		12B18BB22B045CFA00A46FA3 /* Data */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Data; sourceTree = "<group>"; };
 		142E4C4E2AF55FC100104D13 /* BookApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BookApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		142E4C512AF55FC100104D13 /* BookAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookAppApp.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 				846261A02AFEA45100CCD7C8 /* BorrowConfirmationView.swift */,
 				846261A22AFED92C00CCD7C8 /* AcceptConfirmationView.swift */,
 				8463C9AC2B0682FB0044ADFB /* StarsBlinkView.swift */,
+				120CB27E2B06FADA00112B42 /* JSONManager.swift */,
 			);
 			path = BookApp;
 			sourceTree = "<group>";
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				846261A12AFEA45100CCD7C8 /* BorrowConfirmationView.swift in Sources */,
+				120CB27F2B06FADA00112B42 /* JSONManager.swift in Sources */,
 				142E4C862AFC457900104D13 /* AddListingView.swift in Sources */,
 				142E4C542AF55FC100104D13 /* ContentView.swift in Sources */,
 				846261A32AFED92C00CCD7C8 /* AcceptConfirmationView.swift in Sources */,
