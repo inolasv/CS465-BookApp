@@ -49,7 +49,7 @@ struct ProfileView: View {
          User(name: "Name5", lastname: "Lname5", bio: "This is a bio5.", favoriteGenre: "genre5"),
          User(name: "Name6", lastname: "Lname6", bio: "This is a bio6.", favoriteGenre: "genre6")]
 
-    @State private var books2: [Book2] = Book2.allBooks
+    @Binding var booksFromJson: [Book2]
 
     
     var body: some View {
@@ -80,18 +80,18 @@ struct ProfileView: View {
             VStack {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .center, spacing: 20) {
-                        ForEach(books2.indices, id: \.self) { i in
-                            if books2[i].lendedByMe {
+                        ForEach(booksFromJson.indices, id: \.self) { i in
+                            if booksFromJson[i].lendedByMe {
                                 VStack() {
                                     Button(action: {print("exit clicked")}) {
                                         Image("Exit")
                                             .frame(width: 120, height: 1, alignment: .trailing)
                                     }
-                                    Text(books2[i].title)
+                                    Text(booksFromJson[i].title)
                                         .font(.custom("GochiHand-Regular", size: 25))
                                         .frame(width: 120, height: 20, alignment: .leading)
                                     
-                                    Text(books2[i].author)
+                                    Text(booksFromJson[i].author)
                                         .font(.custom("GochiHand-Regular", size: 16))
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
@@ -101,14 +101,14 @@ struct ProfileView: View {
                                         .aspectRatio(contentMode: .fill)
                                         .frame(width: 85, height: 110, alignment: .center)
                                         .clipped()
-                                    Button(books2[i].availability ? "Available" : "Borrowed") {
-                                        if books2[i].availability {
+                                    Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
+                                        if booksFromJson[i].availability {
                                             showingBorrowSheet.toggle()
                                         }
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                            AcceptConfirmationView(book: $books2[i], borrower: $users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
+                                            AcceptConfirmationView(book: $booksFromJson[i], borrower: $users[Int.random(in: 0..<5)], showingBorrowSheet: $showingBorrowSheet)
                                      }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)
@@ -130,8 +130,8 @@ struct ProfileView: View {
     }
 }
 
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
-    }
-}
+//    struct ProfileView_Previews: PreviewProvider {
+//        static var previews: some View {
+//            ProfileView()
+//        }
+//    }

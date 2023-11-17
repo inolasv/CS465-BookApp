@@ -9,7 +9,6 @@ import SwiftUI
 
 
 struct AddListingView: View {
-    
     @State private var bookTitle: String = ""
     @State private var bookAuthor: String = ""
     @State private var bookTag: String = ""
@@ -45,9 +44,9 @@ struct AddListingView: View {
             }
         }
     }
-
     init () {
         copyJSONIfNeeded()
+    
 //        UISegmentedControl.appearance().selectedSegmentTintColor = Color.pink
 //        UISegmentedControl.appearance().backgroundColor = .purple
 
