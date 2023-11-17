@@ -22,6 +22,8 @@ struct AddListingView: View {
     
     @State private var showingPreviewSheet = false
     @State private var sideModal: SideModal? = nil
+    
+    @State private var selectedPreview: Book = Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
 
 
     
@@ -207,16 +209,28 @@ struct AddListingView: View {
             
             HStack(alignment: .center, spacing: 30) {
                 
-                
                 Button("Preview"){
+                    var books = loadBooks()
+                    if let index = books.firstIndex(where: { $0.title == bookTitle }) {
+                        books[index].lendedByMe = true
+                        saveBooks(books)
+                        selectedPreview = books[index]
+                    }
+                    else {
+                       sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
+                   }
                     showingPreviewSheet.toggle()
-
                 }
                 .onTapGesture {
                 }
                 .buttonStyle(RoundedButton())
                 .sheet(isPresented: $showingPreviewSheet) {
-                    BookIconView(isFlipped: false, book: Book(title: bookTitle, coverImage: "cover", author: bookAuthor, tags: tags, description: "description", availability: true, borrowedByMe: false, lendedByMe: true, wishlistedByMe: false))
+                    if selectedPreview.title == "title1" {
+                      BookIconView(isFlipped: false, book: $selectedPreview)
+                    }
+                    else {
+                        Text("Please fill out a valid book.")
+                    }
                 }
                 
                 Button("Submit"){
