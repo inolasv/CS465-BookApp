@@ -2,7 +2,6 @@
 //  StarsBlinkView.swift
 //  StarsBlink
 //
-//  Created by Vishal Paliwal on 15/07/23.
 //
 
 import SwiftUI

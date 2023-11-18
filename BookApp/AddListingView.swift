@@ -141,7 +141,7 @@ struct AddListingView: View {
                                 .font(.custom("Futura", size: 13))
                                 .foregroundColor(.black)
                                 .frame(width: 80, height: 25, alignment: .center)
-                                .background(Color("lightGray"))
+                                .background(Color("yellow"))
                                 .cornerRadius(20)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 20)
@@ -153,7 +153,7 @@ struct AddListingView: View {
             .padding(.top, 12)
             .padding(.leading, 40)
             .background(Color("cream"))
-            .frame(height: 30, alignment: .center)
+            .frame(height: 40, alignment: .center)
                 
             }
             

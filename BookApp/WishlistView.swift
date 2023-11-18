@@ -179,7 +179,7 @@ struct WishlistView: View {
                                     }
                                 }
                             }
-                            .frame(width: 460, height: 230, alignment: .center)
+                            .frame(width: .infinity, height: 230, alignment: .center)
                         }
                 }
                 .frame(width: 460, height: 300)
