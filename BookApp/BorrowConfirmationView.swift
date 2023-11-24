@@ -61,7 +61,10 @@ struct BorrowConfirmationView: View {
             ZStack(alignment: .center) {
                 Button("Borrow") {
                     print("borrow pressed!")
-                    sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.")
+                    
+                    book.someoneInterested = true
+                    
+                    sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.", color: "yellow")
                     scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + book.title, secondsLater: 5, isRepeating: false)
                     borrowMode = true
                     showingBorrowSheet.toggle()

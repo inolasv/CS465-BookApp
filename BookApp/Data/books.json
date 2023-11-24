@@ -16,7 +16,8 @@
       "availability": true,
       "borrowedByMe": false,
       "lendedByMe": true,
-      "wishlistedByMe": false
+      "wishlistedByMe": false,
+      "someoneInterested": false
     },
     {
       "title": "That Wasn’t in the Script",
@@ -34,7 +35,8 @@
       "availability": true,
       "borrowedByMe": false,
       "lendedByMe": false,
-      "wishlistedByMe": false
+      "wishlistedByMe": false,
+      "someoneInterested": false
     },
     {
       "title": "Something Better",
@@ -47,8 +49,8 @@
       "availability": true,
       "borrowedByMe": false,
       "lendedByMe": false,
-      "wishlistedByMe": false
-
+      "wishlistedByMe": false,
+      "someoneInterested": false
     },
     {
       "title": "Weyward",
@@ -67,7 +69,8 @@
       "availability": true,
       "borrowedByMe": false,
       "lendedByMe": false,
-      "wishlistedByMe": false
+      "wishlistedByMe": false,
+      "someoneInterested": false
 
     },
     {
@@ -90,7 +93,8 @@
       "availability": true,
       "borrowedByMe": false,
       "lendedByMe": false,
-      "wishlistedByMe": false
+      "wishlistedByMe": false,
+      "someoneInterested": false
 
     },
     {
@@ -113,7 +117,8 @@
         "availability": false,
         "borrowedByMe": true,
         "lendedByMe": false,
-        "wishlistedByMe": false
+        "wishlistedByMe": false,
+        "someoneInterested": false
     },
     {
         "title": "The Ghost Ship",
@@ -135,7 +140,8 @@
         "availability": false,
         "borrowedByMe": true,
         "lendedByMe": false,
-        "wishlistedByMe": true
+        "wishlistedByMe": true,
+        "someoneInterested": false
     },
     {
         "title": "Under This Forgetful Sky",
@@ -157,8 +163,7 @@
         "availability": false,
         "borrowedByMe": false,
         "lendedByMe": true,
-        "wishlistedByMe": false
-
-    }
-]
+        "wishlistedByMe": false,
+        "someoneInterested": true
+    }]
     

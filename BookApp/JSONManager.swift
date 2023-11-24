@@ -14,12 +14,12 @@ struct Book2: Codable, Identifiable {
     let author: String
     let tags: [String]
     let description: String
-    var availability, borrowedByMe, lendedByMe, wishlistedByMe: Bool
+    var availability, borrowedByMe, lendedByMe, wishlistedByMe, someoneInterested: Bool
 
     enum CodingKeys: String, CodingKey {
         case title
         case coverImage = "cover_image"
-        case author, tags, description, availability, borrowedByMe, lendedByMe, wishlistedByMe
+        case author, tags, description, availability, borrowedByMe, lendedByMe, wishlistedByMe, someoneInterested
     }
     
     static let allBooks: [Book2] = Bundle.main.decode(file: "books.json", inDirectory: "Data")

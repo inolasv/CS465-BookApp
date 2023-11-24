@@ -11,6 +11,9 @@ import UserNotifications
 
 struct ContentView: View {
     @State private var booksFromJson = Book2.allBooks
+    @State private var sideModal: SideModal? = nil
+
+    
     var body: some View {
         ZStack {
         Color("Beige2").ignoresSafeArea()
@@ -33,6 +36,11 @@ struct ContentView: View {
                     Label("Add Listing", systemImage: "plus")
                 }
         }
+        .modalView(sideModal: $sideModal)
+
+        }
+        .onAppear {
+            sideModal = SideModal(title: "How to use the App", message: "Swipe left and right on the cards to see the next options. Swiping right adds to your wishlist, and left indicates not interested.", color: "beige4")
         }
     }
 }
@@ -67,6 +75,7 @@ func scheduleNotification(title: String, subtitle: String, secondsLater: TimeInt
 struct SideModalView: View {
     var title: String
     var message: String
+    var color: String
     var onCancelTapped: (() -> Void)
     
     var body: some View {
@@ -98,7 +107,7 @@ struct SideModalView: View {
         .background(Color.white)
         .overlay(
             Rectangle()
-                .fill(Color.blue)
+                .fill(Color(color))
                 .frame(width: 6)
                 .clipped()
             , alignment: .leading
@@ -116,6 +125,7 @@ struct SideModalView: View {
 struct SideModal: Equatable {
     var title: String
     var message: String
+    var color: String
     var duration: Double = 7
 }
 
@@ -148,7 +158,7 @@ struct SideModalModifier: ViewModifier {
             VStack {
                 SideModalView(
                     title: sideModal.title,
-                    message: sideModal.message) {
+                    message: sideModal.message, color: sideModal.color) {
                         dismissModal()
                     }
                 Spacer()

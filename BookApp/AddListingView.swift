@@ -28,7 +28,7 @@ struct AddListingView: View {
     
     
     
-    @State private var selectedPreview: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
+    @State private var selectedPreview: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false, someoneInterested: false)
 
 
     
@@ -220,7 +220,7 @@ struct AddListingView: View {
                         selectedPreview = booksFromJson[index]
                     }
                     else {
-                       sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
+                        sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.", color: "magenta")
                    }
                     showingPreviewSheet.toggle()
                 }
@@ -241,7 +241,7 @@ struct AddListingView: View {
                         booksFromJson[index].lendedByMe = true
                         print("Book lending status updated")
                     } else {
-                        sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.")
+                        sideModal = SideModal(title: "Error", message: "The book that you are trying to submit does not exist in our databases. Please try again.", color: "magenta")
                     }
                 }
                 .buttonStyle(RoundedButton())

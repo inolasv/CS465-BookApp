@@ -296,7 +296,7 @@ struct CardView: View {
             swipeStatus = 1
             print(book.availability)
             if (book.availability) {
-                sideModal = SideModal(title: "Available to Borrow", message: book.title + " is currently available to borrow! Check your wishlist to proceed")
+                sideModal = SideModal(title: "Available to Borrow", message: book.title + " is currently available to borrow! Check your wishlist to proceed", color: "yellow")
             }
             book.wishlistedByMe = true
         default:

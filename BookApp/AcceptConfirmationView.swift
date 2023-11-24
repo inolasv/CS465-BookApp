@@ -46,6 +46,7 @@ struct AcceptConfirmationView: View {
                     book.borrowedByMe = true
                     book.wishlistedByMe = false
                     book.availability = false
+                    book.someoneInterested = false
                     print("accept pressed!")
                     scheduleNotification(title: "Your Borrow Request has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 5, isRepeating: false)
                     showingBorrowSheet = false
@@ -54,6 +55,7 @@ struct AcceptConfirmationView: View {
                 .buttonStyle(RoundedButton())
                 Button("Decline") {
                     print("decline pressed!")
+                    book.someoneInterested = false
                     scheduleNotification(title: "Your Borrow Reqeust has been Declined", subtitle: "", secondsLater: 5, isRepeating: false)
                     showingBorrowSheet = false
                         }

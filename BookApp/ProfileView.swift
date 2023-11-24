@@ -45,7 +45,7 @@ struct ProfileView: View {
     @State private var users = Person.allPersons
 
     @Binding var booksFromJson: [Book2]
-    @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
+    @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false, someoneInterested: false)
 
     
     var body: some View {
@@ -92,7 +92,7 @@ struct ProfileView: View {
                         ForEach(booksFromJson.indices, id: \.self) { i in
                             if booksFromJson[i].lendedByMe {
                                 VStack() {
-                                    Button(action: {print("exit clicked")}) {
+                                    Button(action: {booksFromJson[i].lendedByMe=false}) {
                                         Image("Exit")
                                             .frame(width: 120, height: 1, alignment: .trailing)
                                     }
@@ -104,7 +104,6 @@ struct ProfileView: View {
                                         .font(.custom("Futura", size: 16))
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
-                                    // Place holder image for now
                                     AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
                                         switch phase {
                                             case .empty:
@@ -138,7 +137,7 @@ struct ProfileView: View {
                                 .background(Color("cream"))
                                 .cornerRadius(25)
                                 .overlay(RoundedRectangle(cornerRadius: 25)
-                                    .strokeBorder(Color.black, lineWidth: 3))
+                                    .strokeBorder(Color.black, lineWidth: booksFromJson[i].someoneInterested ? 6 : 3))
                             }
                         }
                     }

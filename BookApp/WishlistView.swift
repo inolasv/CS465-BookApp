@@ -33,7 +33,7 @@ struct WishlistView: View {
          Book(title: "title3", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "title4", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
-    @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)
+    @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false, someoneInterested: false)
     
     @State private var user = Person.allPersons[1]
     
@@ -172,7 +172,7 @@ struct WishlistView: View {
                                              }
                                         }
                                         .frame(width: 150, height: 230, alignment: .center)
-                                        .background(Color("cream"))
+                                        .background(booksFromJson[i].availability ? Color("cream") : Color("yellow"))
                                         .cornerRadius(25)
                                         .overlay(RoundedRectangle(cornerRadius: 25)
                                             .strokeBorder(Color.black, lineWidth: 3))
