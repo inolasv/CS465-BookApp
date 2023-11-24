@@ -11,7 +11,7 @@ struct FlipButton: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .foregroundColor(.black)
-//            .background(Color("Beige4"))
+//          .background(Color("Beige4"))
             .cornerRadius(20)
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
@@ -69,12 +69,12 @@ struct BookIconView: View {
                 if isFlipped {
                     // The back of the card
                     BackView(book: $book)
-                        .frame(width: 310, height: 500)
-                    //                                .background(Color("Beige1"))
+                        .frame(width: 310, height: 470)
+                        .background(Color.white)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(.black, lineWidth: 2))
+                                .stroke(Color("magenta"), lineWidth: 10))
                         .rotation3DEffect(.degrees(isFlipped ? 0 : 180), axis: (x: 0, y: 1, z: 0))
                 } else {
                     // The front of the card
@@ -85,8 +85,8 @@ struct BookIconView: View {
                     } placeholder: {
                         ProgressView()
                     }
-                    .frame(width: 310, height: 500)
-                    .background(Color("Beige3"))
+                    .frame(width: 310, height: 470)
+                    .background(Color("yellow"))
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -107,11 +107,11 @@ struct ListedByView: View {
         HStack {
             VStack {
                 Text("Listed By:")
-                    .font(.custom("GochiHand-Regular", size: 20))
-                    .frame(width: 220, height: 20, alignment: .leading)
+                    .font(.custom("Futura", size: 20))
+                    .frame(width: 230, height: 20, alignment: .leading)
                 Text(lender.name + " " + lender.lastname)
-                    .font(.custom("GochiHand-Regular", size: 25))
-                    .frame(width: 220, height: 20, alignment: .leading)
+                    .font(.custom("Futura", size: 25))
+                    .frame(width: 230, height: 20, alignment: .leading)
             }
             Image(lender.profilePicture ?? "ProfileIcon")
                 .resizable()
@@ -132,22 +132,20 @@ struct BorrowedByView: View {
         HStack {
             VStack {
                 Text("Also Borrowed By:")
-                    .font(.custom("GochiHand-Regular", size: 20))
-                    .frame(width: 290, height: 20, alignment: .leading)
+                    .font(.custom("Futura", size: 20))
+                    .frame(width: 300, height: 20, alignment: .leading)
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(borrowers) { user in
                             Image("ProfileIcon")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: 40, height: 40)
-                                .padding(.leading, -10)
+                                .frame(width: 30, height: 30)
+                                .padding(.leading, 0)
                                 .clipShape(Circle())
                         }
                     }
-                    .padding(.horizontal)
-                    .padding(.horizontal)
-                    .padding(.horizontal)
+                    .padding(.horizontal, 10)
                     
                 }
             }
@@ -161,31 +159,36 @@ struct BackView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 10){
             Text(book.title)
-                .font(.custom("GochiHand-Regular", size: 40))
+                .font(.custom("Futura", size: 40))
                 .padding([.top, .horizontal])
             Text(book.author)
-                .font(.custom("GochiHand-Regular", size: 25))
+                .font(.custom("Futura", size: 25))
                 .padding([.horizontal])
             Text(book.description)
-                .font(.custom("GochiHand-Regular", size: 16))
+                .font(.custom("Futura", size: 16))
                 .padding()
+            Spacer()
+                
             
             VStack (alignment: .center){
-                HStack {
+                HStack (alignment: .center) {
                     TagView(tag: "Fantasy")
-                    TagView(tag: "Historical Fiction")
+                    TagView(tag: "Fiction")
                     TagView(tag: "Set in London")
                 }
-                HStack {
+                HStack (alignment: .center) {
                     TagView(tag: "Plot Twist")
                     TagView(tag: "WOW")
                     TagView(tag: "Powerful")
                 }
-                HStack {
+                HStack (alignment: .center) {
                     TagView(tag: "Ambitious Main Character")
                     TagView(tag: "Short Book")
                 }
             }
+            .padding(.horizontal, 25)
+            .padding(.vertical)
+            .padding(.vertical)
         }
     }
 }
@@ -198,7 +201,7 @@ struct TagView: View {
         Text(tag)
             .padding(.horizontal, 10) // Add horizontal padding inside the tag
             .padding(.vertical, 10) // Add vertical padding to make the tag taller
-            .background(Color.gray.opacity(0.2))
+            .background(Color("yellow").opacity(0.6))
             .clipShape(Capsule())
             .font(.caption) // You can adjust the font size as needed
     }
@@ -209,7 +212,7 @@ struct CardView: View {
     @State private var offset = CGSize.zero
     @State private var isFlipped = false
     @State private var swipeStatus = 0
-    @State private var color = Color("lightGray")
+    @State private var color = Color("cream")
     @Binding var book: Book2
     @Binding var lender: Person
     @Binding var borrowers: [Person]
@@ -254,7 +257,7 @@ struct CardView: View {
         .background(color).padding()
         .cornerRadius(20)
         .overlay(
-            RoundedRectangle(cornerRadius: 20).stroke(Color("cream"), lineWidth: 5).padding()
+            RoundedRectangle(cornerRadius: 20).stroke(color, lineWidth: 12).padding()
         )
         .offset(x: offset.width, y: offset.height*0.4)
         .rotationEffect(.degrees(Double(offset.width / 40)))
@@ -297,7 +300,7 @@ struct CardView: View {
             }
             book.wishlistedByMe = true
         default:
-            color = Color("lightGray")
+            color = Color("cream")
             swipeStatus = 0
         }
     }
@@ -333,3 +336,17 @@ struct MainView2: View {
         }
     }
 }
+
+//struct MainView2_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MainView2()
+//    }
+//}
+//struct MainView2_Previews: PreviewProvider {
+//    static var previews: some View {
+//        // Create a constant binding to an array of 'Book2' which contains the example book
+//        let exampleBooks = [Book2(title: "Sample Book", coverImage: "SampleCover", author: "Sample Author", tags: ["Fiction", "Adventure"], description: "This is a sample book description.", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
+//
+//        MainView2(booksFromJson: .constant(exampleBooks))
+//    }
+//}
