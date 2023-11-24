@@ -47,7 +47,7 @@
       "availability": true,
       "borrowedByMe": false,
       "lendedByMe": false,
-      "wishlistedByMe": true
+      "wishlistedByMe": false
 
     },
     {
