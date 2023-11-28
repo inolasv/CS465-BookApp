@@ -68,25 +68,32 @@ struct BookIconView: View {
             }) {
                 if isFlipped {
                     // The back of the card
-                    BackView(book: $book)
-                        .frame(width: 310, height: 470)
+                    ZStack(alignment: .topTrailing) {
+                        Image("FlipIcon").resizable().frame(width: 50, height: 50)
+                        BackView(book: $book)
+                    }.frame(width: 310, height: 470)
                         .background(Color.white)
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
                                 .stroke(Color("magenta"), lineWidth: 10))
                         .rotation3DEffect(.degrees(isFlipped ? 0 : 180), axis: (x: 0, y: 1, z: 0))
+                    
+                    
                 } else {
                     // The front of the card
-                    AsyncImage(url: URL(string: book.coverImage)) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    } placeholder: {
-                        ProgressView()
+                    ZStack(alignment: .topTrailing) {
+                        AsyncImage(url: URL(string: book.coverImage)) { image in
+                            image
+                                .resizable()
+                                .scaledToFit()
+                        } placeholder: {
+                            ProgressView()
+                        }
+                        Image("FlipIcon").resizable().frame(width: 50, height: 50)
                     }
                     .frame(width: 310, height: 470)
-                    .background(Color("yellow"))
+                    .background()
                     .cornerRadius(20)
                     .overlay(
                         RoundedRectangle(cornerRadius: 20)
@@ -101,24 +108,37 @@ struct BookIconView: View {
 
 
 struct ListedByView: View {
-    @Binding var lender: Person
-    
+    var lender: Person
+    @State var available: Bool
     var body: some View {
         HStack {
-            VStack {
-                Text("Listed By:")
-                    .font(.custom("Futura", size: 20))
-                    .frame(width: 230, height: 20, alignment: .leading)
-                Text(lender.name + " " + lender.lastname)
-                    .font(.custom("Futura", size: 25))
-                    .frame(width: 230, height: 20, alignment: .leading)
+            HStack {
+                VStack {
+                    Text("Listed By:")
+                        .font(.custom("Futura", size: 20))
+                    Text(lender.name + " " + lender.lastname)
+                        .font(.custom("Futura", size: 25))
+                }.frame(maxWidth: .infinity, alignment: .leading)
+                ZStack {
+                    if available {
+                        Text("Available to Borrow")
+                            .font(.custom("Futura", size: 15))
+                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.green))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 2))
+                    }
+                    else {
+                        Text("Not Available to Borrow")
+                            .font(.custom("Futura", size: 15))
+                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.red))
+                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 2))
+                    }
+                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
             }
             Image(lender.profilePicture ?? "ProfileIcon")
                 .resizable()
                 .frame(width: 50, height: 50)
                 .clipShape(Circle())
                 .padding(.leading)
-            
                 .padding(.vertical)
         }
     }
@@ -214,7 +234,7 @@ struct CardView: View {
     @State private var swipeStatus = 0
     @State private var color = Color("cream")
     @Binding var book: Book2
-    @Binding var lender: Person
+    var lender: Person
     @Binding var borrowers: [Person]
     
     @State private var sideModal: SideModal? = nil
@@ -226,7 +246,7 @@ struct CardView: View {
             if swipeStatus == 0 {
                 VStack {
                     BookIconView(isFlipped: isFlipped, book: $book)
-                    ListedByView(lender: $lender)
+                    ListedByView(lender: lender, available: book.availability)
                     BorrowedByView(borrowers: $borrowers)
                 }
             }
@@ -235,7 +255,7 @@ struct CardView: View {
                     StarsBlinkView()
                     VStack {
                         BookIconView(isFlipped: isFlipped, book: $book)
-                        ListedByView(lender: $lender)
+                        ListedByView(lender: lender, available: book.availability)
                         BorrowedByView(borrowers: $borrowers)
                     }
                 }
@@ -330,18 +350,25 @@ struct MainView2: View {
         VStack {
             ZStack {
                 ForEach(booksFromJson.indices, id: \.self) { i in
-                    CardView(book: $booksFromJson[i], lender: $users[Int.random(in: 0..<6)], borrowers: $users)
+                    CardView(book: $booksFromJson[i], lender: users[i], borrowers: $users)
                 }
             }
         }
     }
 }
 
-//struct MainView2_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MainView2()
-//    }
-//}
+struct PreviewView: View {
+    @State private var booksFromJson = Book2.allBooks
+    var body: some View {
+        MainView2(booksFromJson: $booksFromJson)
+    }
+}
+
+struct MainView2_Previews: PreviewProvider {
+    static var previews: some View {
+        PreviewView()
+    }
+}
 //struct MainView2_Previews: PreviewProvider {
 //    static var previews: some View {
 //        // Create a constant binding to an array of 'Book2' which contains the example book
