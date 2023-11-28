@@ -137,7 +137,7 @@ struct BorrowedByView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(borrowers) { user in
-                            Image("ProfileIcon")
+                            Image(user.profilePicture ?? "ProfileIcon")
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 30, height: 30)

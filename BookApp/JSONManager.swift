@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Book2: Codable, Identifiable {
+struct Book2: Codable, Identifiable, Hashable {
     let id = UUID()
     let title: String
     let coverImage: String
