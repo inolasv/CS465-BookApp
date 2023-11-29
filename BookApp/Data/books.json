@@ -165,5 +165,186 @@
         "lendedByMe": true,
         "wishlistedByMe": false,
         "someoneInterested": true
-    }]
+    },
+    {
+      "title": "Eternal Echoes",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1675121666i/61244831.jpg",
+      "author": "Melissa K. Wright",
+      "tags": [
+        "Fantasy",
+        "Romance",
+        "Young Adult",
+        "Magic",
+        "Adventure"
+      ],
+      "description": "In the mystical land of Eldoria, where magic weaves through the air like a melody, a young sorcerer named Aria discovers an ancient prophecy that could change the fate of her world. With a group of unlikely allies, she embarks on a perilous journey to unlock the secrets of her past and prevent an impending darkness from engulfing Eldoria. Filled with magical creatures, unexpected twists, and a dash of romance, Eternal Echoes is a captivating tale of courage, friendship, and the enduring power of hope.",
+      "availability": true,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "The Quantum Paradox",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677899977i/61456550.jpg",
+      "author": "Alexander Greene",
+      "tags": [
+        "Science Fiction",
+        "Thriller",
+        "Mystery",
+        "Time Travel",
+        "Technological"
+      ],
+      "description": "Dr. Emily Parker, a brilliant physicist, stumbles upon a groundbreaking discovery: the existence of a parallel universe. As she delves deeper into the mysteries of this alternate reality, she realizes that her actions in one world can have profound consequences in another. Racing against time, Emily must navigate the complexities of quantum physics and confront the ethical dilemmas that arise when the boundaries between worlds begin to blur. The Quantum Paradox is a mind-bending journey through the fabric of space and time, where every choice sparks a new set of possibilities.",
+      "availability": true,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "City of Whispers",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677676709i/60985856.jpg",
+      "author": "Aiden Thomas",
+      "tags": [
+        "Urban Fantasy",
+        "LGBT",
+        "Mystery",
+        "Paranormal",
+        "Young Adult"
+      ],
+      "description": "In the heart of a bustling metropolis, where shadows dance and secrets lie hidden in plain sight, a group of young misfits discovers they possess extraordinary powers. Drawn together by fate, they must unravel the mysteries of their own origins and confront a dark force that threatens to plunge their city into chaos. City of Whispers is a spellbinding tale of identity, acceptance, and the enduring strength that comes from embracing one's true self.",
+      "availability": true,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "Starlight Chronicles",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1673776106i/64142036.jpg",
+      "author": "Ava Skylar",
+      "tags": [
+        "Space Opera",
+        "Adventure",
+        "Science Fiction",
+        "Romance",
+        "Epic"
+      ],
+      "description": "In the distant reaches of the galaxy, where star systems collide and civilizations rise and fall, a young pilot named Cassia embarks on a journey that will reshape the destiny of entire worlds. With a crew of eclectic characters and a mysterious artifact at the center of it all, Cassia must navigate the treacherous currents of interstellar politics and face ancient adversaries to unlock the secrets of the Starlight Chronicles. A space opera of epic proportions, this thrilling adventure will take readers beyond the stars and into the heart of cosmic intrigue.",
+      "availability": false,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": true,
+      "someoneInterested": false
+    },
+    {
+      "title": "The Enchanted Forest",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677872464i/64198275.jpg",
+      "author": "Elena Rivers",
+      "tags": [
+        "Children's",
+        "Fantasy",
+        "Adventure",
+        "Magic",
+        "Friendship"
+      ],
+      "description": "Join siblings Emma and Jake as they stumble upon a hidden portal that transports them to the enchanting realm of the Enchanted Forest. Filled with magical creatures, talking trees, and whimsical adventures, this charming children's tale explores the power of imagination and the bonds of siblinghood. The Enchanted Forest is a delightful journey for young readers and the young at heart.",
+      "availability": false,
+      "borrowedByMe": false,
+      "lendedByMe": true,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "The Clockmaker's Daughter",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1664935542i/40071227.jpg",
+      "author": "Kate Morton",
+      "tags": [
+        "Historical Fiction",
+        "Mystery",
+        "Romance",
+        "Time Slip",
+        "Literary Fiction"
+      ],
+      "description": "A century-old mystery, a beautiful and abandoned house, and a group of interconnected lives spanning different eras. The Clockmaker's Daughter weaves a captivating narrative that unfolds through the lens of time. As readers delve into the secrets of Birchwood Manor, they'll discover the threads that bind the past and present, love and loss, and the timeless power of storytelling.",
+      "availability": true,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "Echoes of Eternity",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1675730125i/64866527.jpg",
+      "author": "Nina LaCour",
+      "tags": [
+        "Contemporary",
+        "LGBT",
+        "Romance",
+        "Young Adult",
+        "Coming of Age"
+      ],
+      "description": "In a small coastal town, where the waves whisper secrets and the cliffs hold memories, two young souls find solace in each other. Echoes of Eternity is a tender exploration of love, loss, and self-discovery. As the characters navigate the complexities of identity and the inexorable passage of time, readers will be drawn into a poignant story that lingers like an echo across the years.",
+      "availability": true,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "The Celestial Atlas",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1675934824i/64675457.jpg",
+      "author": "Lydia Kang",
+      "tags": [
+        "Science Fiction",
+        "Space Exploration",
+        "Adventure",
+        "Mystery",
+        "Medical Thriller"
+      ],
+      "description": "Dr. Elara Brooks, a brilliant astrophysicist, stumbles upon a celestial phenomenon that defies explanation. As she unravels the mysteries of the cosmos, she becomes entangled in a web of intrigue that spans galaxies. The Celestial Atlas is a gripping space odyssey that combines the wonders of science with the thrill of discovery, taking readers on an interstellar journey beyond imagination.",
+      "availability": false,
+      "borrowedByMe": false,
+      "lendedByMe": true,
+      "wishlistedByMe": false,
+      "someoneInterested": true
+    },
+    {
+      "title": "Beneath the Crimson Sky",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1677518668i/64253383.jpg",
+      "author": "Renee Collins",
+      "tags": [
+        "Fantasy",
+        "Adventure",
+        "Magic",
+        "Young Adult",
+        "Friendship"
+      ],
+      "description": "In a world where magic flows like a river beneath the crimson sky, three unlikely friends embark on a quest to save their realm from an ancient darkness. As they navigate treacherous landscapes and face mythical creatures, their bonds of friendship are tested. Beneath the Crimson Sky is a spellbinding tale of courage, loyalty, and the enduring power of hope in the face of overwhelming odds.",
+      "availability": false,
+      "borrowedByMe": true,
+      "lendedByMe": false,
+      "wishlistedByMe": false,
+      "someoneInterested": false
+    },
+    {
+      "title": "Whispers of Winter",
+      "cover_image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1678264643i/65244854.jpg",
+      "author": "Evelyn Hayes",
+      "tags": [
+        "Historical Fiction",
+        "Romance",
+        "Winter",
+        "Family Saga",
+        "Saga"
+      ],
+      "description": "Set against the backdrop of a snow-covered landscape, Whispers of Winter follows the lives of a family spanning generations. From the roaring twenties to the present day, the characters navigate love, loss, and the enduring ties that bind them. With each turn of the page, readers will be transported to a world where the whispers of winter carry the echoes of a family's shared history.",
+      "availability": false,
+      "borrowedByMe": false,
+      "lendedByMe": false,
+      "wishlistedByMe": true,
+      "someoneInterested": false
+    }
+]
     

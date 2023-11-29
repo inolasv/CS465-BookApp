@@ -32,6 +32,12 @@ struct RoundedButton: ButtonStyle {
 
 struct ProfileView: View {
     
+    
+    @Binding var user: Person
+    @Binding var booksFromJson: [Book2]
+    var editable: Bool
+
+    
     @State private var showingBorrowSheet = false
     
     @State private var books =
@@ -40,11 +46,9 @@ struct ProfileView: View {
          Book(title: "Title3", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "Title4", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
-    @State private var user = Person.allPersons[0]
     
     @State private var users = Person.allPersons
 
-    @Binding var booksFromJson: [Book2]
     @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false, someoneInterested: false)
 
     
@@ -89,8 +93,8 @@ struct ProfileView: View {
             VStack {
                 ScrollView(.horizontal) {
                     LazyHStack(alignment: .center, spacing: 20) {
-                        ForEach(booksFromJson.indices, id: \.self) { i in
-                            if booksFromJson[i].lendedByMe {
+                        ForEach(user.bookListings, id: \.self) { book in
+                            if let i = booksFromJson.firstIndex(where: { $0.title == book }) {
                                 VStack() {
                                     Button(action: {booksFromJson[i].lendedByMe=false}) {
                                         Image("Exit")
@@ -123,7 +127,7 @@ struct ProfileView: View {
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
                                     Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
-                                        if booksFromJson[i].availability {
+                                        if editable && booksFromJson[i].availability {
                                             currentBook = booksFromJson[i]
                                             showingBorrowSheet.toggle()
                                         }

@@ -11,6 +11,7 @@ struct AddListingInformation: View {
     
     var bookTitle: String
     @Binding var booksFromJson: [Book2]
+    @Binding var currentUser: Person
 
     
     @State private var bookTag: String = ""
@@ -154,6 +155,7 @@ struct AddListingInformation: View {
 
                 Button("Submit") {
                     if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+                        currentUser.bookListings.append(bookTitle)
                         booksFromJson[index].lendedByMe = true
                         sideModal = SideModal(title: "Listing Added", message: "Congrats! You have added \(booksFromJson[index].title) to your listings", color: "yellow")
                         Timer.scheduledTimer(withTimeInterval: 2, repeats: false) { (_) in
@@ -184,6 +186,8 @@ struct AddListingInformation: View {
 struct AddListingView: View {
     
     @Binding var booksFromJson: [Book2]
+    @Binding var currentUser: Person
+
 
     
     @State private var bookTitle: String = ""
@@ -344,7 +348,7 @@ struct AddListingView: View {
                 }
                 .buttonStyle(RoundedButton())
                 .sheet(isPresented: $showingInfoSheet) {
-                    AddListingInformation(bookTitle: selectedBook.title, booksFromJson: $booksFromJson)
+                    AddListingInformation(bookTitle: selectedBook.title, booksFromJson: $booksFromJson, currentUser: $currentUser)
                 }
             
             

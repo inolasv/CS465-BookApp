@@ -8,16 +8,39 @@
 import SwiftUI
 import UserNotifications
 
+struct DefaultsKeys {
+    static let lenderView = "lenderView"
+}
+
 
 struct ContentView: View {
     @State private var booksFromJson = Book2.allBooks
     @State private var sideModal: SideModal? = nil
+    
+    @State private var currentUser = Person.allPersons[0]
+    
+    let defaults = UserDefaults.standard
+    @State private var toggleOn: Bool = false
 
     
     var body: some View {
         ZStack {
         Color("Beige2").ignoresSafeArea()
-            
+        Toggle("", isOn: $toggleOn)
+            .onChange(of: toggleOn) { value in
+                if (toggleOn) {
+                    defaults.set(
+                        true,
+                        forKey: DefaultsKeys.lenderView
+                    )
+                } else {
+                    defaults.set(
+                        false,
+                        forKey: DefaultsKeys.lenderView
+                    )
+                }
+            }
+
         TabView {
             MainView2(booksFromJson: $booksFromJson)
                 .tabItem {
@@ -27,11 +50,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("Wishlist", systemImage: "checklist")
                 }
-            ProfileView(booksFromJson: $booksFromJson)
+            ProfileView(user: $currentUser, booksFromJson: $booksFromJson, editable: false)
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
-            AddListingView(booksFromJson: $booksFromJson)
+            AddListingView(booksFromJson: $booksFromJson, currentUser: $currentUser)
                 .tabItem {
                     Label("Add Listing", systemImage: "plus")
                 }

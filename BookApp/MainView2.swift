@@ -108,8 +108,12 @@ struct BookIconView: View {
 
 
 struct ListedByView: View {
-    var lender: Person
+    @Binding var lender: Person
+    @Binding var booksFromJson: [Book2]
+    @State private var showingProfileSheet = false
     @State var available: Bool
+    
+    
     var body: some View {
         HStack {
             HStack {
@@ -134,12 +138,33 @@ struct ListedByView: View {
                     }
                 }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
             }
-            Image(lender.profilePicture ?? "ProfileIcon")
-                .resizable()
-                .frame(width: 50, height: 50)
-                .clipShape(Circle())
-                .padding(.leading)
-                .padding(.vertical)
+            AsyncImage(url: URL(string: lender.profilePicture)) { phase in
+                switch phase {
+                    case .empty:
+                        ProgressView() // Shown while loading
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    case .failure:
+                        Image("ProfileIcon") // Fallback image in case of failure
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                    @unknown default:
+                        EmptyView()
+                }
+            }
+            .frame(width: 50, height: 50)
+            .clipShape(Circle())
+            .padding(.leading)
+            .padding(.vertical)
+            .onTapGesture {
+                showingProfileSheet.toggle()
+
+            }
+            .sheet(isPresented: $showingProfileSheet) {
+                ProfileView(user: $lender, booksFromJson: $booksFromJson, editable: false)
+            }
         }
     }
 }
@@ -147,6 +172,8 @@ struct ListedByView: View {
 
 struct BorrowedByView: View {
     @Binding var borrowers: [Person]
+    @State private var showingProfileSheet = false
+
     
     var body: some View {
         HStack {
@@ -155,14 +182,30 @@ struct BorrowedByView: View {
                     .font(.custom("Futura", size: 20))
                     .frame(width: 300, height: 20, alignment: .leading)
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(borrowers) { user in
-                            Image(user.profilePicture ?? "ProfileIcon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 30, height: 30)
-                                .padding(.leading, 0)
-                                .clipShape(Circle())
+                    HStack(spacing: -10) {
+                        ForEach([borrowers.randomElement()!, borrowers.randomElement()!, borrowers.randomElement()!, borrowers.randomElement()!, borrowers.randomElement()!]) { user in
+                            AsyncImage(url: URL(string: user.profilePicture)) { phase in
+                                switch phase {
+                                    case .empty:
+                                        ProgressView() // Shown while loading
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                    case .failure:
+                                        Image("ProfileIcon") // Fallback image in case of failure
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                    @unknown default:
+                                        EmptyView()
+                                }
+                            }
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 40, height: 40)
+                            .clipShape(Circle())
+                            .onTapGesture {
+                                
+                            }
                         }
                     }
                     .padding(.horizontal, 10)
@@ -233,8 +276,10 @@ struct CardView: View {
     @State private var isFlipped = false
     @State private var swipeStatus = 0
     @State private var color = Color("cream")
+    
+    @Binding var booksFromJson: [Book2]
     @Binding var book: Book2
-    var lender: Person
+    @Binding var lender: Person
     @Binding var borrowers: [Person]
     
     @State private var sideModal: SideModal? = nil
@@ -246,7 +291,7 @@ struct CardView: View {
             if swipeStatus == 0 {
                 VStack {
                     BookIconView(isFlipped: isFlipped, book: $book)
-                    ListedByView(lender: lender, available: book.availability)
+                    ListedByView(lender: $lender, booksFromJson: $booksFromJson, available: book.availability)
                     BorrowedByView(borrowers: $borrowers)
                 }
             }
@@ -255,7 +300,7 @@ struct CardView: View {
                     StarsBlinkView()
                     VStack {
                         BookIconView(isFlipped: isFlipped, book: $book)
-                        ListedByView(lender: lender, available: book.availability)
+                        ListedByView(lender: $lender, booksFromJson: $booksFromJson, available: book.availability)
                         BorrowedByView(borrowers: $borrowers)
                     }
                 }
@@ -350,7 +395,7 @@ struct MainView2: View {
         VStack {
             ZStack {
                 ForEach(booksFromJson.indices, id: \.self) { i in
-                    CardView(book: $booksFromJson[i], lender: users[i], borrowers: $users)
+                    CardView(booksFromJson: $booksFromJson, book: $booksFromJson[i], lender: $users[i], borrowers: $users)
                 }
             }
         }

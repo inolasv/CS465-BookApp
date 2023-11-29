@@ -68,15 +68,15 @@ struct BorrowConfirmationView: View {
                     scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + book.title, secondsLater: 5, isRepeating: false)
                     borrowMode = true
                     showingBorrowSheet.toggle()
-                        }
-                        .opacity(borrowMode ? 0 : 1)
-                        .buttonStyle(RoundedButton())
+                }
+                .opacity(borrowMode ? 0 : 1)
+                .buttonStyle(RoundedButton())
                 Button("Cancel") {
                     borrowMode = false
                     showingBorrowSheet.toggle()
-                        }
+                }
                 .opacity(borrowMode ? 1 : 0)
-                        .buttonStyle(RoundedButton())
+                .buttonStyle(RoundedButton())
             }.padding()
             
         }

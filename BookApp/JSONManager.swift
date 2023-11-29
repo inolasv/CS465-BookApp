@@ -30,9 +30,10 @@ struct Person: Codable, Identifiable {
     let id = UUID()
     let name, lastname, bio, favoriteGenre: String
     let profilePicture: String
+    var bookListings: [String]
 
     enum CodingKeys: String, CodingKey {
-        case name, lastname, bio
+        case name, lastname, bio, bookListings
         case favoriteGenre = "favorite_genre"
         case profilePicture = "profile_picture"
     }
