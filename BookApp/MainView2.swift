@@ -281,12 +281,13 @@ struct CardView: View {
     @Binding var book: Book2
     @Binding var lender: Person
     @Binding var borrowers: [Person]
+    @Binding var cardIndex: Int
     
     @State private var sideModal: SideModal? = nil
 
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: .bottomTrailing) {
         //Color("lightGray").ignoresSafeArea()
             if swipeStatus == 0 {
                 VStack {
@@ -306,7 +307,12 @@ struct CardView: View {
                 }
                 
             }
-            
+            if cardIndex > 0 {
+                Button("Undo") {
+                    cardIndex = cardIndex - 1
+                    book.wishlistedByMe = false
+                }.buttonStyle(RoundedButton())
+            }
 //            List(books, id: \.title) { book in
 //                VStack(alignment: .leading) {
 //                    Text(book.title).font(.headline)
@@ -346,8 +352,10 @@ struct CardView: View {
         switch width {
         case -500...(-150):
             offset = CGSize(width: -500, height: 0)
+            cardIndex = cardIndex + 1
         case 150...500:
             offset = CGSize(width: 500, height: 0)
+            cardIndex = cardIndex + 1
         default:
             offset = .zero
         }
@@ -390,13 +398,14 @@ struct MainView2: View {
     @State private var users = Person.allPersons
     
     let spacing: CGFloat = 10
-
+    @State var cardIndex = 0
     var body: some View {
         VStack {
             ZStack {
-                ForEach(booksFromJson.indices, id: \.self) { i in
-                    CardView(booksFromJson: $booksFromJson, book: $booksFromJson[i], lender: $users[i], borrowers: $users)
-                }
+                //ForEach(booksFromJson.indices, id: \.self) { i in
+                CardView(booksFromJson: $booksFromJson, book: $booksFromJson[cardIndex+1], lender: $users[cardIndex+1], borrowers: $users, cardIndex: $cardIndex).id(UUID())
+                CardView(booksFromJson: $booksFromJson, book: $booksFromJson[cardIndex], lender: $users[cardIndex], borrowers: $users, cardIndex: $cardIndex).id(UUID())
+                //}
             }
         }
     }
