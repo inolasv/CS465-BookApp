@@ -50,7 +50,7 @@ struct ContentView: View {
                 .tabItem {
                     Label("Wishlist", systemImage: "checklist")
                 }
-            ProfileView(user: $currentUser, booksFromJson: $booksFromJson, editable: false)
+            ProfileView(user: $currentUser, booksFromJson: $booksFromJson, editable: true)
                 .tabItem {
                     Label("Profile", systemImage: "person")
                 }
