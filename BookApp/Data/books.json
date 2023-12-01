@@ -17,7 +17,7 @@
       "borrowedByMe": false,
       "lendedByMe": true,
       "wishlistedByMe": false,
-      "someoneInterested": false
+      "someoneInterested": true
     },
     {
       "title": "That Wasn’t in the Script",
@@ -94,7 +94,7 @@
       "borrowedByMe": false,
       "lendedByMe": false,
       "wishlistedByMe": false,
-      "someoneInterested": false
+      "someoneInterested": true
 
     },
     {
@@ -141,7 +141,7 @@
         "borrowedByMe": true,
         "lendedByMe": false,
         "wishlistedByMe": true,
-        "someoneInterested": false
+        "someoneInterested": true
     },
     {
         "title": "Under This Forgetful Sky",

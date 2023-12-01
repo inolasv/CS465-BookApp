@@ -126,14 +126,13 @@ struct ProfileView: View {
                                     .frame(width: 85, height: 110, alignment: .center)
                                     .clipped()
                                     Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
-                                        if editable && booksFromJson[i].availability {
-                                            currentBook = booksFromJson[i]
+                                        if booksFromJson[i].someoneInterested {
                                             showingBorrowSheet.toggle()
                                         }
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                            AcceptConfirmationView(book: $currentBook, borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                            AcceptConfirmationView(book: $booksFromJson[i], borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                      }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)
