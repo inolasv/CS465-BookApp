@@ -61,47 +61,76 @@ struct BookIconView: View {
     @Binding var book: Book2
     var body: some View {
         HStack {
-            Button(action: {
-                withAnimation {
-                    isFlipped.toggle()
+            ZStack {
+                if book.availability {
+                    Circle()
+                        .foregroundColor(.green)
+                        .frame(width: 25, height: 25)
+                        .position(x: 30, y: 45)
+                        .zIndex(10)
+
+                    
+//                    Text("Available to Borrow")
+//                        .frame(width: 50, height: 50)
+//                        .font(.custom("Futura", size: 12))
+//                        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.green))
+//                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
+//                        .zIndex(10)
+//                        .position(x: 30, y: 30)
                 }
-            }) {
-                if isFlipped {
-                    // The back of the card
-                    ZStack(alignment: .topTrailing) {
-                        Image("FlipIcon").resizable().frame(width: 50, height: 50)
-                        BackView(book: $book)
-                    }.frame(width: 310, height: 470)
-                        .background(Color.white)
+//                else {
+//                    Text("Not Available to Borrow")
+//                        .font(.custom("Futura", size: 12))
+//                        .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.red))
+//                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 0.5))
+//                        .zIndex(10)
+//                        .position(x: 30, y: 30)
+//
+//                }
+                
+                Button(action: {
+                    withAnimation {
+                        isFlipped.toggle()
+                    }
+                }) {
+                    if isFlipped {
+                        // The back of the card
+                        ZStack(alignment: .topTrailing) {
+                            Image("FlipIcon").resizable().frame(width: 50, height: 50)
+                            BackView(book: $book)
+                        }.frame(width: 310, height: 470)
+                            .background(Color.white)
+                            .cornerRadius(20)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color("magenta"), lineWidth: 10))
+                            .rotation3DEffect(.degrees(isFlipped ? 0 : 180), axis: (x: 0, y: 1, z: 0))
+                        
+                        
+                    } else {
+                        // The front of the card
+                        ZStack(alignment: .topTrailing) {
+                            AsyncImage(url: URL(string: book.coverImage)) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFit()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            Image("FlipIcon").resizable().frame(width: 50, height: 50)
+                        }
+                        .frame(width: 310, height: 470)
+                        .background()
                         .cornerRadius(20)
                         .overlay(
                             RoundedRectangle(cornerRadius: 20)
-                                .stroke(Color("magenta"), lineWidth: 10))
-                        .rotation3DEffect(.degrees(isFlipped ? 0 : 180), axis: (x: 0, y: 1, z: 0))
-                    
-                    
-                } else {
-                    // The front of the card
-                    ZStack(alignment: .topTrailing) {
-                        AsyncImage(url: URL(string: book.coverImage)) { image in
-                            image
-                                .resizable()
-                                .scaledToFit()
-                        } placeholder: {
-                            ProgressView()
-                        }
-                        Image("FlipIcon").resizable().frame(width: 50, height: 50)
+                                .stroke(.black, lineWidth: 2))
+                        .rotation3DEffect(.degrees(isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
                     }
-                    .frame(width: 310, height: 470)
-                    .background()
-                    .cornerRadius(20)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 20)
-                            .stroke(.black, lineWidth: 2))
-                    .rotation3DEffect(.degrees(isFlipped ? -180 : 0), axis: (x: 0, y: 1, z: 0))
                 }
+                .buttonStyle(FlipButton())
             }
-            .buttonStyle(FlipButton())
+            
         }
     }
 }
@@ -123,20 +152,6 @@ struct ListedByView: View {
                     Text(lender.name + " " + lender.lastname)
                         .font(.custom("Futura", size: 25))
                 }.frame(maxWidth: .infinity, alignment: .leading)
-                ZStack {
-                    if available {
-                        Text("Available to Borrow")
-                            .font(.custom("Futura", size: 15))
-                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.green))
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 2))
-                    }
-                    else {
-                        Text("Not Available to Borrow")
-                            .font(.custom("Futura", size: 15))
-                            .background(RoundedRectangle(cornerRadius: 10).foregroundColor(.red))
-                            .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 2))
-                    }
-                }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .trailing)
             }
             AsyncImage(url: URL(string: lender.profilePicture)) { phase in
                 switch phase {
@@ -222,16 +237,14 @@ struct BackView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 10){
             Text(book.title)
-                .font(.custom("Futura", size: 40))
+                .font(.custom("Futura", size: 30))
                 .padding([.top, .horizontal])
             Text(book.author)
                 .font(.custom("Futura", size: 25))
                 .padding([.horizontal])
             Text(book.description)
-                .font(.custom("Futura", size: 16))
+                .font(.custom("Futura", size: 14))
                 .padding()
-            Spacer()
-                
             
             VStack (alignment: .center){
                 HStack (alignment: .center) {

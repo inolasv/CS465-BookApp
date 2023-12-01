@@ -50,6 +50,7 @@ struct AcceptConfirmationView: View {
                     print("accept pressed!")
                     scheduleNotification(title: "Your Borrow Request has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 5, isRepeating: false)
                     showingBorrowSheet = false
+                    print(book)
 
                 }
                 .buttonStyle(RoundedButton())
