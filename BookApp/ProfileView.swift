@@ -132,7 +132,7 @@ struct ProfileView: View {
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                            AcceptConfirmationView(book: $booksFromJson[i], borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                        AcceptConfirmationView(booksFromJson: $booksFromJson, bookTitle: booksFromJson[i].title, borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                      }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)

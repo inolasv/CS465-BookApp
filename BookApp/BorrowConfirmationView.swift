@@ -11,14 +11,13 @@ import SwiftUI
 
 struct BorrowConfirmationView: View {
     @State private var sideModal: SideModal? = nil
-
     
-    @Binding var book: Book2
+    @Binding var booksFromJson: [Book2]
+    let bookTitle: String
     let lender: Person
     @Binding var showingBorrowSheet: Bool
     
-    
-    
+    @State private var i: Int = 0
     
     var body: some View {
         VStack {
@@ -28,7 +27,7 @@ struct BorrowConfirmationView: View {
 //                 dismiss()
 //                }
             }
-            AsyncImage(url: URL(string: book.coverImage ?? "book_cover")) { phase in
+            AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
                 switch phase {
                     case .empty:
                         ProgressView() // Shown while loading
@@ -51,43 +50,70 @@ struct BorrowConfirmationView: View {
             
             HStack(alignment: .center) {
                 VStack(alignment: .center) {
-                    Image(lender.profilePicture ?? "ProfileIcon")
+                    AsyncImage(url: URL(string: lender.profilePicture)) { phase in
+                        switch phase {
+                            case .empty:
+                                ProgressView() // Shown while loading
+                            case .success(let image):
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                            case .failure:
+                                Image("ProfileIcon") // Fallback image in case of failure
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                            @unknown default:
+                                EmptyView()
+                        }
+                    }
+                    .frame(width: 80, height: 80, alignment: .center)
+                    .clipShape(Circle())
+                    .overlay(Circle().stroke(Color("magenta"), lineWidth: 3))
+//                    .padding()
+                    
                     Text(lender.name + " " + lender.lastname).font(.custom("GochiHand-Regular", size: 24))
                 }
                 Text(lender.bio).font(.custom("GochiHand-Regular", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
-            Text("Interested in borrowing  \(book.title)? Click the borrow button and we will notify you if your request is approved by the lender. Once this happens, we will provide contact information to set up the lending process. If you wish to cancel, you may do so after clicking the borrow button.").padding().font(.custom("GochiHand-Regular", size: 16))
+            Text("Interested in borrowing  \(booksFromJson[i].title)? Click the borrow button and we will notify you if your request is approved by the lender. Once this happens, we will provide contact information to set up the lending process. If you wish to cancel, you may do so after clicking the borrow button.").padding().font(.custom("GochiHand-Regular", size: 16))
             ZStack(alignment: .center) {
                 Button("Borrow") {
                     print("borrow pressed!")
                     
-                    book.someoneInterested = true
+                    booksFromJson[i].someoneInterested = true
                     
                     sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.", color: "yellow")
-                    scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + book.title, secondsLater: 5, isRepeating: false)
+                    scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + booksFromJson[i].title, secondsLater: 5, isRepeating: false)
                     showingBorrowSheet.toggle()
-                    book.availability = false
-                    book.borrowedByMe = true
+//                    booksFromJson[i].availability = false
+                    booksFromJson[i].borrowedByMe = true
                 }
-                .opacity(book.borrowedByMe ? 0 : 1)
+                .opacity(booksFromJson[i].someoneInterested ? 0 : 1)
                 .buttonStyle(RoundedButton())
                 Button("Cancel") {
                     showingBorrowSheet.toggle()
-                    book.availability = true
-                    book.borrowedByMe = false
+//                    booksFromJson[i].availability = true
+//                    booksFromJson[i].borrowedByMe = false
+                    booksFromJson[i].someoneInterested = false
+//                    print(booksFromJson[i])
                 }
-                .opacity(book.borrowedByMe ? 1 : 0)
+                .opacity(booksFromJson[i].someoneInterested ? 1 : 0)
                 .buttonStyle(RoundedButton())
             }.padding()
             
         }
         .frame(maxWidth: /*@START_MENU_TOKEN@*/.infinity/*@END_MENU_TOKEN@*/, alignment: .center)
-        .background(Color("lightGray"))
+        .background(Color("cream"))
         .cornerRadius(25)
         .overlay(RoundedRectangle(cornerRadius: 25)
             .strokeBorder(Color.black, lineWidth: 3))
         .padding()
         .modalView(sideModal: $sideModal)
+        .onAppear() {
+            if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+                i = index
+            }
+        }
 
     }
 }

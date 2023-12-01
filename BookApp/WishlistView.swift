@@ -56,7 +56,7 @@ struct WishlistView: View {
                     GeometryReader { geometry in
                         ScrollView(.horizontal) {
                             LazyHStack(alignment: .center, spacing: 20) {
-                                ForEach(Book2.allBooks) { book in
+                                ForEach(booksFromJson) { book in
                                     if book.borrowedByMe {
                                         VStack() {
                                             Button(action: {print("exit clicked")}) {
@@ -159,13 +159,13 @@ struct WishlistView: View {
                                             .frame(width: 85, height: 110, alignment: .center)
                                             .clipped()
                                             Button(booksFromJson[i].availability ? "Available!" : "Unavailable") {
-                                                showingBorrowSheet.toggle()
+                                                if (booksFromJson[i].availability) {
+                                                    showingBorrowSheet.toggle()
+                                                }
                                             }
                                             .buttonStyle(RoundedButton())
-                                            // You might need to modify this part to work with Book2
-                                             .sheet(isPresented: $showingBorrowSheet) {
-                                                     BorrowConfirmationView(book: $booksFromJson[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
-                                                 
+                                            .sheet(isPresented: $showingBorrowSheet) {
+                                                 BorrowConfirmationView(booksFromJson: $booksFromJson, bookTitle: booksFromJson[i].title, lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                              }
                                         }
                                         .frame(width: 150, height: 230, alignment: .center)

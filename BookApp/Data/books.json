@@ -17,7 +17,7 @@
       "borrowedByMe": false,
       "lendedByMe": true,
       "wishlistedByMe": false,
-      "someoneInterested": true
+      "someoneInterested": false
     },
     {
       "title": "That Wasn’t in the Script",
@@ -94,7 +94,7 @@
       "borrowedByMe": false,
       "lendedByMe": false,
       "wishlistedByMe": false,
-      "someoneInterested": true
+      "someoneInterested": false
 
     },
     {
@@ -141,7 +141,7 @@
         "borrowedByMe": true,
         "lendedByMe": false,
         "wishlistedByMe": true,
-        "someoneInterested": true
+        "someoneInterested": false
     },
     {
         "title": "Under This Forgetful Sky",
@@ -164,7 +164,7 @@
         "borrowedByMe": false,
         "lendedByMe": true,
         "wishlistedByMe": false,
-        "someoneInterested": true
+        "someoneInterested": false
     },
     {
       "title": "Eternal Echoes",
@@ -308,7 +308,7 @@
       "borrowedByMe": false,
       "lendedByMe": true,
       "wishlistedByMe": false,
-      "someoneInterested": true
+      "someoneInterested": false
     },
     {
       "title": "Beneath the Crimson Sky",
