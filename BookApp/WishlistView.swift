@@ -159,15 +159,12 @@ struct WishlistView: View {
                                             .frame(width: 85, height: 110, alignment: .center)
                                             .clipped()
                                             Button(booksFromJson[i].availability ? "Available!" : "Unavailable") {
-                                                if booksFromJson[i].availability {
-                                                    currentBook = booksFromJson[i]
-                                                    showingBorrowSheet.toggle()
-                                                }
+                                                showingBorrowSheet.toggle()
                                             }
                                             .buttonStyle(RoundedButton())
                                             // You might need to modify this part to work with Book2
                                              .sheet(isPresented: $showingBorrowSheet) {
-                                                     BorrowConfirmationView(book: $currentBook, lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                                     BorrowConfirmationView(book: $booksFromJson[i], lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                                  
                                              }
                                         }

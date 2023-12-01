@@ -11,7 +11,6 @@ import SwiftUI
 
 struct BorrowConfirmationView: View {
     @State private var sideModal: SideModal? = nil
-    @State private var borrowMode: Bool = false
 
     
     @Binding var book: Book2
@@ -66,16 +65,18 @@ struct BorrowConfirmationView: View {
                     
                     sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.", color: "yellow")
                     scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + book.title, secondsLater: 5, isRepeating: false)
-                    borrowMode = true
                     showingBorrowSheet.toggle()
+                    book.availability = false
+                    book.borrowedByMe = true
                 }
-                .opacity(borrowMode ? 0 : 1)
+                .opacity(book.borrowedByMe ? 0 : 1)
                 .buttonStyle(RoundedButton())
                 Button("Cancel") {
-                    borrowMode = false
                     showingBorrowSheet.toggle()
+                    book.availability = true
+                    book.borrowedByMe = false
                 }
-                .opacity(borrowMode ? 1 : 0)
+                .opacity(book.borrowedByMe ? 1 : 0)
                 .buttonStyle(RoundedButton())
             }.padding()
             
