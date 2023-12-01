@@ -42,7 +42,7 @@ struct WishlistView: View {
     var body: some View {
         ZStack {
             VStack {
-                Text("My Wishlist")
+                Text("My List")
                     .font(.custom("Futura", size: 30))
                     .foregroundColor(.black)
                     .frame(width: 400, height: 25, alignment: .center)
@@ -64,11 +64,11 @@ struct WishlistView: View {
                                                     .frame(width: 120, height: 1, alignment: .trailing)
                                             }
                                             Text(book.title)
-                                                .font(.custom("Futura", size: 20))
-                                                .frame(width: 120, height: 30, alignment: .leading)
+                                                .font(.custom("Futura", size: 18))
+                                                .frame(width: 120, height: 25, alignment: .leading)
                                             
                                             Text(book.author)
-                                                .font(.custom("Futura", size: 14))
+                                                .font(.custom("Futura", size: 13))
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // It is reading the book url in here, but we need to write a image url decoder into the image as XCode does not support displaying image from URL
@@ -132,11 +132,11 @@ struct WishlistView: View {
                                                     .frame(width: 120, height: 1, alignment: .trailing)
                                             }
                                             Text(booksFromJson[i].title)
-                                                .font(.custom("Futura", size: 25))
+                                                .font(.custom("Futura", size: 18))
                                                 .frame(width: 120, height: 20, alignment: .leading)
                                             
                                             Text(booksFromJson[i].author)
-                                                .font(.custom("Futura", size: 16))
+                                                .font(.custom("Futura", size: 13))
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // Place holder image for now

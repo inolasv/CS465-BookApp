@@ -48,7 +48,7 @@ struct ContentView: View {
                 }
             WishlistView(booksFromJson: $booksFromJson)
                 .tabItem {
-                    Label("Wishlist", systemImage: "checklist")
+                    Label("My List", systemImage: "checklist")
                 }
             ProfileView(user: $currentUser, booksFromJson: $booksFromJson, editable: true)
                 .tabItem {
@@ -63,7 +63,7 @@ struct ContentView: View {
 
         }
         .onAppear {
-            sideModal = SideModal(title: "How to use the App", message: "Swipe left and right on the cards to see the next options. Swiping right adds to your wishlist, and left indicates not interested.", color: "beige4")
+            sideModal = SideModal(title: "How to use the App", message: "Swipe left and right on the cards to see the next options. Swiping right adds to your wishlist, and left indicates not interested. A green dot means the book is currently available", color: "beige4")
         }
     }
 }

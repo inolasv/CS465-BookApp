@@ -100,11 +100,11 @@ struct ProfileView: View {
                                             .frame(width: 120, height: 1, alignment: .trailing)
                                     }
                                     Text(booksFromJson[i].title)
-                                        .font(.custom("Futura", size: 25))
+                                        .font(.custom("Futura", size: 18))
                                         .frame(width: 120, height: 20, alignment: .leading)
                                     
                                     Text(booksFromJson[i].author)
-                                        .font(.custom("Futura", size: 16))
+                                        .font(.custom("Futura", size: 13))
                                         .frame(width: 120, height: 10, alignment: .leading)
                                     
                                     AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
