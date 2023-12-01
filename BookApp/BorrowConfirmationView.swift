@@ -77,6 +77,7 @@ struct BorrowConfirmationView: View {
                     //showingBorrowSheet.toggle()
                     book.availability = true
                     book.borrowedByMe = false
+                    book.someoneInterested = false
                     dismiss()
                 }
                 .opacity(book.borrowedByMe ? 1 : 0)
