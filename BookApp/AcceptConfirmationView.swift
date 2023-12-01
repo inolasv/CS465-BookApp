@@ -18,6 +18,7 @@ struct AcceptConfirmationView: View {
 
     
     var body: some View {
+        if (i != -1) {
         VStack{
             AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
                 switch phase {
@@ -97,7 +98,9 @@ struct AcceptConfirmationView: View {
         .onAppear() {
             if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
                 i = index
+                print(i)
             }
+        }
         }
     }
 }

@@ -9,7 +9,7 @@ import Foundation
 
 struct Book2: Codable, Identifiable, Hashable {
     let id = UUID()
-    let title: String
+    var title: String
     let coverImage: String
     let author: String
     let tags: [String]

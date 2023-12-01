@@ -39,6 +39,7 @@ struct ProfileView: View {
 
     
     @State private var showingBorrowSheet = false
+    @State private var titleToOpen: String = "none"
     
     @State private var books =
         [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
@@ -128,11 +129,12 @@ struct ProfileView: View {
                                     Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
                                         if booksFromJson[i].someoneInterested {
                                             showingBorrowSheet.toggle()
+                                            titleToOpen = booksFromJson[i].title
                                         }
                                     }
                                     .buttonStyle(RoundedButton())
                                     .sheet(isPresented: $showingBorrowSheet) {
-                                        AcceptConfirmationView(booksFromJson: $booksFromJson, bookTitle: booksFromJson[i].title, borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                        AcceptConfirmationView(booksFromJson: $booksFromJson, bookTitle: titleToOpen, borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                      }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)

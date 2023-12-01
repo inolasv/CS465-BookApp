@@ -16,10 +16,33 @@ struct BorrowConfirmationView: View {
     let bookTitle: String
     let lender: Person
     @Binding var showingBorrowSheet: Bool
+    @State var i = 0
     
-    @State private var i: Int = 0
+//    @State var _bookTitle: String = ""
+//    @State var _booksFromJson: [Book2] = []
     
+//    func updateIndex() {
+//        if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+//            i = index
+//        }
+//    }
+    
+//    init(bookTitle: String, booksFromJson: Binding<[Book2]>) {
+//        self._booksFromJson = booksFromJson
+//
+//        if let index = _booksFromJson.firstIndex(where: { $0.title.wrappedValue == bookTitle }) {
+//                i = index
+//            }
+//    }
+
+        
     var body: some View {
+//        if (i == -1) {
+//            if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+//                i = index
+//            }
+//        }
+        if (i != -1) {
         VStack {
             HStack() {
 //                Button(action: {print("exit clicked")}) {
@@ -110,12 +133,16 @@ struct BorrowConfirmationView: View {
         .padding()
         .modalView(sideModal: $sideModal)
         .onAppear() {
-            if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
-                i = index
-            }
+//            print(bookTitle)
+//            if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
+////                i = index
+//            }
         }
-
+            
+        }
+            
     }
+
 }
 
 //struct BorrowConfirmationView_Previews: PreviewProvider {

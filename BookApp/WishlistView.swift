@@ -27,6 +27,7 @@ struct WhiteRoundedButton: ButtonStyle {
 struct WishlistView: View {
     @Binding var booksFromJson: [Book2]
     @State private var showingBorrowSheet = false
+    @State private var titleToOpen: String = "none"
     @State private var books =
         [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
          Book(title: "title2", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
@@ -38,6 +39,7 @@ struct WishlistView: View {
     @State private var user = Person.allPersons[1]
     
     @State private var users = Person.allPersons
+    
     
     var body: some View {
         ZStack {
@@ -161,11 +163,12 @@ struct WishlistView: View {
                                             Button(booksFromJson[i].availability ? "Available!" : "Unavailable") {
                                                 if (booksFromJson[i].availability) {
                                                     showingBorrowSheet.toggle()
+                                                    titleToOpen = booksFromJson[i].title
                                                 }
                                             }
                                             .buttonStyle(RoundedButton())
                                             .sheet(isPresented: $showingBorrowSheet) {
-                                                 BorrowConfirmationView(booksFromJson: $booksFromJson, bookTitle: booksFromJson[i].title, lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
+                                                 BorrowConfirmationView(booksFromJson: $booksFromJson, bookTitle: titleToOpen, lender: users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
                                              }
                                         }
                                         .frame(width: 150, height: 230, alignment: .center)
