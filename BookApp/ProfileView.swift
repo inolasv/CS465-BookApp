@@ -83,10 +83,9 @@ struct ProfileView: View {
                     .frame(width: 400, height: 30, alignment: .center)
                 Text(user.bio)
                     .font(.custom("Futura", size: 18))
-                    .frame(width: 310, height: 70, alignment: .leading)
+                    .frame(width: 310, height: 100, alignment: .leading)
                     .foregroundColor(.black)
-                    .padding(.vertical)
-                    .padding(.vertical)
+                    .padding(.vertical, 10)
 
 
             }

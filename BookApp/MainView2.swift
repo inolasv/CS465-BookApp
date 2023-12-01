@@ -66,7 +66,7 @@ struct BookIconView: View {
                     Circle()
                         .foregroundColor(.green)
                         .frame(width: 25, height: 25)
-                        .position(x: 30, y: 45)
+                        .position(x: 35, y: 45)
                         .zIndex(10)
 
                     

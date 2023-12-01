@@ -64,11 +64,11 @@ struct WishlistView: View {
                                                     .frame(width: 120, height: 1, alignment: .trailing)
                                             }
                                             Text(book.title)
-                                                .font(.custom("Futura", size: 25))
-                                                .frame(width: 120, height: 20, alignment: .leading)
+                                                .font(.custom("Futura", size: 20))
+                                                .frame(width: 120, height: 30, alignment: .leading)
                                             
                                             Text(book.author)
-                                                .font(.custom("Futura", size: 16))
+                                                .font(.custom("Futura", size: 14))
                                                 .frame(width: 120, height: 10, alignment: .leading)
                                             
                                             // It is reading the book url in here, but we need to write a image url decoder into the image as XCode does not support displaying image from URL
