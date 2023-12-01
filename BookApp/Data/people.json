@@ -20,7 +20,7 @@
     "lastname": "Garcia",
     "bio": "I'm a bookworm who can often be found at the local library. Mystery novels are my guilty pleasure.",
     "favorite_genre": "Mystery",
-    "profile_picture": "43.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/blonde-braided-woman-profile-art-a0knlvxfbkv9o6cr.webp",
     "bookListings": ["The Ghost Ship", "Under This Forgetful Sky", "Eternal Echoes", "The Quantum Paradox", "City of Whispers"]
   },
   {
@@ -28,7 +28,7 @@
     "lastname": "Brown",
     "bio": "I'm a yoga instructor who enjoys spreading mindfulness and inner peace through my classes.",
     "favorite_genre": "Wellness",
-    "profile_picture": "62.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/woman-profile-wearing-indian-warbonnet-095y2jnvcvaryhbt.webp",
     "bookListings": ["Something Better", "Eternal Echoes", "The Quantum Paradox", "City of Whispers", "Starlight Chronicles"]
   },
   {
@@ -36,7 +36,7 @@
     "lastname": "Davis",
     "bio": "I'm a marine biologist who explores the depths of the ocean in search of undiscovered species.",
     "favorite_genre": "Nature Documentaries",
-    "profile_picture": "91.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/woman-side-profile-with-autumn-trees-rcrhlam864fn4qr5.webp",
     "bookListings": ["The Porcelain Moon", "Under This Forgetful Sky", "Eternal Echoes", "The Quantum Paradox", "City of Whispers"]
   },
   {
@@ -44,7 +44,7 @@
     "lastname": "Anderson",
     "bio": "I'm a fashion designer with a flair for unique and creative clothing designs. Fashion is my passion.",
     "favorite_genre": "Fashion",
-    "profile_picture": "15.jpg",
+    "profile_picture": "https://wallpapers.com/images/high/cool-profile-picture-ug9oc08q7nn527wu.webp",
     "bookListings": ["Starlight Chronicles", "The Enchanted Forest", "The Clockmaker's Daughter", "Echoes of Eternity", "Beneath the Crimson Sky"]
   },
   {
@@ -52,7 +52,7 @@
     "lastname": "Smith",
     "bio": "I'm a chef who specializes in gourmet cuisine. I love experimenting with new ingredients and flavors.",
     "favorite_genre": "Cooking",
-    "profile_picture": "34.jpg",
+    "profile_picture": "https://wallpapers.com/images/high/profile-picture-jyk2c7q721fnax5h.webp",
     "bookListings": ["Ghost Tamer", "That Wasn’t in the Script", "Something Better", "Weyward", "The Last Lifeboat"]
   },
   {
@@ -60,7 +60,7 @@
     "lastname": "Miller",
     "bio": "I'm an environmentalist dedicated to protecting our planet. Hiking and conservation are my life.",
     "favorite_genre": "Environmental",
-    "profile_picture": "71.jpg",
+    "profile_picture": "https://wallpapers.com/images/high/cute-black-pet-dog-m7kx09nb9wbhut8t.webp",
     "bookListings": ["The Quantum Paradox", "City of Whispers", "Starlight Chronicles", "The Enchanted Forest", "The Clockmaker's Daughter"]
   },
   {
@@ -68,7 +68,7 @@
     "lastname": "Wilson",
     "bio": "I'm a historian with a fascination for ancient civilizations. Archaeology is my playground.",
     "favorite_genre": "History",
-    "profile_picture": "88.jpg",
+    "profile_picture": "https://wallpapers.com/images/high/kingfisher-bird-side-profile-atvtemwvrp17pkqw.webp",
     "bookListings": ["Under This Forgetful Sky", "Eternal Echoes", "The Quantum Paradox", "City of Whispers", "Starlight Chronicles"]
   },
   {
@@ -76,7 +76,7 @@
     "lastname": "Taylor",
     "bio": "I'm an actress who loves performing on stage and screen. Drama and theater are my calling.",
     "favorite_genre": "Drama",
-    "profile_picture": "26.jpg",
+    "profile_picture": "https://wallpapers.com/images/high/hilarious-boxer-dog-in-spectacles-profile-xblivwze0y44pyjq.webp",
     "bookListings": ["That Wasn’t in the Script", "Something Better", "Weyward", "The Last Lifeboat", "The Porcelain Moon"]
   },
   {
@@ -84,7 +84,7 @@
     "lastname": "Roberts",
     "bio": "I'm a wildlife photographer who captures the beauty of animals in their natural habitats.",
     "favorite_genre": "Wildlife Photography",
-    "profile_picture": "52.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/beige-heart-for-instagram-stories-ljm7o8mgxpqlpoug.webp",
     "bookListings": ["The Celestial Atlas", "Beneath the Crimson Sky", "Whispers of Winter", "Ghost Tamer", "That Wasn’t in the Script"]
   },
   {
@@ -92,7 +92,7 @@
     "lastname": "Brown",
     "bio": "I'm a musician who plays the violin in a classical orchestra. Music is the language of my soul.",
     "favorite_genre": "Classical Music",
-    "profile_picture": "78.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/teal-blue-blots-for-instagram-stories-72tzf1obze4mpxlt.webp",
     "bookListings": ["Something Better", "Weyward", "The Last Lifeboat", "The Porcelain Moon", "The Ghost Ship"]
   },
   {
@@ -100,7 +100,7 @@
     "lastname": "Thompson",
     "bio": "I'm a food critic who travels the world in search of the best culinary experiences. Food is my passion.",
     "favorite_genre": "Culinary Adventures",
-    "profile_picture": "6.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/girl-profile-of-sai-pallavi-da4wesbr719mj129.webp",
     "bookListings": ["Eternal Echoes", "The Quantum Paradox", "City of Whispers", "Starlight Chronicles", "The Enchanted Forest"]
   },
   {
@@ -108,7 +108,7 @@
     "lastname": "Davis",
     "bio": "I'm a software engineer who loves building innovative apps and exploring the latest tech trends.",
     "favorite_genre": "Technology",
-    "profile_picture": "31.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/kawaii-cartoon-girl-profile-r145v3c8j0yeidxg.webp",
     "bookListings": ["The Clockmaker's Daughter", "Echoes of Eternity", "The Celestial Atlas", "Beneath the Crimson Sky", "Whispers of Winter"]
   },
   {
@@ -116,7 +116,7 @@
     "lastname": "Gomez",
     "bio": "I'm a graphic designer who creates eye-catching visuals and enjoys working on creative projects.",
     "favorite_genre": "Graphic Design",
-    "profile_picture": "64.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/jimmy-carter-looking-old-s93skrf8s6w45dtp.webp",
     "bookListings": ["Whispers of Winter", "Ghost Tamer", "That Wasn’t in the Script", "Something Better", "Weyward"]
   },
   {
@@ -124,7 +124,7 @@
     "lastname": "White",
     "bio": "I'm a fitness trainer who helps people achieve their health goals. Fitness is my way of life.",
     "favorite_genre": "Fitness",
-    "profile_picture": "99.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/profile-picture-spiky-x-mask-and-hood-e8fbqum9j7u6ui5j.webp",
     "bookListings": ["The Last Lifeboat", "The Porcelain Moon", "The Ghost Ship", "Under This Forgetful Sky", "Eternal Echoes"]
   },
   {
@@ -132,7 +132,7 @@
     "lastname": "Harris",
     "bio": "I'm a travel blogger who documents my adventures around the world. Exploring new cultures is my passion.",
     "favorite_genre": "Travel",
-    "profile_picture": "11.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/mysterious-spring-woman-face-profile-en8r4aqj1twci8k7.webp",
     "bookListings": ["The Ghost Ship", "Under This Forgetful Sky", "Eternal Echoes", "The Quantum Paradox", "City of Whispers"]
   },
   {
@@ -140,7 +140,7 @@
     "lastname": "Walker",
     "bio": "I'm a science enthusiast who loves conducting experiments and unraveling the mysteries of the universe.",
     "favorite_genre": "Science",
-    "profile_picture": "42.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/white-haired-mystical-woman-profile-jk7cwv449bldvn27.webp",
     "bookListings": ["The Quantum Paradox", "City of Whispers", "Starlight Chronicles", "The Enchanted Forest", "The Clockmaker's Daughter"]
   },
   {
@@ -148,7 +148,7 @@
     "lastname": "Lewis",
     "bio": "I'm a lawyer who fights for justice and equality. Legal battles are my battleground.",
     "favorite_genre": "Legal Dramas",
-    "profile_picture": "73.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/gal-gadot-wonder-woman-profile-es3gxzcoqxf455h9.webp",
     "bookListings": ["Starlight Chronicles", "The Enchanted Forest", "The Clockmaker's Daughter", "Echoes of Eternity", "Beneath the Crimson Sky"]
   },
   {
@@ -156,7 +156,7 @@
     "lastname": "Baker",
     "bio": "I'm a dog trainer who believes that every dog can be a good boy. Training dogs is my passion.",
     "favorite_genre": "Animals",
-    "profile_picture": "17.jpg",
+    "profile_picture": "https://wallpapers.com/images/thumbnail/hugo-lloris-low-angle-shot-u13flkynzne1akll.webp",
     "bookListings": ["Ghost Tamer", "That Wasn’t in the Script", "Something Better", "Weyward", "The Last Lifeboat"]
   }
 ]
