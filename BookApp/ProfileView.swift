@@ -31,33 +31,20 @@ struct RoundedButton: ButtonStyle {
 
 
 struct ProfileView: View {
-    
-    
     @Binding var user: Person
     @Binding var booksFromJson: [Book2]
     var editable: Bool
-
-    
-    @State private var showingBorrowSheet = false
+    @State private var currentIndex: Int? = nil
     @State private var titleToOpen: String = "none"
-    
-    @State private var books =
-        [Book(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
-         Book(title: "Title2", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
-         Book(title: "Title3", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false),
-         Book(title: "Title4", coverImage: "cover", author: "Author", tags: ["tag1"], description: "description", availability: false, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false)]
     
     
     @State private var users = Person.allPersons
-
-    @State private var currentBook: Book2 = Book2(title: "title1", coverImage: "cover", author: "author", tags: ["tag1"], description: "description", availability: true, borrowedByMe: false, lendedByMe: false, wishlistedByMe: false, someoneInterested: false)
 
     
     var body: some View {
         ZStack {
             Color.white.ignoresSafeArea()
         VStack {
-                            
             VStack {
                 AsyncImage(url: URL(string: user.profilePicture)) { phase in
                     switch phase {
@@ -87,8 +74,6 @@ struct ProfileView: View {
                     .frame(width: 310, height: 100, alignment: .leading)
                     .foregroundColor(.black)
                     .padding(.vertical, 10)
-
-
             }
             VStack {
                 ScrollView(.horizontal) {
@@ -128,14 +113,10 @@ struct ProfileView: View {
                                     .clipped()
                                     Button(booksFromJson[i].availability ? "Available" : "Borrowed") {
                                         if booksFromJson[i].someoneInterested {
-                                            showingBorrowSheet.toggle()
-                                            titleToOpen = booksFromJson[i].title
+                                            currentIndex = i
                                         }
                                     }
                                     .buttonStyle(RoundedButton())
-                                    .sheet(isPresented: $showingBorrowSheet) {
-                                        AcceptConfirmationView(booksFromJson: $booksFromJson, bookTitle: titleToOpen, borrower: $users[Int.random(in: 0..<19)], showingBorrowSheet: $showingBorrowSheet)
-                                     }
                                 }
                                 .frame(width: 150, height: 240, alignment: .center)
                                 .background(Color("cream"))
@@ -148,6 +129,9 @@ struct ProfileView: View {
                 }
                 .frame(width: .infinity, height: 240, alignment: .center)
 
+            }
+            .sheet(item: $currentIndex) {
+                AcceptConfirmationView(book: $booksFromJson[$0], borrower: users[$0+1])
             }
             .frame(width: 460, height: 310)
             .background(Color("yellow"))

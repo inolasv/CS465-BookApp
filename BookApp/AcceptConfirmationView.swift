@@ -8,19 +8,13 @@
 import SwiftUI
 
 struct AcceptConfirmationView: View {
-    
-    @Binding var booksFromJson: [Book2]
-    let bookTitle: String
-    @Binding var borrower: Person
-    @Binding var showingBorrowSheet: Bool
-    
-    @State private var i: Int = 0
-
+    @Environment(\.dismiss) var dismiss
+    @Binding var book: Book2
+    let borrower: Person
     
     var body: some View {
-        if (i != -1) {
         VStack{
-            AsyncImage(url: URL(string: booksFromJson[i].coverImage)) { phase in
+            AsyncImage(url: URL(string: book.coverImage)) { phase in
                 switch phase {
                     case .empty:
                         ProgressView() // Shown while loading
@@ -65,27 +59,25 @@ struct AcceptConfirmationView: View {
                 }
                 Text(borrower.bio).font(.custom("GochiHand-Regular", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
-            Text("This user is interested in borrowing  \(booksFromJson[i].title). Once you accept, you can send over your contact information to set up the lending process. If you wish to decline, you may do so by clicking that button").padding().font(.custom("GochiHand-Regular", size: 16))
+            Text("This user is interested in borrowing  \(book.title). Once you accept, you can send over your contact information to set up the lending process. If you wish to decline, you may do so by clicking that button").padding().font(.custom("GochiHand-Regular", size: 16))
             HStack(alignment: .center) {
                 Button("Accept") {
-                    booksFromJson[i].borrowedByMe = true
-                    booksFromJson[i].wishlistedByMe = false
-                    booksFromJson[i].availability = false
-                    booksFromJson[i].someoneInterested = false
-                    print("accept pressed!")
+                    book.borrowedByMe = true
+                    book.wishlistedByMe = false
+                    book.availability = false
+                    book.someoneInterested = false
                     scheduleNotification(title: "Your Borrow Request has been Approved!", subtitle: "you can now view contact information for the book you want to borrow", secondsLater: 5, isRepeating: false)
-                    showingBorrowSheet = false
-//                    print(book)
-
+                    dismiss()
                 }
                 .buttonStyle(RoundedButton())
                 Button("Decline") {
                     print("decline pressed!")
-                    booksFromJson[i].someoneInterested = false
+                    book.someoneInterested = false
                     scheduleNotification(title: "Your Borrow Request has been Declined", subtitle: "", secondsLater: 5, isRepeating: false)
-                    showingBorrowSheet = false
-                        }
-                        .buttonStyle(RoundedButton())
+                    dismiss()
+                }
+                .buttonStyle(RoundedButton())
+                    
             }.padding()
             
         }
@@ -95,13 +87,6 @@ struct AcceptConfirmationView: View {
         .overlay(RoundedRectangle(cornerRadius: 25)
             .strokeBorder(Color.black, lineWidth: 3))
         .padding()
-        .onAppear() {
-            if let index = booksFromJson.firstIndex(where: { $0.title == bookTitle }) {
-                i = index
-                print(i)
-            }
-        }
-        }
     }
 }
 

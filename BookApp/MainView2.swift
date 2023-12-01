@@ -323,19 +323,9 @@ struct CardView: View {
             if cardIndex > 0 {
                 Button("Undo") {
                     cardIndex = cardIndex - 1
-                    book.wishlistedByMe = false
+                    booksFromJson[cardIndex].wishlistedByMe = false
                 }.buttonStyle(RoundedButton())
             }
-//            List(books, id: \.title) { book in
-//                VStack(alignment: .leading) {
-//                    Text(book.title).font(.headline)
-//                    Text(book.author).font(.subheadline)
-//                    // Display other properties as needed
-//                }
-//            }
-//            .onAppear {
-//                loadBooks()
-//            }
         }
         .padding()
         .background(color).padding()
@@ -380,7 +370,6 @@ struct CardView: View {
             color = .red
         case 100...500: // swipe right
             swipeStatus = 1
-            print(book.availability)
             if (book.availability) {
                 sideModal = SideModal(title: "Available to Borrow", message: book.title + " is currently available to borrow! Check your wishlist to proceed", color: "yellow")
             }
@@ -394,20 +383,7 @@ struct CardView: View {
 
 
 struct MainView2: View {
-    //@State private var offset: CGFloat = 0
-    //@State private var index = 0
-    
-    
     @Binding var booksFromJson: [Book2]
-        
-//    @State private var users =
-//        [User(name: "name1", lastname: "lname1", bio: "this is a bio1.", favoriteGenre: "genre1"),
-//         User(name: "name2", lastname: "lname2", bio: "this is a bio2.", favoriteGenre: "genre2"),
-//         User(name: "name3", lastname: "lname3", bio: "this is a bio3.", favoriteGenre: "genre3"),
-//         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
-//         User(name: "name4", lastname: "lname4", bio: "this is a bio4.", favoriteGenre: "genre4"),
-//         User(name: "name5", lastname: "lname5", bio: "this is a bio5.", favoriteGenre: "genre5"),
-//         User(name: "name6", lastname: "lname6", bio: "this is a bio6.", favoriteGenre: "genre6")]
     @State private var users = Person.allPersons
     
     let spacing: CGFloat = 10
