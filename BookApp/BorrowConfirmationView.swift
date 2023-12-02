@@ -73,6 +73,8 @@ struct BorrowConfirmationView: View {
                 .buttonStyle(RoundedButton())
                 Button("Cancel") {
                     //showingBorrowSheet.toggle()
+                    // book.availability = true
+                    // book.borrowedByMe = false
                     book.someoneInterested = false
                     dismiss()
                 }
