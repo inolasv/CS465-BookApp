@@ -17,7 +17,7 @@
       "borrowedByMe": false,
       "lendedByMe": true,
       "wishlistedByMe": false,
-      "someoneInterested": true
+      "someoneInterested": false
     },
     {
       "title": "That Wasn’t in the Script",
@@ -50,7 +50,7 @@
       "borrowedByMe": false,
       "lendedByMe": false,
       "wishlistedByMe": false,
-      "someoneInterested": true
+      "someoneInterested": false
     },
     {
       "title": "Weyward",

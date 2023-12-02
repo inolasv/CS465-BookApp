@@ -53,11 +53,11 @@ struct BorrowConfirmationView: View {
             HStack(alignment: .center) {
                 VStack(alignment: .center) {
                     Image(lender.profilePicture ?? "ProfileIcon")
-                    Text(lender.name + " " + lender.lastname).font(.custom("GochiHand-Regular", size: 24))
+                    Text(lender.name + " " + lender.lastname).font(.custom("Futura", size: 24))
                 }
-                Text(lender.bio).font(.custom("GochiHand-Regular", size: 16))
+                Text(lender.bio).font(.custom("Futura", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
-            Text("Interested in borrowing  \(book.title)? Click the borrow button and we will notify you if your request is approved by the lender. Once this happens, we will provide contact information to set up the lending process. If you wish to cancel, you may do so after clicking the borrow button.").padding().font(.custom("GochiHand-Regular", size: 16))
+            Text("Interested in borrowing  \(book.title)? Click the borrow button and we will notify you if your request is approved by the lender. Once this happens, we will provide contact information to set up the lending process. If you wish to cancel, you may do so after clicking the borrow button.").padding().font(.custom("Futura", size: 16))
             ZStack(alignment: .center) {
                 Button("Borrow") {
                     print("borrow pressed!")
@@ -67,16 +67,13 @@ struct BorrowConfirmationView: View {
                     sideModal = SideModal(title: "Request Sent", message: "The request has been sent, we will let you know when it is approved.", color: "yellow")
                     scheduleNotification(title: "Someone wants to borrow!", subtitle: "Someone wants to borrow " + book.title, secondsLater: 5, isRepeating: false)
                     //showingBorrowSheet.toggle()
-                    book.availability = false
-                    book.borrowedByMe = true
                     dismiss()
                 }
                 .opacity(book.borrowedByMe ? 0 : 1)
                 .buttonStyle(RoundedButton())
                 Button("Cancel") {
                     //showingBorrowSheet.toggle()
-                    book.availability = true
-                    book.borrowedByMe = false
+                    book.someoneInterested = false
                     dismiss()
                 }
                 .opacity(book.borrowedByMe ? 1 : 0)

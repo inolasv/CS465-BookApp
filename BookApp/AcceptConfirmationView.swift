@@ -55,11 +55,13 @@ struct AcceptConfirmationView: View {
                     .frame(width: 80, height: 80, alignment: .center)
                     .clipShape(Circle())
                     .overlay(Circle().stroke(Color("magenta"), lineWidth: 3))
-//                    .padding()                    Text(borrower.name + " " + borrower.lastname).font(.custom("GochiHand-Regular", size: 24))
+//                    .padding()
+                    
+                    Text(borrower.name + " " + borrower.lastname).font(.custom("Futura", size: 24))
                 }
-                Text(borrower.bio).font(.custom("GochiHand-Regular", size: 16))
+                Text(borrower.bio).font(.custom("Futura", size: 16))
             }.padding(.horizontal, 35).padding(.bottom, 5)
-            Text("This user is interested in borrowing  \(book.title). Once you accept, you can send over your contact information to set up the lending process. If you wish to decline, you may do so by clicking that button").padding().font(.custom("GochiHand-Regular", size: 16))
+            Text("This user is interested in borrowing  \(book.title). Once you accept, you can send over your contact information to set up the lending process. If you wish to decline, you may do so by clicking that button").padding().font(.custom("Futura", size: 16))
             HStack(alignment: .center) {
                 Button("Accept") {
                     book.borrowedByMe = true
